@@ -131,6 +131,9 @@ SMS_API_KEY = os.getenv("SMS_API_KEY", "")
 SMS_SENDER_ID = os.getenv("SMS_SENDER_ID", "SOGUNA")
 # Dev only: a fixed OTP makes local testing easy. Never set in production.
 OTP_DEV_CODE = os.getenv("OTP_DEV_CODE", "") if DEBUG else ""
+# Until an SMS gateway is set up, return the code to the login screen so people can still log in.
+# Defaults to ON only while SMS_BACKEND=console; switches off by itself once real SMS is configured.
+OTP_SHOW_ON_SCREEN = env_bool("OTP_SHOW_ON_SCREEN", SMS_BACKEND == "console")
 
 # Origins allowed to POST forms (Django admin login) — e.g. https://soguna.example.org
 CSRF_TRUSTED_ORIGINS = env_list("CSRF_TRUSTED_ORIGINS", "")

@@ -71,7 +71,10 @@ class SendOTPView(APIView):
         )
         send_sms(phone, f"সগুনা আদর্শ যুব সমাজ: আপনার লগইন কোড {code}। ৫ মিনিট কাজ করবে।")
         registered = Member.objects.filter(user__phone=phone).exists()
-        return Response({"expires_in": settings.OTP_TTL_SECONDS, "resend_in": settings.OTP_RESEND_SECONDS, "registered": registered})
+        data = {"expires_in": settings.OTP_TTL_SECONDS, "resend_in": settings.OTP_RESEND_SECONDS, "registered": registered}
+        if settings.OTP_SHOW_ON_SCREEN:
+            data["screen_code"] = code  # no SMS gateway yet — shown on the login screen
+        return Response(data)
 
 
 class VerifyOTPView(APIView):

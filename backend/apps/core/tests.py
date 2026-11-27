@@ -165,3 +165,12 @@ class ApiTests(APITestCase):
             self.assertTrue(self.client.get("/api/site/").data["logo_dark"])
             r = self.client.patch("/api/admin/settings/", {"logo_dark_reset": "1"})
             self.assertEqual(r.data["logo_dark"], "")
+
+    def test_otp_shown_on_screen_only_without_sms_gateway(self):
+        with override_settings(OTP_SHOW_ON_SCREEN=True):
+            r = self.client.post("/api/auth/otp/send/", {"phone": "01755555501"}, format="json")
+            self.assertEqual(r.data.get("screen_code"), "123456")
+        OTPCode.objects.all().delete()
+        with override_settings(OTP_SHOW_ON_SCREEN=False):
+            r = self.client.post("/api/auth/otp/send/", {"phone": "01755555502"}, format="json")
+            self.assertNotIn("screen_code", r.data)

@@ -292,12 +292,27 @@ else
   step "SSL certificate for $DOMAIN"
   MYIP="$(curl -fsS4 --max-time 6 https://api.ipify.org || true)"
   DNSIP="$(getent ahostsv4 "$DOMAIN" | awk 'NR==1{print $1}')"
+  if sudo ufw status 2>/dev/null | grep -q "Status: active"; then sudo ufw allow 80/tcp >/dev/null; sudo ufw allow 443/tcp >/dev/null; fi
+  # Can Let's Encrypt reach us? Put a token in the challenge folder and fetch it through the domain.
+  # (Works with a direct A record AND behind a Cloudflare proxy, where the DNS IP is Cloudflare's.)
+  PROBE="probe-$(head -c 8 /dev/urandom | od -An -tx1 | tr -d ' \n')"
+  mkdir -p "$DATA/acme/.well-known/acme-challenge"; chmod -R o+rX "$DATA/acme"
+  echo "$PROBE" >"$DATA/acme/.well-known/acme-challenge/$PROBE"
+  GOT="$(curl -fsS --max-time 15 "http://$DOMAIN/.well-known/acme-challenge/$PROBE" 2>/dev/null || true)"
+  rm -f "$DATA/acme/.well-known/acme-challenge/$PROBE"
+  BEHIND_CF=""
+  curl -sI --max-time 10 "http://$DOMAIN/" 2>/dev/null | grep -qi '^server: *cloudflare' && BEHIND_CF=1
   if [[ -z "$DNSIP" ]]; then
     warn "$DOMAIN doesn't resolve yet. Add an A record → ${MYIP:-this server IP}, then re-run. Staying on http."
-  elif [[ -n "$MYIP" && "$DNSIP" != "$MYIP" ]] && ! hostname -I | tr ' ' '\n' | grep -qx "$DNSIP"; then
-    warn "$DOMAIN points to $DNSIP but this server is $MYIP. Fix the A record, then re-run. Staying on http."
+  elif [[ "$GOT" != "$PROBE" ]]; then
+    warn "http://$DOMAIN/.well-known/acme-challenge/ doesn't reach this server (DNS: $DNSIP, server: ${MYIP:-?})."
+    if [[ -n "$BEHIND_CF" ]]; then
+      warn "Behind Cloudflare: turn OFF 'Always Use HTTPS' (or add a Page Rule/Configuration Rule excluding /.well-known/*), then re-run."
+    else
+      warn "Point the A record to ${MYIP:-this server}, then re-run. Staying on http."
+    fi
   else
-    if sudo ufw status 2>/dev/null | grep -q "Status: active"; then sudo ufw allow 80/tcp >/dev/null; sudo ufw allow 443/tcp >/dev/null; fi
+    if [[ -n "$BEHIND_CF" ]]; then ok "Reachable through Cloudflare proxy (DNS $DNSIP)"; else ok "Reachable (DNS $DNSIP)"; fi
     EMAIL_ARGS=(--register-unsafely-without-email); [[ -n "${LETSENCRYPT_EMAIL:-}" ]] && EMAIL_ARGS=(-m "$LETSENCRYPT_EMAIL")
     if sudo certbot certonly --webroot -w "$DATA/acme" -d "$DOMAIN" --non-interactive --agree-tos "${EMAIL_ARGS[@]}" \
          --deploy-hook "systemctl reload nginx" >/dev/null 2>&1; then

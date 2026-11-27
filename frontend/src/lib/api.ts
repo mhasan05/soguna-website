@@ -135,7 +135,7 @@ export async function download(path: string, filename: string) {
 /* ───────────── Typed endpoints ───────────── */
 export const api = {
   site: () => get<Site>("/site/"),
-  sendOtp: (phone: string) => post<{ expires_in: number; resend_in: number; registered: boolean }>("/auth/otp/send/", { phone }),
+  sendOtp: (phone: string) => post<{ expires_in: number; resend_in: number; registered: boolean; screen_code?: string }>("/auth/otp/send/", { phone }),
   verifyOtp: (phone: string, code: string) => post<{ access: string; refresh: string; member: Me }>("/auth/otp/verify/", { phone, code }),
   register: (data: FormData) => post<{ status: "pending" }>("/members/register/", data),
   me: () => get<Me>("/me/"),

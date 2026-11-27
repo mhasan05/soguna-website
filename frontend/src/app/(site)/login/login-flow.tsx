@@ -32,6 +32,7 @@ export function LoginFlow() {
   const [verifying, setVerifying] = useState(false);
   const [resendIn, setResendIn] = useState(0);
   const [expired, setExpired] = useState(false);
+  const [screenCode, setScreenCode] = useState<string | null>(null);
   const otpRef = useRef<HTMLInputElement>(null);
   const expiresAt = useRef(0);
 
@@ -57,6 +58,7 @@ export function LoginFlow() {
       const r = await api.sendOtp(phone);
       expiresAt.current = nowMs() + r.expires_in * 1000;
       setResendIn(r.resend_in);
+      setScreenCode(r.screen_code ?? null);
       setExpired(false);
       setOtp("");
       setOtpError(null);
@@ -243,7 +245,17 @@ export function LoginFlow() {
           </button>
         )}
       </div>
-      {DEV_HINT && <p className="m-0 rounded-lg bg-pill px-3 py-2 text-center text-[14px] text-muted">{DEV_HINT}</p>}
+      {screenCode ? (
+        <div role="status" className="flex flex-col items-center gap-1 rounded-xl border-2 border-dashed border-gold-200 bg-gold-25 px-4 py-3 text-center">
+          <span className="text-[14px] font-semibold text-gold-800">SMS চালু না হওয়া পর্যন্ত আপনার কোড এখানে দেখানো হচ্ছে</span>
+          <span className="font-mono text-[32px] leading-none font-bold tracking-[0.3em] text-ink">{bn(screenCode)}</span>
+          <button type="button" onClick={() => setOtp(screenCode)} className="mt-1 text-[15px] font-semibold text-brand underline-offset-2 hover:underline">
+            কোডটি বসিয়ে দিন
+          </button>
+        </div>
+      ) : (
+        DEV_HINT && <p className="m-0 rounded-lg bg-pill px-3 py-2 text-center text-[14px] text-muted">{DEV_HINT}</p>
+      )}
     </form>
   );
 }
