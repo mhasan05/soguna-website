@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FAFAF7;font-family:'Hind Siliguri',sans-serif;}a{color:#15803D;text-decoration:none;}a:hover{color:#14532D;text-decoration:underline;}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="container-type:inline-size;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:#FAFAF7;color:#1C1917;font-size:16px;line-height:1.6;">
+<div style="position:sticky;top:0;z-index:20;"><dc-import name="SiteHeader" mode="{{ mode }}" active="about" hint-size="100%,72px"></dc-import></div>
+
+<section data-screen-label="আমাদের কথা — শিরোনাম" style="position:relative;background:#14532D;color:#fff;overflow:hidden;">
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Bangladesh_Village_Landscape_(36143248590).jpg?width=1400" alt="সবুজ মাঠ ও গ্রাম" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,83,45,.4),rgba(20,83,45,.9));"></div>
+  <div style="position:relative;max-width:1200px;margin:0 auto;padding:clamp(64px,8cqw,104px) clamp(16px,3.5cqw,40px) clamp(36px,5cqw,56px);">
+    <div style="font-size:16px;opacity:.9;">হোম / আমাদের কথা</div>
+    <h1 style="margin:6px 0 0;font-size:clamp(30px,4cqw,48px);line-height:1.3;font-weight:700;">আমাদের কথা</h1>
+    <p style="margin:8px 0 0;font-size:clamp(17px,1.6cqw,20px);max-width:620px;opacity:.95;text-wrap:pretty;">সগুনার তরুণদের হাতে গড়া একটি অরাজনৈতিক সামাজিক সংগঠন।</p>
+  </div>
+</section>
+
+<section data-screen-label="ইতিহাস">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(40px,5.5cqw,72px) clamp(16px,3.5cqw,40px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:24px 48px;align-items:start;">
+    <div>
+      <div style="font-size:15px;font-weight:600;color:#B45309;">প্রতিষ্ঠা ২০১৮</div>
+      <h2 style="margin:4px 0 12px;font-size:clamp(24px,2.4cqw,32px);font-weight:700;line-height:1.3;">যেভাবে শুরু হলো</h2>
+      <p style="margin:0 0 12px;font-size:17px;color:#44403C;text-wrap:pretty;">২০১৮ সালের বর্ষায় যমুনার পানিতে সগুনার কয়েকটি পাড়া ডুবে যায়। তখন গ্রামের কয়েকজন তরুণ নিজেরা চাঁদা তুলে নৌকায় করে শুকনো খাবার আর ওষুধ পৌঁছে দেন। সেই কাজ থেকেই সগুনা আদর্শ যুব সমাজের জন্ম।</p>
+      <p style="margin:0;font-size:17px;color:#44403C;text-wrap:pretty;">আজ ১২২ জন সদস্য নিয়ে আমরা রক্তদান, শিক্ষা সহায়তা, খেলাধুলা আর বিপদে মানুষের পাশে থাকার কাজ করি। গ্রামের মুরুব্বি, ইমাম ও শিক্ষকেরা আমাদের পরামর্শ দেন।</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="4">
+        <div style="display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:14px 16px;">
+          <div style="flex:none;min-width:64px;font-size:20px;font-weight:700;color:#15803D;">{{ t.year }}</div>
+          <div style="font-size:16px;color:#44403C;">{{ t.text }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="লক্ষ্য ও উদ্দেশ্য">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(40px,5.5cqw,72px) clamp(16px,3.5cqw,40px) 0;">
+    <h2 style="margin:0 0 18px;font-size:clamp(24px,2.4cqw,32px);font-weight:700;line-height:1.3;">লক্ষ্য ও উদ্দেশ্য</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:14px;">
+      <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:18px;display:flex;gap:14px;"><div style="width:48px;height:48px;flex:none;border-radius:12px;background:#F0FDF4;color:#15803D;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div><div><h3 style="margin:0;font-size:19px;font-weight:600;">সমাজসেবা</h3><p style="margin:4px 0 0;color:#57534E;">গ্রামের রাস্তা, মসজিদ-মাদ্রাসা ও স্কুলের কাজে স্বেচ্ছাশ্রম।</p></div></div>
+      <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:18px;display:flex;gap:14px;"><div style="width:48px;height:48px;flex:none;border-radius:12px;background:#FEF2F2;color:#DC2626;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"></path></svg></div><div><h3 style="margin:0;font-size:19px;font-weight:600;">রক্তদান</h3><p style="margin:4px 0 0;color:#57534E;">জরুরি সময়ে দ্রুত রক্তদাতা খুঁজে দেওয়া ও রক্তদান ক্যাম্প।</p></div></div>
+      <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:18px;display:flex;gap:14px;"><div style="width:48px;height:48px;flex:none;border-radius:12px;background:#F0FDF4;color:#15803D;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></div><div><h3 style="margin:0;font-size:19px;font-weight:600;">শিক্ষা</h3><p style="margin:4px 0 0;color:#57534E;">মেধাবী শিক্ষার্থীদের বৃত্তি, বই ও সংবর্ধনা।</p></div></div>
+      <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:18px;display:flex;gap:14px;"><div style="width:48px;height:48px;flex:none;border-radius:12px;background:#F0FDF4;color:#15803D;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.5 2a6 6 0 0 0 4.1-1.6.5.5 0 0 1 .9.4V14a1 1 0 0 1-.4.8 6 6 0 0 1-3.6 1.2c-2.5 0-4.5-2-7.5-2a6 6 0 0 0-4 1.6"></path></svg></div><div><h3 style="margin:0;font-size:19px;font-weight:600;">খেলাধুলা</h3><p style="margin:4px 0 0;color:#57534E;">বার্ষিক ফুটবল ও ক্রিকেট টুর্নামেন্ট, তরুণদের মাঠে রাখা।</p></div></div>
+      <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:18px;display:flex;gap:14px;"><div style="width:48px;height:48px;flex:none;border-radius:12px;background:#F0FDF4;color:#15803D;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></div><div><h3 style="margin:0;font-size:19px;font-weight:600;">ধর্মীয় কাজ</h3><p style="margin:4px 0 0;color:#57534E;">ইফতার মাহফিল, ঈদে দুস্থদের সহায়তা ও জানাজার আয়োজন।</p></div></div>
+      <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:18px;display:flex;gap:14px;"><div style="width:48px;height:48px;flex:none;border-radius:12px;background:#FEF3C7;color:#B45309;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><path d="m4.93 4.93 4.24 4.24M14.83 9.17l4.24-4.24M14.83 14.83l4.24 4.24M9.17 14.83l-4.24 4.24"></path></svg></div><div><h3 style="margin:0;font-size:19px;font-weight:600;">দুর্যোগে সহায়তা</h3><p style="margin:4px 0 0;color:#57534E;">বন্যা ও নদীভাঙনে ত্রাণ, শীতে কম্বল বিতরণ।</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="গ্রাম সগুনা">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(40px,5.5cqw,72px) clamp(16px,3.5cqw,40px) 0;">
+    <h2 style="margin:0 0 18px;font-size:clamp(24px,2.4cqw,32px);font-weight:700;line-height:1.3;">গ্রাম সগুনা</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:20px 32px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Paddy_Field_Of_A_Village.jpg?width=1000" alt="গ্রামের ধানক্ষেত" loading="lazy" style="display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:12px;background:#E3E6D9;">
+        <p style="margin:0;font-size:17px;color:#44403C;text-wrap:pretty;">সগুনা সিরাজগঞ্জ জেলার বেলকুচি উপজেলার একটি গ্রাম, যমুনা নদীর কাছে। বেলকুচি তাঁতশিল্পের জন্য পরিচিত — গ্রামের অনেক পরিবার তাঁত, কৃষি আর ছোট ব্যবসায় জীবিকা চালান। অনেকে ঢাকা ও বিদেশে কাজ করেন।</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:6px 18px;">
+          <sc-for list="{{ places }}" as="p" hint-placeholder-count="5">
+            <div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #F0EEE8;">
+              <span style="font-size:17px;font-weight:600;">{{ p.name }}</span>
+              <span style="font-size:15px;color:#57534E;text-align:right;">{{ p.kind }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <iframe title="সগুনা, বেলকুচির মানচিত্র" src="https://maps.google.com/maps?q=Belkuchi,Sirajganj,Bangladesh&z=12&output=embed" loading="lazy" style="width:100%;height:260px;border:1px solid #E7E5DF;border-radius:12px;"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="গঠনতন্ত্র">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(40px,5.5cqw,72px) clamp(16px,3.5cqw,40px);">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-bottom:18px;">
+      <h2 style="margin:0;font-size:clamp(24px,2.4cqw,32px);font-weight:700;line-height:1.3;">গঠনতন্ত্রের মূল নিয়ম</h2>
+      <span style="font-size:14px;font-weight:600;padding:2px 12px;border-radius:999px;background:#FEF3C7;color:#92400E;">খসড়া — কমিটি চূড়ান্ত করবে</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <sc-for list="{{ rules }}" as="r" hint-placeholder-count="3">
+        <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;overflow:hidden;">
+          <button onClick="{{ r.toggle }}" style="width:100%;min-height:60px;padding:12px 18px;border:none;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:inherit;font-size:19px;font-weight:600;color:#1C1917;text-align:left;cursor:pointer;">{{ r.title }}<span style="font-size:24px;color:#15803D;line-height:1;">{{ r.sign }}</span></button>
+          <sc-if value="{{ r.open }}" hint-placeholder-val="{{ false }}">
+            <ul style="margin:0;padding:0 18px 16px 40px;color:#44403C;font-size:17px;display:flex;flex-direction:column;gap:6px;">
+              <sc-for list="{{ r.points }}" as="pt"><li>{{ pt }}</li></sc-for>
+            </ul>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ true }}"><div style="position:sticky;bottom:0;z-index:20;"><dc-import name="BottomNav" active="none" hint-size="100%,68px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;mobile&quot;,&quot;desktop&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { w: 0, open: 0 };
+  rootRef = React.createRef();
+  componentDidMount() { const el = this.rootRef.current; if (!el) return; this.ro = new ResizeObserver(([e]) => this.setState({ w: e.contentRect.width })); this.ro.observe(el); }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  renderVals() {
+    const m = this.props.mode; const mode = m && m !== 'auto' ? m : (this.state.w >= 900 ? 'desktop' : 'mobile');
+    const rules = [
+      { title: 'সদস্যপদের যোগ্যতা', points: ['সগুনা গ্রামের স্থায়ী বাসিন্দা বা গ্রামের সন্তান (প্রবাসীসহ)', 'বয়স কমপক্ষে ১৬ বছর', 'সংগঠনের নিয়ম মেনে চলার অঙ্গীকার'] },
+      { title: 'মাসিক চাঁদা', points: ['প্রতি মাসে নির্ধারিত চাঁদা — পরিমাণ কমিটি ঠিক করবে', 'bKash, Nagad বা কোষাধ্যক্ষকে নগদ দেওয়া যাবে', 'সব আয়-ব্যয়ের হিসাব সদস্যরা সাইটে দেখতে পারবেন'] },
+      { title: 'সভার নিয়ম', points: ['প্রতি মাসে একটি সাধারণ সভা', 'জরুরি প্রয়োজনে সভাপতি বিশেষ সভা ডাকতে পারবেন', 'সংগঠন রাজনৈতিকভাবে নিরপেক্ষ থাকবে'] }
+    ].map((r, i) => ({ ...r, open: this.state.open === i, sign: this.state.open === i ? '−' : '+', toggle: () => this.setState(s => ({ open: s.open === i ? -1 : i })) }));
+    return {
+      rootRef: this.rootRef, mode, isMobile: mode === 'mobile',
+      timeline: [
+        { year: '২০১৮', text: 'বন্যায় ত্রাণ বিতরণ দিয়ে যাত্রা শুরু' },
+        { year: '২০২০', text: 'করোনাকালে ২০০ পরিবারে খাদ্য সহায়তা' },
+        { year: '২০২৩', text: 'রক্তদাতা তালিকা তৈরি, প্রথম রক্তদান ক্যাম্প' },
+        { year: '২০২৬', text: 'ওয়েবসাইট চালু — সবার জন্য স্বচ্ছ হিসাব' }
+      ],
+      places: [
+        { name: 'সগুনা কেন্দ্রীয় জামে মসজিদ', kind: 'মসজিদ' },
+        { name: 'সগুনা সরকারি প্রাথমিক বিদ্যালয়', kind: 'স্কুল' },
+        { name: 'সগুনা দাখিল মাদ্রাসা', kind: 'মাদ্রাসা' },
+        { name: 'সগুনা বাজার', kind: 'বাজার · প্রতি শনি ও মঙ্গলবার হাট' },
+        { name: 'সগুনা কমিউনিটি ক্লিনিক', kind: 'স্বাস্থ্যসেবা' }
+      ],
+      rules
+    };
+  }
+}
+</script>
+</body>
+</html>

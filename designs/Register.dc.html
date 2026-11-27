@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FAFAF7;font-family:'Hind Siliguri',sans-serif;}a{color:#15803D;text-decoration:none;}a:hover{color:#14532D;text-decoration:underline;}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="container-type:inline-size;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:#FAFAF7;color:#1C1917;font-size:16px;line-height:1.6;">
+<div style="position:sticky;top:0;z-index:20;"><dc-import name="SiteHeader" mode="{{ mode }}" active="none" hint-size="100%,72px"></dc-import></div>
+
+<div data-screen-label="নিবন্ধন" style="max-width:640px;margin:0 auto;padding:clamp(24px,4cqw,48px) clamp(16px,3.5cqw,40px) clamp(40px,5cqw,64px);">
+  <sc-if value="{{ inForm }}" hint-placeholder-val="{{ true }}">
+    <h1 style="margin:0 0 4px;font-size:clamp(26px,3cqw,36px);font-weight:700;line-height:1.3;">সদস্য নিবন্ধন</h1>
+    <p style="margin:0 0 18px;font-size:17px;color:#57534E;">ধাপ {{ stepNo }} / ৩ · {{ stepTitle }}</p>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:22px;">
+      <sc-for list="{{ bars }}" as="b" hint-placeholder-count="3">
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="height:8px;border-radius:999px;background:{{ b.color }};"></div>
+          <span style="font-size:14px;color:{{ b.text }};font-weight:600;">{{ b.label }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="background:#fff;border:1px solid #E7E5DF;border-radius:16px;padding:clamp(18px,3cqw,28px);display:flex;flex-direction:column;gap:16px;">
+      <sc-if value="{{ s1 }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="width:88px;height:88px;flex:none;border-radius:50%;background:#F0FDF4;border:2px dashed #86C49B;display:flex;align-items:center;justify-content:center;color:#15803D;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"></path><circle cx="12" cy="13" r="3"></circle></svg></div>
+          <button style="height:48px;padding:0 18px;border-radius:10px;border:1.5px solid #15803D;background:#fff;color:#15803D;font-family:inherit;font-size:17px;font-weight:600;cursor:pointer;">ছবি তুলুন / বাছুন</button>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:17px;font-weight:600;">আপনার নাম</span><input placeholder="যেমন: মোঃ রাকিব হাসান" style="height:56px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:18px;"></label>
+        <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:17px;font-weight:600;">বাবার নাম</span><input style="height:56px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:18px;"></label>
+        <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:17px;font-weight:600;">ফোন নম্বর</span><input inputmode="tel" placeholder="০১৭XXXXXXXX" style="height:56px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:18px;"></label>
+        <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:17px;font-weight:600;">জন্ম তারিখ</span><input type="date" style="height:56px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:18px;background:#fff;"></label>
+      </sc-if>
+
+      <sc-if value="{{ s2 }}" hint-placeholder-val="{{ false }}">
+        <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:17px;font-weight:600;">পাড়া / মহল্লা</span>
+          <select style="height:56px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:18px;background:#fff;color:#1C1917;"><option>পাড়া বাছাই করুন</option><option>উত্তরপাড়া</option><option>দক্ষিণপাড়া</option><option>মধ্যপাড়া</option><option>পূর্বপাড়া</option><option>পশ্চিমপাড়া</option><option>নদীপাড়া</option></select>
+        </label>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font-size:17px;font-weight:600;">বর্তমানে থাকেন</span>
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;">
+            <sc-for list="{{ locs }}" as="l" hint-placeholder-count="4">
+              <button onClick="{{ l.pick }}" style="height:52px;border-radius:10px;border:{{ l.border }};background:{{ l.bg }};color:{{ l.fg }};font-family:inherit;font-size:17px;font-weight:600;cursor:pointer;">{{ l.label }}</button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ abroad }}" hint-placeholder-val="{{ false }}">
+            <input placeholder="দেশের নাম (যেমন: সৌদি আরব)" style="height:56px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:18px;">
+          </sc-if>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:17px;font-weight:600;">পেশা</span><input placeholder="যেমন: তাঁতি, কৃষক, শিক্ষার্থী" style="height:56px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:18px;"></label>
+        <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:17px;font-weight:600;">শিক্ষাগত যোগ্যতা</span>
+          <select style="height:56px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:18px;background:#fff;color:#1C1917;"><option>বাছাই করুন</option><option>প্রাথমিক</option><option>এসএসসি / দাখিল</option><option>এইচএসসি / আলিম</option><option>স্নাতক</option><option>স্নাতকোত্তর</option></select>
+        </label>
+      </sc-if>
+
+      <sc-if value="{{ s3 }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font-size:17px;font-weight:600;">রক্তের গ্রুপ</span>
+          <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;">
+            <sc-for list="{{ groups }}" as="g" hint-placeholder-count="8">
+              <button onClick="{{ g.pick }}" style="height:56px;border-radius:10px;border:1.5px solid #DC2626;background:{{ g.bg }};color:{{ g.fg }};font-family:inherit;font-size:20px;font-weight:700;cursor:pointer;">{{ g.name }}</button>
+            </sc-for>
+          </div>
+          <button onClick="{{ unknownGroup }}" style="align-self:flex-start;min-height:44px;border:none;background:none;padding:0;font-family:inherit;font-size:16px;color:#57534E;text-decoration:underline;cursor:pointer;">আমি জানি না</button>
+        </div>
+        <label style="display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;background:#FEF2F2;border-radius:12px;padding:8px 16px;cursor:pointer;">
+          <span style="font-size:17px;font-weight:600;">আমি রক্ত দিতে ইচ্ছুক</span>
+          <button onClick="{{ toggleDonor }}" aria-label="রক্ত দিতে ইচ্ছুক" style="width:60px;height:34px;flex:none;border-radius:999px;border:none;background:{{ donorTrack }};position:relative;cursor:pointer;"><span style="position:absolute;top:3px;left:{{ donorKnob }};width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);"></span></button>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:17px;font-weight:600;">শেষ রক্তদানের তারিখ <span style="font-weight:400;color:#57534E;">(যদি দিয়ে থাকেন)</span></span><input type="date" style="height:56px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:18px;background:#fff;"></label>
+      </sc-if>
+
+      <div style="display:flex;gap:10px;margin-top:6px;">
+        <sc-if value="{{ canBack }}" hint-placeholder-val="{{ false }}"><button onClick="{{ prev }}" style="height:56px;padding:0 22px;border-radius:12px;border:1.5px solid #D6D3CB;background:#fff;color:#44403C;font-family:inherit;font-size:18px;font-weight:600;cursor:pointer;">পেছনে</button></sc-if>
+        <button onClick="{{ next }}" style="flex:1;height:56px;border-radius:12px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:19px;font-weight:700;cursor:pointer;">{{ nextLabel }}</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ pending }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="অনুমোদনের অপেক্ষায়" style="background:#fff;border:1px solid #E7E5DF;border-radius:16px;padding:clamp(24px,4cqw,40px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;">
+      <div style="width:88px;height:88px;border-radius:50%;background:#FEF3C7;color:#B45309;display:flex;align-items:center;justify-content:center;"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg></div>
+      <h1 style="margin:0;font-size:clamp(26px,3cqw,34px);font-weight:700;line-height:1.3;">অনুমোদনের অপেক্ষায়</h1>
+      <p style="margin:0;font-size:18px;color:#44403C;max-width:440px;">আপনার আবেদন জমা হয়েছে। কমিটি যাচাই করে অনুমোদন দিলে আপনার ফোনে SMS যাবে। সাধারণত ১–২ দিন লাগে।</p>
+      <div style="width:100%;max-width:420px;display:flex;flex-direction:column;gap:0;text-align:left;margin-top:6px;">
+        <div style="display:flex;gap:12px;align-items:center;padding:10px 0;"><span style="width:28px;height:28px;flex:none;border-radius:50%;background:#15803D;color:#fff;display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font-size:17px;">আবেদন জমা — আজ</span></div>
+        <div style="display:flex;gap:12px;align-items:center;padding:10px 0;"><span style="width:28px;height:28px;flex:none;border-radius:50%;background:#D97706;"></span><span style="font-size:17px;font-weight:600;">কমিটির যাচাই চলছে</span></div>
+        <div style="display:flex;gap:12px;align-items:center;padding:10px 0;color:#78716C;"><span style="width:28px;height:28px;flex:none;border-radius:50%;border:2px solid #D6D3CB;box-sizing:border-box;"></span><span style="font-size:17px;">অনুমোদন ও SMS</span></div>
+      </div>
+      <a href="Home.dc.html" style="margin-top:6px;height:52px;padding:0 24px;border-radius:12px;border:1.5px solid #15803D;color:#15803D;display:inline-flex;align-items:center;font-size:17px;font-weight:600;text-decoration:none;">হোমে ফিরে যান</a>
+    </div>
+  </sc-if>
+</div>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ true }}"><div style="position:sticky;bottom:0;z-index:20;"><dc-import name="BottomNav" active="me" hint-size="100%,68px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;mobile&quot;,&quot;desktop&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;step&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;step1&quot;,&quot;step2&quot;,&quot;step3&quot;,&quot;pending&quot;],&quot;default&quot;:&quot;step1&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { w: 0, step: null, loc: 0, group: 'B+', donor: true };
+  rootRef = React.createRef();
+  componentDidMount() { const el = this.rootRef.current; if (!el) return; this.ro = new ResizeObserver(([e]) => this.setState({ w: e.contentRect.width })); this.ro.observe(el); }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  renderVals() {
+    const m = this.props.mode; const mode = m && m !== 'auto' ? m : (this.state.w >= 900 ? 'desktop' : 'mobile');
+    const map = { step1: 1, step2: 2, step3: 3, pending: 4 };
+    const step = this.state.step ?? map[this.props.step ?? 'step1'];
+    const labels = ['মৌলিক তথ্য', 'ঠিকানা ও পেশা', 'রক্তদান'];
+    const S = this.state;
+    const sel = on => ({ border: on ? '2px solid #15803D' : '1.5px solid #E7E5DF', bg: on ? '#F0FDF4' : '#fff', fg: on ? '#14532D' : '#44403C' });
+    return {
+      rootRef: this.rootRef, mode, isMobile: mode === 'mobile',
+      inForm: step <= 3, pending: step === 4, s1: step === 1, s2: step === 2, s3: step === 3,
+      stepNo: '০১২৩'[Math.min(step, 3)], stepTitle: labels[Math.min(step, 3) - 1],
+      bars: labels.map((label, i) => ({ label, color: i < step ? '#15803D' : '#E7E5DF', text: i < step ? '#14532D' : '#78716C' })),
+      locs: ['গ্রামে', 'ঢাকায়', 'অন্য জেলায়', 'প্রবাসে'].map((label, i) => ({ label, ...sel(S.loc === i), pick: () => this.setState({ loc: i }) })),
+      abroad: S.loc === 3,
+      groups: ['A+', 'A−', 'B+', 'B−', 'O+', 'O−', 'AB+', 'AB−'].map(n => ({ name: n, bg: S.group === n ? '#DC2626' : '#fff', fg: S.group === n ? '#fff' : '#DC2626', pick: () => this.setState({ group: n }) })),
+      unknownGroup: () => this.setState({ group: null }),
+      donorTrack: S.donor ? '#15803D' : '#D6D3CB', donorKnob: S.donor ? '29px' : '3px', toggleDonor: e => { e.preventDefault(); this.setState(s => ({ donor: !s.donor })); },
+      canBack: step > 1, prev: () => this.setState({ step: step - 1 }),
+      next: () => this.setState({ step: step + 1 }), nextLabel: step === 3 ? 'আবেদন জমা দিন' : 'পরের ধাপ'
+    };
+  }
+}
+</script>
+</body>
+</html>

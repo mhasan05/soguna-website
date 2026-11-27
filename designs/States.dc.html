@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#ECEAE3;font-family:'Hind Siliguri',sans-serif;}a{color:#15803D;text-decoration:none;}a:hover{color:#14532D;text-decoration:underline;}@keyframes sajs-spin{to{transform:rotate(360deg)}}@keyframes sajs-pulse{0%,100%{opacity:1}50%{opacity:.45}}</style>
+</helmet>
+<div style="padding:48px;display:flex;flex-direction:column;gap:56px;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;color:#1C1917;font-size:16px;line-height:1.6;">
+  <div>
+    <div style="font-size:32px;font-weight:700;">খালি, ত্রুটি ও লোডিং অবস্থা</div>
+    <div style="font-size:18px;color:#57534E;">সব পাতায় একই নিয়ম · ৩৬০px মোবাইলে দেখানো · ডেস্কটপে একই কম্পোনেন্ট কনটেন্ট-চওড়ায় বসবে</div>
+  </div>
+
+  <section data-screen-label="লোডিং" style="display:flex;flex-direction:column;gap:18px;">
+    <div style="font-size:24px;font-weight:700;">১. লোডিং</div>
+    <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start;">
+
+      <div id="L1" style="display:flex;flex-direction:column;gap:8px;width:360px;">
+        <div style="font-size:15px;color:#57534E;"><span style="background:#14532D;color:#fff;padding:1px 9px;border-radius:999px;font-weight:600;margin-right:6px;">L1</span>তালিকার স্কেলেটন (নোটিশ, ইভেন্ট, সদস্য)</div>
+        <div style="background:#FAFAF7;border:1px solid #E7E5DF;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px;">
+          <sc-for list="{{ three }}" as="x" hint-placeholder-count="3">
+            <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;animation:sajs-pulse 1.4s ease-in-out infinite;">
+              <div style="display:flex;justify-content:space-between;"><div style="width:72px;height:22px;border-radius:999px;background:#EFEDE6;"></div><div style="width:96px;height:16px;border-radius:6px;background:#EFEDE6;"></div></div>
+              <div style="width:85%;height:20px;border-radius:6px;background:#E7E5DF;"></div>
+              <div style="width:100%;height:14px;border-radius:6px;background:#EFEDE6;"></div>
+              <div style="width:60%;height:14px;border-radius:6px;background:#EFEDE6;"></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div id="L2" style="display:flex;flex-direction:column;gap:8px;width:360px;">
+        <div style="font-size:15px;color:#57534E;"><span style="background:#14532D;color:#fff;padding:1px 9px;border-radius:999px;font-weight:600;margin-right:6px;">L2</span>ছবি লোড হচ্ছে (ধীর ইন্টারনেট)</div>
+        <div style="background:#FAFAF7;border:1px solid #E7E5DF;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px;">
+          <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;overflow:hidden;">
+            <div style="aspect-ratio:16/10;background:#E3E6D9;display:flex;align-items:center;justify-content:center;animation:sajs-pulse 1.4s ease-in-out infinite;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#A8A29E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"></path></svg></div>
+            <div style="padding:14px 16px;"><div style="font-size:18px;font-weight:600;">যমুনার বন্যায় ত্রাণ বিতরণ</div><div style="font-size:15px;color:#57534E;">লেখা আগে আসে, ছবি পরে</div></div>
+          </div>
+          <div style="font-size:14px;color:#57534E;">ছবির জায়গা আগে থেকেই নির্দিষ্ট মাপে থাকে, তাই লেখা নড়ে না। ছবি না এলে এই ধূসর বাক্স থেকে যায়।</div>
+        </div>
+      </div>
+
+      <div id="L3" style="display:flex;flex-direction:column;gap:8px;width:360px;">
+        <div style="font-size:15px;color:#57534E;"><span style="background:#14532D;color:#fff;padding:1px 9px;border-radius:999px;font-weight:600;margin-right:6px;">L3</span>বাটনে কাজ চলছে</div>
+        <div style="background:#FAFAF7;border:1px solid #E7E5DF;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px;">
+          <button style="height:56px;border-radius:12px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:19px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;opacity:.85;cursor:wait;">{{ spinWhite }}কোড পাঠানো হচ্ছে…</button>
+          <button style="height:56px;border-radius:12px;border:none;background:#DC2626;color:#fff;font-family:inherit;font-size:19px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;opacity:.85;cursor:wait;">{{ spinWhite2 }}অনুরোধ পাঠানো হচ্ছে…</button>
+          <button style="height:52px;border-radius:12px;border:1.5px solid #15803D;background:#fff;color:#15803D;font-family:inherit;font-size:17px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;cursor:wait;">{{ spinGreen }}সংরক্ষণ হচ্ছে…</button>
+          <div style="font-size:14px;color:#57534E;">চাপার পর বাটন নিষ্ক্রিয় হয় — দুবার চাপলে দুবার জমা হবে না।</div>
+        </div>
+      </div>
+
+      <div id="L4" style="display:flex;flex-direction:column;gap:8px;width:360px;">
+        <div style="font-size:15px;color:#57534E;"><span style="background:#14532D;color:#fff;padding:1px 9px;border-radius:999px;font-weight:600;margin-right:6px;">L4</span>পুরো পাতা লোড (প্রথমবার)</div>
+        <div style="background:#FAFAF7;border:1px solid #E7E5DF;border-radius:16px;overflow:hidden;">
+          <div style="background:#15803D;height:64px;display:flex;align-items:center;gap:10px;padding:0 16px;"><div style="width:44px;height:44px;border-radius:50%;background:#14532D;border:2px solid #D97706;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px;color:#fff;padding-top:3px;box-sizing:border-box;">স</div><div style="width:150px;height:18px;border-radius:6px;background:rgba(255,255,255,.3);"></div></div>
+          <div style="height:6px;background:repeating-linear-gradient(90deg,#14532D 0 16px,#D97706 16px 20px,#15803D 20px 30px,#FAFAF7 30px 32px);"></div>
+          <div style="height:260px;background:#245536;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:20px 16px;animation:sajs-pulse 1.4s ease-in-out infinite;"><div style="width:90%;height:28px;border-radius:8px;background:rgba(255,255,255,.25);"></div><div style="width:70%;height:28px;border-radius:8px;background:rgba(255,255,255,.25);"></div><div style="display:flex;gap:10px;margin-top:8px;"><div style="width:130px;height:52px;border-radius:10px;background:rgba(255,255,255,.3);"></div><div style="width:120px;height:52px;border-radius:10px;background:rgba(217,119,6,.5);"></div></div></div>
+          <div style="padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px;"><sc-for list="{{ four }}" as="x" hint-placeholder-count="4"><div style="height:86px;border-radius:12px;background:#fff;border:1px solid #E7E5DF;animation:sajs-pulse 1.4s ease-in-out infinite;"></div></sc-for></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="খালি অবস্থা" style="display:flex;flex-direction:column;gap:18px;">
+    <div style="font-size:24px;font-weight:700;">২. খালি অবস্থা</div>
+    <div style="font-size:16px;color:#57534E;margin-top:-10px;">নিয়ম: রঙিন বৃত্তে আইকন + এক লাইনের বার্তা + একটি কাজের বাটন (যদি থাকে)</div>
+    <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start;">
+      <sc-for list="{{ empties }}" as="e" hint-placeholder-count="9">
+        <div id="{{ e.id }}" style="display:flex;flex-direction:column;gap:8px;width:360px;">
+          <div style="font-size:15px;color:#57534E;"><span style="background:#14532D;color:#fff;padding:1px 9px;border-radius:999px;font-weight:600;margin-right:6px;">{{ e.id }}</span>{{ e.where }}</div>
+          <div style="background:#FAFAF7;border:1px solid #E7E5DF;border-radius:16px;padding:16px;">
+            <div style="background:#fff;border:1px dashed #D6D3CB;border-radius:12px;padding:32px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;">
+              <div style="width:68px;height:68px;border-radius:50%;background:{{ e.bg }};color:{{ e.fg }};display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;">{{ e.glyph }}</div>
+              <div style="font-size:18px;font-weight:600;line-height:1.45;">{{ e.title }}</div>
+              <div style="font-size:16px;color:#57534E;">{{ e.sub }}</div>
+              <sc-if value="{{ e.hasCta }}" hint-placeholder-val="{{ true }}"><button style="margin-top:4px;height:48px;padding:0 20px;border-radius:10px;border:{{ e.ctaBorder }};background:{{ e.ctaBg }};color:{{ e.ctaFg }};font-family:inherit;font-size:17px;font-weight:600;cursor:pointer;">{{ e.cta }}</button></sc-if>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section data-screen-label="ত্রুটি" style="display:flex;flex-direction:column;gap:18px;">
+    <div style="font-size:24px;font-weight:700;">৩. ত্রুটি ও সতর্কতা</div>
+    <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start;">
+
+      <div id="E1" style="display:flex;flex-direction:column;gap:8px;width:360px;">
+        <div style="font-size:15px;color:#57534E;"><span style="background:#14532D;color:#fff;padding:1px 9px;border-radius:999px;font-weight:600;margin-right:6px;">E1</span>ভুল OTP</div>
+        <div style="background:#fff;border:1px solid #E7E5DF;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px;">
+          <div style="font-size:24px;font-weight:700;">কোড লিখুন</div>
+          <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;"><sc-for list="{{ otpWrong }}" as="d"><div style="height:56px;border-radius:10px;border:2px solid #DC2626;background:#FEF2F2;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;">{{ d }}</div></sc-for></div>
+          <div role="alert" style="display:flex;gap:8px;align-items:flex-start;color:#B91C1C;font-size:16px;font-weight:600;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4M12 16h.01"></path></svg>কোডটি মেলেনি। আবার চেষ্টা করুন — আর ২ বার সুযোগ আছে।</div>
+          <button style="height:56px;border-radius:12px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:19px;font-weight:700;">আবার চেষ্টা করুন</button>
+        </div>
+      </div>
+
+      <div id="E2" style="display:flex;flex-direction:column;gap:8px;width:360px;">
+        <div style="font-size:15px;color:#57534E;"><span style="background:#14532D;color:#fff;padding:1px 9px;border-radius:999px;font-weight:600;margin-right:6px;">E2</span>OTP মেয়াদ শেষ / অনেকবার চেষ্টা</div>
+        <div style="background:#fff;border:1px solid #E7E5DF;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px;">
+          <div style="background:#FEF3C7;border-radius:12px;padding:14px 16px;font-size:16px;color:#78350F;"><strong>কোডের মেয়াদ শেষ।</strong> কোড ৫ মিনিট কাজ করে। নতুন কোড নিন।</div>
+          <button style="height:52px;border-radius:12px;border:1.5px solid #15803D;background:#fff;color:#15803D;font-family:inherit;font-size:17px;font-weight:700;">নতুন কোড পাঠান</button>
+          <div style="height:1px;background:#F0EEE8;"></div>
+          <div style="background:#FEF2F2;border-radius:12px;padding:14px 16px;font-size:16px;color:#7F1D1D;"><strong>এক ঘণ্টায় ৫ বার কোড চাওয়া হয়েছে।</strong> ৪২ মিনিট পর আবার চেষ্টা করুন, অথবা পাড়ার স্বেচ্ছাসেবকের সাহায্য নিন।</div>
+          <button disabled style="height:52px;border-radius:12px;border:none;background:#E7E5DF;color:#78716C;font-family:inherit;font-size:17px;font-weight:700;">নতুন কোড পাঠান (৪২:০০)</button>
+        </div>
+      </div>
+
+      <div id="E3" style="display:flex;flex-direction:column;gap:8px;width:360px;">
+        <div style="font-size:15px;color:#57534E;"><span style="background:#14532D;color:#fff;padding:1px 9px;border-radius:999px;font-weight:600;margin-right:6px;">E3</span>ফর্মের ঘর ভুল / খালি</div>
+        <div style="background:#fff;border:1px solid #E7E5DF;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px;">
+          <div role="alert" style="background:#FEF2F2;border-radius:10px;padding:10px 14px;font-size:16px;color:#991B1B;font-weight:600;">২টি ঘর ঠিক করতে হবে</div>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:17px;font-weight:600;">আপনার নাম <span style="color:#DC2626;">*</span></span><input style="height:56px;border-radius:10px;border:2px solid #DC2626;padding:0 14px;font-family:inherit;font-size:18px;background:#FFFBFB;"><span style="font-size:15px;color:#B91C1C;font-weight:600;">নাম লিখুন</span></label>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:17px;font-weight:600;">ফোন নম্বর <span style="color:#DC2626;">*</span></span><input value="০১৭১২৩৪৫" style="height:56px;border-radius:10px;border:2px solid #DC2626;padding:0 14px;font-family:inherit;font-size:18px;background:#FFFBFB;"><span style="font-size:15px;color:#B91C1C;font-weight:600;">১১ সংখ্যার নম্বর দিন, যেমন ০১৭১২৩৪৫৬৭৮</span></label>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:17px;font-weight:600;">পেশা</span><input value="তাঁতি" style="height:56px;border-radius:10px;border:2px solid #15803D;padding:0 14px;font-family:inherit;font-size:18px;"><span style="font-size:15px;color:#15803D;font-weight:600;">✓ ঠিক আছে</span></label>
+        </div>
+      </div>
+
+      <div id="E4" style="display:flex;flex-direction:column;gap:8px;width:360px;">
+        <div style="font-size:15px;color:#57534E;"><span style="background:#14532D;color:#fff;padding:1px 9px;border-radius:999px;font-weight:600;margin-right:6px;">E4</span>ইন্টারনেট নেই</div>
+        <div style="background:#FAFAF7;border:1px solid #E7E5DF;border-radius:16px;overflow:hidden;">
+          <div style="background:#1C1917;color:#fff;padding:10px 16px;font-size:15px;display:flex;align-items:center;gap:8px;"><span style="width:10px;height:10px;border-radius:50%;background:#F59E0B;flex:none;"></span>ইন্টারনেট নেই — আগে দেখা তথ্য দেখাচ্ছে</div>
+          <div style="padding:28px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;">
+            <div style="width:72px;height:72px;border-radius:50%;background:#F5F5F4;color:#57534E;display:flex;align-items:center;justify-content:center;"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h.01M8.5 16.43a5 5 0 0 1 7 0M5 12.86a10 10 0 0 1 5.17-2.69M19 12.86a10 10 0 0 0-2-1.43M2 8.82a15 15 0 0 1 4.18-2.65M22 8.82a15 15 0 0 0-11.29-3.76M2 2l20 20"></path></svg></div>
+            <div style="font-size:19px;font-weight:700;">ইন্টারনেট সংযোগ নেই</div>
+            <div style="font-size:16px;color:#57534E;">সংযোগ ফিরলে পাতা নিজে থেকে হালনাগাদ হবে। জরুরি হলে সরাসরি ফোন করুন।</div>
+            <button style="height:52px;padding:0 22px;border-radius:12px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:17px;font-weight:700;">আবার চেষ্টা করুন</button>
+            <a href="tel:999" style="height:48px;padding:0 18px;border-radius:12px;border:1.5px solid #DC2626;color:#B91C1C;display:inline-flex;align-items:center;font-size:17px;font-weight:700;">৯৯৯-এ কল করুন</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="E5" style="display:flex;flex-direction:column;gap:8px;width:360px;">
+        <div style="font-size:15px;color:#57534E;"><span style="background:#14532D;color:#fff;padding:1px 9px;border-radius:999px;font-weight:600;margin-right:6px;">E5</span>ফর্ম জমা হয়নি (নেটওয়ার্ক) — লেখা হারায় না</div>
+        <div style="background:#fff;border:1px solid #E7E5DF;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;">
+          <div role="alert" style="background:#FEF2F2;border:1.5px solid #FCA5A5;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;">
+            <div style="font-size:17px;font-weight:700;color:#991B1B;">অনুরোধ পাঠানো যায়নি</div>
+            <div style="font-size:16px;color:#44403C;">আপনার লেখা সব ঠিক আছে, শুধু আবার পাঠান। খুব জরুরি হলে রক্তদান সম্পাদককে সরাসরি ফোন করুন।</div>
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;"><button style="height:48px;border-radius:10px;border:none;background:#DC2626;color:#fff;font-family:inherit;font-size:16px;font-weight:700;">আবার পাঠান</button><a href="#" style="height:48px;border-radius:10px;border:1.5px solid #DC2626;color:#B91C1C;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;box-sizing:border-box;">ফোন করুন</a></div>
+          </div>
+          <div style="font-size:14px;color:#57534E;">ফর্মের সব ঘর আগের মতো ভরা থাকে।</div>
+        </div>
+      </div>
+
+      <div id="E6" style="display:flex;flex-direction:column;gap:8px;width:360px;">
+        <div style="font-size:15px;color:#57534E;"><span style="background:#14532D;color:#fff;padding:1px 9px;border-radius:999px;font-weight:600;margin-right:6px;">E6</span>পেমেন্ট মেলেনি (চাঁদা / দান)</div>
+        <div style="background:#fff;border:1px solid #E7E5DF;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;"><span style="font-size:17px;font-weight:600;">নভেম্বরের চাঁদা · ৳২০০</span><span style="font-size:14px;font-weight:700;padding:2px 10px;border-radius:999px;background:#FEE2E2;color:#991B1B;">মেলেনি</span></div>
+          <div style="font-size:16px;color:#44403C;">কোষাধ্যক্ষ Transaction ID <span style="font-family:ui-monospace,Menlo,monospace;">9K7X2M4QPL</span> খুঁজে পাননি। নম্বরটি আবার দেখে লিখুন।</div>
+          <input value="9K7X2M4QPL" style="height:52px;border-radius:10px;border:2px solid #DC2626;padding:0 14px;font-family:ui-monospace,Menlo,monospace;font-size:17px;">
+          <button style="height:52px;border-radius:12px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:17px;font-weight:700;">আবার জমা দিন</button>
+          <a href="#" style="text-align:center;font-size:16px;font-weight:600;">কোষাধ্যক্ষকে ফোন করুন</a>
+        </div>
+      </div>
+
+      <div id="E7" style="display:flex;flex-direction:column;gap:8px;width:360px;">
+        <div style="font-size:15px;color:#57534E;"><span style="background:#14532D;color:#fff;padding:1px 9px;border-radius:999px;font-weight:600;margin-right:6px;">E7</span>শুধু সদস্যদের জন্য / লগইন শেষ</div>
+        <div style="background:#fff;border:1px solid #E7E5DF;border-radius:16px;padding:24px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div style="width:68px;height:68px;border-radius:50%;background:#F0FDF4;color:#15803D;display:flex;align-items:center;justify-content:center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+          <div style="font-size:19px;font-weight:700;">এটি শুধু সদস্যদের জন্য</div>
+          <div style="font-size:16px;color:#57534E;">লগইন করলে এখানেই ফিরে আসবেন।</div>
+          <button style="width:100%;height:52px;border-radius:12px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:17px;font-weight:700;">লগইন করুন</button>
+          <div style="width:100%;height:1px;background:#F0EEE8;margin:6px 0;"></div>
+          <div style="width:100%;background:#FEF3C7;border-radius:10px;padding:12px 14px;font-size:16px;color:#78350F;text-align:left;">অনেকক্ষণ ব্যবহার হয়নি, তাই নিরাপত্তার জন্য লগআউট হয়েছে। আবার লগইন করুন।</div>
+        </div>
+      </div>
+
+      <div id="E8" style="display:flex;flex-direction:column;gap:8px;width:360px;">
+        <div style="font-size:15px;color:#57534E;"><span style="background:#14532D;color:#fff;padding:1px 9px;border-radius:999px;font-weight:600;margin-right:6px;">E8</span>ফাইল আপলোড সমস্যা</div>
+        <div style="background:#fff;border:1px solid #E7E5DF;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;gap:10px;border:1.5px solid #FCA5A5;background:#FEF2F2;border-radius:10px;padding:10px 12px;"><span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;font-weight:700;color:#B91C1C;background:#fff;padding:4px 6px;border-radius:6px;">PDF</span><div style="flex:1;min-width:0;"><div style="font-size:15px;font-weight:600;">hospital-bill.pdf</div><div style="font-size:14px;color:#B91C1C;font-weight:600;">ফাইল অনেক বড় (১৮ MB) — সর্বোচ্চ ১০ MB</div></div><button aria-label="সরান" style="width:40px;height:40px;border:none;background:none;font-size:20px;color:#57534E;">×</button></div>
+          <div style="display:flex;align-items:center;gap:10px;border:1px solid #E7E5DF;border-radius:10px;padding:10px 12px;"><span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;font-weight:700;color:#15803D;background:#F0FDF4;padding:4px 6px;border-radius:6px;">JPG</span><div style="flex:1;min-width:0;"><div style="font-size:15px;font-weight:600;">prescription.jpg</div><div style="height:6px;border-radius:999px;background:#F0EEE8;margin-top:6px;overflow:hidden;"><div style="width:62%;height:100%;background:#15803D;"></div></div></div><span style="font-size:14px;color:#57534E;">৬২%</span></div>
+          <div style="font-size:14px;color:#57534E;">ছবি হলে ফোনের ক্যামেরা দিয়ে তুলুন — নিজে থেকে ছোট হয়ে যাবে।</div>
+        </div>
+      </div>
+
+      <div id="E9" style="display:flex;flex-direction:column;gap:8px;width:360px;">
+        <div style="font-size:15px;color:#57534E;"><span style="background:#14532D;color:#fff;padding:1px 9px;border-radius:999px;font-weight:600;margin-right:6px;">E9</span>পাতা পাওয়া যায়নি (৪০৪) / সার্ভার সমস্যা (৫০০)</div>
+        <div style="background:#FAFAF7;border:1px solid #E7E5DF;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:16px;">
+          <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;">
+            <div style="font-size:48px;font-weight:700;color:#15803D;line-height:1;">৪০৪</div>
+            <div style="font-size:19px;font-weight:700;">এই পাতাটি পাওয়া যায়নি</div>
+            <div style="font-size:16px;color:#57534E;">লিংকটি পুরনো হতে পারে, বা নোটিশটি সরিয়ে ফেলা হয়েছে।</div>
+            <div style="display:flex;gap:8px;"><a href="Home.dc.html" style="height:48px;padding:0 18px;border-radius:10px;background:#15803D;color:#fff;display:inline-flex;align-items:center;font-size:16px;font-weight:700;">হোমে যান</a><a href="Notices.dc.html" style="height:48px;padding:0 16px;border-radius:10px;border:1.5px solid #15803D;color:#15803D;display:inline-flex;align-items:center;font-size:16px;font-weight:700;box-sizing:border-box;">সব নোটিশ</a></div>
+          </div>
+          <div style="height:1px;background:#E7E5DF;"></div>
+          <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;">
+            <div style="font-size:19px;font-weight:700;">কিছু একটা সমস্যা হয়েছে</div>
+            <div style="font-size:16px;color:#57534E;">আমাদের দিকে সমস্যা, আপনার কিছু করার দরকার নেই। একটু পর আবার চেষ্টা করুন।</div>
+            <button style="height:48px;padding:0 20px;border-radius:10px;border:1.5px solid #15803D;background:#fff;color:#15803D;font-family:inherit;font-size:16px;font-weight:700;">আবার চেষ্টা করুন</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="সফলতা ও টোস্ট" style="display:flex;flex-direction:column;gap:18px;">
+    <div style="font-size:24px;font-weight:700;">৪. ছোট বার্তা (টোস্ট)</div>
+    <div id="T1" style="display:flex;flex-direction:column;gap:10px;width:360px;">
+      <div style="font-size:15px;color:#57534E;"><span style="background:#14532D;color:#fff;padding:1px 9px;border-radius:999px;font-weight:600;margin-right:6px;">T1</span>নিচে বটম নেভের উপরে ৭ সেকেন্ড থাকে</div>
+      <div style="background:#1C1917;color:#fff;border-radius:12px;padding:12px 16px;font-size:16px;display:flex;align-items:center;gap:10px;"><span style="color:#86EFAC;font-weight:700;">✓</span>প্রোফাইল সংরক্ষণ হয়েছে</div>
+      <div style="background:#1C1917;color:#fff;border-radius:12px;padding:10px 10px 10px 16px;font-size:16px;display:flex;align-items:center;justify-content:space-between;gap:10px;"><span>নোটিশ মুছে ফেলা হয়েছে</span><button style="height:40px;padding:0 12px;border-radius:8px;border:none;background:#FCD34D;color:#1C1917;font-family:inherit;font-size:15px;font-weight:700;">ফিরিয়ে আনুন</button></div>
+      <div style="background:#7F1D1D;color:#fff;border-radius:12px;padding:12px 16px;font-size:16px;display:flex;align-items:center;gap:10px;"><span style="font-weight:700;">!</span>সংরক্ষণ হয়নি — আবার চেষ্টা করুন</div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const spin = (c, k) => React.createElement('span', { key: k, style: { width: 20, height: 20, borderRadius: '50%', border: '3px solid ' + c, borderTopColor: 'transparent', display: 'inline-block', animation: 'sajs-spin .8s linear infinite', flex: 'none' } });
+    const g = { bg: '#F0FDF4', fg: '#15803D' }, r = { bg: '#FEF2F2', fg: '#DC2626' }, y = { bg: '#FEF3C7', fg: '#B45309' };
+    const primary = { ctaBorder: 'none', ctaBg: '#15803D', ctaFg: '#fff' }, outline = { ctaBorder: '1.5px solid #15803D', ctaBg: '#fff', ctaFg: '#15803D' };
+    const E = (id, where, glyph, c, title, sub, cta, s = outline) => ({ id, where, glyph, ...c, title, sub, cta: cta || '', hasCta: !!cta, ...s });
+    return {
+      three: [1, 2, 3], four: [1, 2, 3, 4],
+      spinWhite: spin('#fff', 1), spinWhite2: spin('#fff', 2), spinGreen: spin('#15803D', 3),
+      otpWrong: ['৪', '৮', '২', '১', '৯', '০'],
+      empties: [
+        E('N1', 'নোটিশ বোর্ড — ক্যাটাগরিতে কিছু নেই', '!', g, 'এই বিভাগে এখন কোনো নোটিশ নেই', 'নতুন নোটিশ এলে এখানে দেখাবে।', 'সব নোটিশ দেখুন'),
+        E('N2', 'কার্যক্রম — আসন্ন ইভেন্ট নেই', '৳', y, 'সামনে কোনো ইভেন্ট ঠিক হয়নি', 'আগের কাজগুলো "সম্পন্ন" ট্যাবে দেখুন।', 'সম্পন্ন কার্যক্রম'),
+        E('N3', 'রক্তদাতা — এই পাড়ায় এই গ্রুপ নেই', '+', r, 'নদীপাড়ায় AB− রক্তদাতা নেই', 'সব পাড়ায় খুঁজুন, বা জরুরি অনুরোধ পাঠান — সবার কাছে যাবে।', 'সব পাড়ায় খুঁজুন', { ctaBorder: 'none', ctaBg: '#DC2626', ctaFg: '#fff' }),
+        E('N4', 'সদস্য তালিকা — খোঁজে কেউ নেই', '?', g, '"করিম" নামে কাউকে পাওয়া যায়নি', 'বানান দেখুন, বা ফিল্টার মুছে আবার খুঁজুন।', 'ফিল্টার মুছুন'),
+        E('N5', 'আমার চাঁদা — কোনো পেমেন্ট নেই', '৳', y, 'এখনো কোনো চাঁদা দেননি', 'প্রথম মাসের চাঁদা দিয়ে শুরু করুন।', 'চাঁদা দিন', primary),
+        E('N6', 'গ্যালারি — অ্যালবামে ছবি নেই', '▢', g, 'এই অ্যালবামে এখনো ছবি তোলা হয়নি', 'ইভেন্টের পর স্বেচ্ছাসেবকেরা ছবি যোগ করবেন।', ''),
+        E('N7', 'আমার আবেদন — কিছু নেই', '♡', g, 'আপনি কোনো সাহায্যের আবেদন করেননি', 'চিকিৎসা, শিক্ষা বা দুর্যোগে সাহায্য দরকার হলে আবেদন করুন।', 'আবেদন করুন', primary),
+        E('N8', 'সাহায্য তহবিল — চলমান আবেদন নেই', '♡', y, 'এখন কোনো চলমান তহবিল নেই', 'সাধারণ তহবিলে দান করলে দরকারের সময় কাজে লাগবে।', 'সাধারণ তহবিলে দান', primary),
+        E('N9', 'অ্যাডমিন — তালিকা খালি / যাচাই বাকি নেই', '✓', g, 'যাচাইয়ের জন্য কোনো পেমেন্ট বাকি নেই', 'নতুন পেমেন্ট এলে এখানে আসবে।', '')
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

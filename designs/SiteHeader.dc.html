@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<header style="position:relative;background:#15803D;color:#fff;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;">
+  <div style="max-width:1200px;margin:0 auto;padding:10px clamp(16px,3.5cqw,40px);display:flex;align-items:center;gap:12px;">
+    <a href="Home.dc.html" style="display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;flex:1;min-width:0;">
+      <div style="width:44px;height:44px;flex:none;border-radius:50%;background:#14532D;border:2px solid #D97706;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px;line-height:1;padding-top:3px;box-sizing:border-box;">স</div>
+      <div style="display:flex;flex-direction:column;min-width:0;line-height:1.25;">
+        <span style="font-weight:700;font-size:17px;">সগুনা আদর্শ যুব সমাজ</span>
+        <span style="font-size:13px;opacity:.9;">বেলকুচি, সিরাজগঞ্জ</span>
+      </div>
+    </a>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ false }}">
+      <nav style="display:flex;gap:2px;align-items:center;">
+        <sc-for list="{{ deskLinks }}" as="l" hint-placeholder-count="7">
+          <sc-if value="{{ l.on }}" hint-placeholder-val="{{ false }}"><a href="{{ l.href }}" style="color:#fff;font-weight:700;padding:10px 11px;border-bottom:2px solid #D97706;font-size:16px;">{{ l.label }}</a></sc-if>
+          <sc-if value="{{ l.off }}" hint-placeholder-val="{{ true }}"><a href="{{ l.href }}" style="color:#fff;padding:10px 11px;border-bottom:2px solid transparent;font-size:16px;">{{ l.label }}</a></sc-if>
+        </sc-for>
+      </nav>
+      <div style="display:flex;gap:10px;margin-left:8px;">
+        <a href="Blood.dc.html" style="height:48px;padding:0 18px;border-radius:10px;background:#DC2626;color:#fff;font-size:17px;font-weight:600;display:flex;align-items:center;gap:8px;text-decoration:none;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"></path></svg>রক্ত খুঁজুন</a>
+        <a href="Login.dc.html" style="height:48px;padding:0 18px;border-radius:10px;border:1.5px solid rgba(255,255,255,.8);color:#fff;font-size:17px;font-weight:600;display:flex;align-items:center;gap:8px;text-decoration:none;box-sizing:border-box;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>লগইন</a>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ true }}">
+      <a href="Blood.dc.html" style="height:48px;padding:0 12px;border-radius:10px;background:#DC2626;color:#fff;font-size:16px;font-weight:600;display:flex;align-items:center;gap:6px;flex:none;text-decoration:none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"></path></svg>রক্ত</a>
+      <button onClick="{{ toggleMenu }}" aria-label="মেনু" style="width:48px;height:48px;flex:none;border-radius:10px;border:1.5px solid rgba(255,255,255,.6);background:transparent;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+    </sc-if>
+  </div>
+  <div style="height:6px;background:repeating-linear-gradient(90deg,#14532D 0 16px,#D97706 16px 20px,#15803D 20px 30px,#FAFAF7 30px 32px);"></div>
+  <sc-if value="{{ menuVisible }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:0;right:0;top:100%;background:#fff;color:#1C1917;border-bottom:1px solid #E7E5DF;box-shadow:0 8px 24px rgba(28,25,23,.12);padding:8px 16px 16px;display:flex;flex-direction:column;">
+      <sc-for list="{{ links }}" as="l" hint-placeholder-count="7">
+        <a href="{{ l.href }}" style="color:#1C1917;font-size:18px;padding:12px 4px;border-bottom:1px solid #F0EEE8;text-decoration:none;">{{ l.label }}</a>
+      </sc-for>
+      <a href="Login.dc.html" style="margin-top:14px;height:52px;border-radius:10px;background:#15803D;color:#fff;font-size:18px;font-weight:600;display:flex;align-items:center;justify-content:center;text-decoration:none;">লগইন</a>
+    </div>
+  </sc-if>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:360,&quot;height&quot;:80},&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;mobile&quot;,&quot;desktop&quot;],&quot;default&quot;:&quot;mobile&quot;,&quot;tsType&quot;:&quot;'mobile'|'desktop'&quot;},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;about&quot;,&quot;committee&quot;,&quot;notices&quot;,&quot;events&quot;,&quot;gallery&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { menu: false };
+  renderVals() {
+    const mobile = (this.props.mode ?? 'mobile') !== 'desktop';
+    const a = this.props.active ?? 'home';
+    const links = [['home','হোম','Home.dc.html'],['about','আমাদের কথা','About.dc.html'],['committee','কমিটি','Committee.dc.html'],['notices','নোটিশ','Notices.dc.html'],['events','কার্যক্রম','Events.dc.html'],['gallery','গ্যালারি','Gallery.dc.html'],['donate','দান ও হিসাব','Donate.dc.html'],['contact','যোগাযোগ','Contact.dc.html']]
+      .map(([id, label, href]) => ({ label, href, on: id === a, off: id !== a }));
+    return { deskLinks: links.slice(1), isMobile: mobile, isDesktop: !mobile, links, menuVisible: mobile && this.state.menu, toggleMenu: () => this.setState(s => ({ menu: !s.menu })) };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+# Secrets & local settings (never commit)
+.env
+.env.*
+!.env.example
+
+# Server-only (created by deploy/deploy.sh)
+data/
+.runtime/
+deploy/backup.sh
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+backend/db.sqlite3
+backend/media/
+backend/staticfiles/
+
+# Node / Next.js
+node_modules/
+.next/
+.next.prev/
+*.tsbuildinfo
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

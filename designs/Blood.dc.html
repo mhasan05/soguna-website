@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FAFAF7;font-family:'Hind Siliguri',sans-serif;}a{color:#15803D;text-decoration:none;}a:hover{color:#14532D;text-decoration:underline;}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="container-type:inline-size;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:#FAFAF7;color:#1C1917;font-size:16px;line-height:1.6;">
+<div style="position:sticky;top:0;z-index:20;"><dc-import name="SiteHeader" mode="{{ mode }}" active="none" hint-size="100%,72px"></dc-import></div>
+
+<section data-screen-label="রক্তদাতা খুঁজুন" style="background:#FEF2F2;border-bottom:1px solid #FBD5D5;">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(24px,3.5cqw,44px) clamp(16px,3.5cqw,40px);">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="#DC2626" stroke="#DC2626" stroke-width="1.5" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"></path></svg>
+      <h1 style="margin:0;font-size:clamp(28px,3.4cqw,42px);font-weight:700;line-height:1.3;">রক্তদাতা খুঁজুন</h1>
+    </div>
+    <p style="margin:6px 0 18px;font-size:17px;color:#57534E;">রক্তের গ্রুপ বাছাই করুন। জরুরি সময়ে কোনো অনুমোদন লাগে না।</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(68px,1fr));gap:10px;">
+      <sc-for list="{{ groups }}" as="g" hint-placeholder-count="8">
+        <sc-if value="{{ g.on }}" hint-placeholder-val="{{ false }}"><button onClick="{{ g.pick }}" style="height:60px;border-radius:10px;border:1.5px solid #DC2626;background:#DC2626;color:#fff;font-size:22px;font-weight:700;cursor:pointer;font-family:inherit;">{{ g.name }}</button></sc-if>
+        <sc-if value="{{ g.off }}" hint-placeholder-val="{{ true }}"><button onClick="{{ g.pick }}" style="height:60px;border-radius:10px;border:1.5px solid #DC2626;background:#fff;color:#DC2626;font-size:22px;font-weight:700;cursor:pointer;font-family:inherit;">{{ g.name }}</button></sc-if>
+      </sc-for>
+    </div>
+    <label style="display:flex;flex-direction:column;gap:6px;margin-top:14px;max-width:360px;">
+      <span style="font-size:16px;font-weight:600;">পাড়া</span>
+      <select value="{{ para }}" onChange="{{ setPara }}" style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;background:#fff;padding:0 14px;font-family:inherit;font-size:17px;color:#1C1917;">
+        <sc-for list="{{ paras }}" as="p"><option value="{{ p }}">{{ p }}</option></sc-for>
+      </select>
+    </label>
+  </div>
+</section>
+
+<sc-if value="{{ isVisitor }}" hint-placeholder-val="{{ true }}">
+<section>
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(24px,3.5cqw,40px) clamp(16px,3.5cqw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));gap:20px;align-items:start;">
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:22px;">
+        <div style="font-size:16px;color:#57534E;">{{ paraLabel }}</div>
+        <div style="font-size:clamp(24px,2.6cqw,30px);font-weight:700;line-height:1.4;margin-top:4px;"><span style="color:#DC2626;">{{ group }}</span> রক্তদাতা {{ total }} জন</div>
+        <div style="font-size:19px;margin-top:2px;">এখন দিতে পারবেন <strong style="color:#15803D;">{{ ready }} জন</strong></div>
+      </div>
+      <div style="background:#F0FDF4;border:1px solid #DCEFE1;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;gap:10px;align-items:flex-start;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:3px;"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><span style="font-size:17px;">দাতাদের নাম ও ফোন নম্বর শুধু সদস্যরা দেখতে পান। সদস্য হলে লগইন করুন।</span></div>
+        <a href="Login.dc.html" style="height:48px;border-radius:10px;background:#15803D;color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:600;text-decoration:none;">লগইন করুন</a>
+      </div>
+    </div>
+    <div style="background:#fff;border:1.5px solid #DC2626;border-radius:12px;padding:22px;">
+      <h2 style="margin:0 0 4px;font-size:clamp(22px,2.2cqw,28px);font-weight:700;color:#B91C1C;">জরুরি রক্তের অনুরোধ পাঠান</h2>
+      <p style="margin:0 0 16px;font-size:16px;color:#57534E;">অনুরোধ সঙ্গে সঙ্গে রক্তদান বিষয়ক সম্পাদক ও মিলে যাওয়া দাতাদের কাছে যাবে।</p>
+      <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:16px;font-weight:600;">রোগীর নাম</span><input placeholder="যেমন: মোছাঃ রহিমা বেগম" style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:17px;"></label>
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;">
+            <label style="display:flex;flex-direction:column;gap:6px;min-width:0;"><span style="font-size:16px;font-weight:600;">রক্তের গ্রুপ</span><input value="{{ group }}" readonly style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:17px;font-weight:700;color:#DC2626;background:#FAFAF7;min-width:0;width:100%;box-sizing:border-box;"></label>
+            <label style="display:flex;flex-direction:column;gap:6px;min-width:0;"><span style="font-size:16px;font-weight:600;">কত ব্যাগ</span><input placeholder="২" inputmode="numeric" style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:17px;min-width:0;width:100%;box-sizing:border-box;"></label>
+          </div>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:16px;font-weight:600;">হাসপাতাল</span><input placeholder="যেমন: বেলকুচি উপজেলা স্বাস্থ্য কমপ্লেক্স" style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:17px;"></label>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:16px;font-weight:600;">যোগাযোগের ফোন</span><input placeholder="০১৭XXXXXXXX" inputmode="tel" style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:17px;"></label>
+          <button onClick="{{ send }}" style="height:56px;border-radius:10px;border:none;background:#DC2626;color:#fff;font-family:inherit;font-size:19px;font-weight:700;cursor:pointer;">অনুরোধ পাঠান</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#F0FDF4;border-radius:10px;padding:18px;font-size:18px;"><strong style="color:#15803D;">অনুরোধ পাঠানো হয়েছে।</strong> কিছুক্ষণের মধ্যে একজন দাতা আপনাকে ফোন করবেন। খুব জরুরি হলে ৯৯৯-এ কল করুন।</div>
+      </sc-if>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isMember }}" hint-placeholder-val="{{ false }}">
+<section>
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(24px,3.5cqw,40px) clamp(16px,3.5cqw,40px);">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:8px;margin-bottom:14px;">
+      <h2 style="margin:0;font-size:clamp(22px,2.2cqw,28px);font-weight:700;"><span style="color:#DC2626;">{{ group }}</span> রক্তদাতা · {{ total }} জন</h2>
+      <span style="font-size:16px;color:#57534E;">এখন প্রস্তুত {{ ready }} জন</span>
+    </div>
+    <sc-if value="{{ hasDonors }}" hint-placeholder-val="{{ true }}">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:12px;">
+      <sc-for list="{{ donors }}" as="d" hint-placeholder-count="5">
+        <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;gap:12px;align-items:center;">
+            <div style="width:56px;height:56px;flex:none;border-radius:50%;background:#FEF2F2;color:#DC2626;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;">{{ d.initial }}</div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:18px;font-weight:600;line-height:1.4;">{{ d.name }}</div>
+              <div style="font-size:15px;color:#57534E;">{{ d.para }} · শেষ রক্তদান {{ d.last }}</div>
+            </div>
+            <sc-if value="{{ d.ready }}" hint-placeholder-val="{{ true }}"><span style="flex:none;font-size:14px;font-weight:600;padding:2px 10px;border-radius:999px;background:#DCFCE7;color:#15803D;">প্রস্তুত</span></sc-if>
+            <sc-if value="{{ d.notReady }}" hint-placeholder-val="{{ false }}"><span style="flex:none;font-size:14px;font-weight:600;padding:2px 10px;border-radius:999px;background:#F5F5F4;color:#57534E;">৩ মাস হয়নি</span></sc-if>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <a href="#" style="height:48px;border-radius:10px;background:#15803D;color:#fff;display:flex;align-items:center;justify-content:center;gap:6px;font-size:17px;font-weight:600;text-decoration:none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>কল করুন</a>
+            <a href="#" style="height:48px;border-radius:10px;border:1.5px solid #15803D;color:#15803D;display:flex;align-items:center;justify-content:center;gap:6px;font-size:17px;font-weight:600;text-decoration:none;box-sizing:border-box;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>WhatsApp</a>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    </sc-if>
+    <sc-if value="{{ noDonors }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px dashed #D6D3CB;border-radius:12px;padding:40px 20px;text-align:center;font-size:18px;color:#57534E;">এই পাড়ায় এই গ্রুপের কোনো দাতা নেই। পাড়া "সব পাড়া" করে দেখুন।</div>
+    </sc-if>
+  </div>
+</section>
+</sc-if>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ true }}"><div style="position:sticky;bottom:0;z-index:20;"><dc-import name="BottomNav" active="blood" hint-size="100%,68px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;mobile&quot;,&quot;desktop&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;viewAs&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;visitor&quot;,&quot;member&quot;],&quot;default&quot;:&quot;visitor&quot;,&quot;tsType&quot;:&quot;'visitor'|'member'&quot;}}">
+class Component extends DCLogic {
+  state = { w: 0, group: 'B+', para: 'সব পাড়া', sent: false };
+  rootRef = React.createRef();
+  componentDidMount() { const el = this.rootRef.current; if (!el) return; this.ro = new ResizeObserver(([e]) => this.setState({ w: e.contentRect.width })); this.ro.observe(el); }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  renderVals() {
+    const m = this.props.mode; const mode = m && m !== 'auto' ? m : (this.state.w >= 900 ? 'desktop' : 'mobile');
+    const bn = n => String(n).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+    const months = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+    const paras = ['উত্তরপাড়া', 'দক্ষিণপাড়া', 'মধ্যপাড়া', 'পূর্বপাড়া', 'পশ্চিমপাড়া', 'নদীপাড়া'];
+    const names = ['মোঃ সোহেল রানা','মোঃ রাকিব হাসান','আব্দুল্লাহ আল মামুন','মোঃ শামীম হোসেন','মোঃ ফারুক আহমেদ','মোঃ রুবেল মিয়া','মোঃ জসিম উদ্দিন','মোঃ হাবিবুর রহমান','মোঃ আলমগীর কবির','মোঃ মিজানুর রহমান','মোঃ সাগর আলী','মোঃ নয়ন শেখ','মোঃ রাশেদ খান','মোঃ ইমরান হোসেন'];
+    const counts = { 'A+': 11, 'A−': 3, 'B+': 14, 'B−': 2, 'O+': 18, 'O−': 2, 'AB+': 5, 'AB−': 1 };
+    const now = new Date(2026, 10, 26);
+    const g = this.state.group;
+    const gi = Object.keys(counts).indexOf(g);
+    let donors = Array.from({ length: counts[g] }, (_, i) => {
+      const daysAgo = [20, 45, 120, 200, 95, 60, 310, 150, 30, 180, 400, 100, 75, 130][(i + gi * 3) % 14];
+      const d = new Date(now - daysAgo * 864e5);
+      const name = names[(i + gi * 5) % names.length];
+      return { name, initial: name.replace('মোঃ ', '')[0], para: paras[(i + gi) % 6], last: bn(d.getDate()) + ' ' + months[d.getMonth()] + ' ' + bn(d.getFullYear()), ready: daysAgo >= 90, notReady: daysAgo < 90 };
+    });
+    if (this.state.para !== 'সব পাড়া') donors = donors.filter(d => d.para === this.state.para);
+    donors.sort((a, b) => b.ready - a.ready);
+    const viewAs = this.props.viewAs ?? 'visitor';
+    return {
+      rootRef: this.rootRef, mode, isMobile: mode === 'mobile',
+      isVisitor: viewAs === 'visitor', isMember: viewAs === 'member',
+      groups: Object.keys(counts).map(n => ({ name: n, on: n === g, off: n !== g, pick: () => this.setState({ group: n }) })),
+      paras: ['সব পাড়া', ...paras], para: this.state.para, setPara: e => this.setState({ para: e.target.value }),
+      paraLabel: this.state.para === 'সব পাড়া' ? 'সগুনার সব পাড়া' : this.state.para,
+      group: g, total: bn(donors.length), ready: bn(donors.filter(d => d.ready).length),
+      donors, hasDonors: donors.length > 0, noDonors: donors.length === 0,
+      sent: this.state.sent, notSent: !this.state.sent, send: () => this.setState({ sent: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

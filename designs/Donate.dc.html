@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FAFAF7;font-family:'Hind Siliguri',sans-serif;}a{color:#15803D;text-decoration:none;}a:hover{color:#14532D;text-decoration:underline;}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="container-type:inline-size;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:#FAFAF7;color:#1C1917;font-size:16px;line-height:1.6;">
+<div style="position:sticky;top:0;z-index:20;"><dc-import name="SiteHeader" mode="{{ mode }}" active="donate" hint-size="100%,72px"></dc-import></div>
+
+<div data-screen-label="দান করুন" style="max-width:1200px;margin:0 auto;padding:clamp(28px,4cqw,48px) clamp(16px,3.5cqw,40px) clamp(40px,5cqw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:24px 40px;align-items:start;">
+  <div style="display:flex;flex-direction:column;gap:16px;">
+    <div>
+      <div style="font-size:15px;color:#57534E;">হোম / দান করুন</div>
+      <h1 style="margin:4px 0 6px;font-size:clamp(28px,3.4cqw,42px);font-weight:700;line-height:1.3;">দান করুন</h1>
+      <p style="margin:0;font-size:17px;color:#57534E;text-wrap:pretty;">আপনার প্রতিটি টাকার হিসাব সাইটে সবার জন্য খোলা থাকে।</p>
+    </div>
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Village_children_in_Bangladesh.jpg?width=1000" alt="গ্রামের শিশুরা" style="display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;background:#E3E6D9;">
+    <a href="Finance.dc.html" style="display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:16px 18px;color:#1C1917;text-decoration:none;">
+      <div><div style="font-size:15px;color:#57534E;">তহবিলে বর্তমান ব্যালেন্স</div><div style="font-size:28px;font-weight:700;color:#15803D;line-height:1.2;">৳১,৪৬,৮২০</div><div style="font-size:16px;font-weight:600;color:#15803D;margin-top:4px;">পুরো হিসাব দেখুন →</div></div>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M3 3v18h18"></path><path d="M7 15l4-4 3 3 5-6"></path></svg>
+    </a>
+  </div>
+
+  <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:clamp(18px,2.4cqw,28px);">
+    <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <div>
+        <div style="font-size:18px;font-weight:700;margin-bottom:10px;">১. কোথায় দান করবেন</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <sc-for list="{{ purposes }}" as="p" hint-placeholder-count="3">
+            <button onClick="{{ p.pick }}" style="min-height:60px;padding:10px 14px;border-radius:10px;border:{{ p.border }};background:{{ p.bg }};display:flex;align-items:center;gap:12px;text-align:left;font-family:inherit;cursor:pointer;color:#1C1917;">
+              <span style="width:22px;height:22px;flex:none;border-radius:50%;border:2px solid {{ p.dot }};box-sizing:border-box;display:flex;align-items:center;justify-content:center;"><span style="width:10px;height:10px;border-radius:50%;background:{{ p.fill }};"></span></span>
+              <span><span style="display:block;font-size:17px;font-weight:600;">{{ p.label }}</span><span style="display:block;font-size:15px;color:#57534E;">{{ p.sub }}</span></span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:18px;font-weight:700;margin-bottom:10px;">২. টাকার পরিমাণ</div>
+        <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;">
+          <sc-for list="{{ amounts }}" as="a" hint-placeholder-count="4">
+            <button onClick="{{ a.pick }}" style="height:56px;border-radius:10px;border:{{ a.border }};background:{{ a.bg }};color:{{ a.fg }};font-family:inherit;font-size:18px;font-weight:700;cursor:pointer;">{{ a.label }}</button>
+          </sc-for>
+        </div>
+        <sc-if value="{{ isOther }}" hint-placeholder-val="{{ false }}">
+          <input placeholder="টাকার পরিমাণ লিখুন" inputmode="numeric" style="margin-top:8px;width:100%;box-sizing:border-box;height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:17px;">
+        </sc-if>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="font-size:18px;font-weight:700;">৩. আপনার তথ্য</div>
+        <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:16px;font-weight:600;">নাম</span><input style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:17px;"></label>
+        <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:16px;font-weight:600;">ফোন নম্বর</span><input placeholder="০১৭XXXXXXXX" inputmode="tel" style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:17px;"></label>
+        <label style="display:flex;align-items:center;gap:12px;min-height:48px;font-size:17px;cursor:pointer;"><input type="checkbox" style="width:24px;height:24px;accent-color:#15803D;">নাম গোপন রাখুন (তালিকায় "নাম প্রকাশে অনিচ্ছুক" দেখাবে)</label>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="font-size:18px;font-weight:700;">৪. টাকা পাঠান</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;background:#EFEDE6;border-radius:12px;padding:4px;gap:4px;">
+          <sc-for list="{{ methods }}" as="mt" hint-placeholder-count="2">
+            <button onClick="{{ mt.pick }}" style="height:48px;border:none;border-radius:9px;background:{{ mt.bg }};color:{{ mt.fg }};font-family:inherit;font-size:17px;font-weight:700;cursor:pointer;">{{ mt.label }}</button>
+          </sc-for>
+        </div>
+        <div style="background:#FFFBEB;border:1px solid #FCD9A0;border-radius:10px;padding:14px 16px;font-size:16px;color:#44403C;">
+          <div>{{ method }} "Send Money" করুন এই নম্বরে:</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px;"><span style="font-size:24px;font-weight:700;color:#1C1917;letter-spacing:.5px;">০১৭XX-XXXXXX</span><button style="height:44px;padding:0 14px;border-radius:8px;border:1.5px solid #D97706;background:#fff;color:#B45309;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">কপি</button></div>
+          <div style="margin-top:6px;">টাকা পাঠানোর পর মেসেজে আসা Transaction ID নিচে লিখুন। কোষাধ্যক্ষ মিলিয়ে নিশ্চিত করবেন।</div>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:16px;font-weight:600;">Transaction ID</span><input placeholder="যেমন: 9K7X2M4QPL" style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:ui-monospace,Menlo,monospace;font-size:17px;"></label>
+      </div>
+      <button onClick="{{ send }}" style="height:56px;border-radius:10px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:19px;font-weight:700;cursor:pointer;">{{ submitLabel }}</button>
+    </div>
+    </sc-if>
+    <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:24px 8px;">
+        <div style="width:72px;height:72px;border-radius:50%;background:#DCFCE7;color:#15803D;display:flex;align-items:center;justify-content:center;"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div>
+        <h2 style="margin:0;font-size:26px;font-weight:700;">জাযাকাল্লাহ খাইরান!</h2>
+        <p style="margin:0;font-size:17px;color:#44403C;max-width:380px;">আপনার দান যাচাইয়ের অপেক্ষায় আছে। কোষাধ্যক্ষ মিলিয়ে নিলে SMS-এ রসিদ পাবেন।</p>
+        <span style="font-size:15px;font-weight:600;padding:2px 12px;border-radius:999px;background:#FEF3C7;color:#92400E;">যাচাইয়ের অপেক্ষায়</span>
+        <button onClick="{{ reset }}" style="margin-top:8px;height:48px;padding:0 20px;border-radius:10px;border:1.5px solid #15803D;background:#fff;color:#15803D;font-family:inherit;font-size:17px;font-weight:600;cursor:pointer;">আরেকটি দান করুন</button>
+      </div>
+    </sc-if>
+  </div>
+</div>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ true }}"><div style="position:sticky;bottom:0;z-index:20;"><dc-import name="BottomNav" active="none" hint-size="100%,68px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;mobile&quot;,&quot;desktop&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { w: 0, purpose: 0, amount: 1, method: 0, sent: false };
+  rootRef = React.createRef();
+  componentDidMount() { const el = this.rootRef.current; if (!el) return; this.ro = new ResizeObserver(([e]) => this.setState({ w: e.contentRect.width })); this.ro.observe(el); }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  renderVals() {
+    const m = this.props.mode; const mode = m && m !== 'auto' ? m : (this.state.w >= 900 ? 'desktop' : 'mobile');
+    const S = this.state;
+    const amts = ['১০০', '৫০০', '১০০০', 'অন্যান্য'];
+    return {
+      rootRef: this.rootRef, mode, isMobile: mode === 'mobile',
+      purposes: [['সাধারণ তহবিল', 'যেখানে সবচেয়ে বেশি দরকার'], ['শীতবস্ত্র বিতরণ ২০২৬', 'নির্দিষ্ট ইভেন্ট · ১৩ ডিসেম্বর'], ['কিডনি রোগীর চিকিৎসা সহায়তা', 'সাহায্যের আবেদন · ৬৪% উঠেছে']].map(([label, sub], i) => {
+        const on = S.purpose === i;
+        return { label, sub, border: on ? '2px solid #15803D' : '1.5px solid #E7E5DF', bg: on ? '#F0FDF4' : '#fff', dot: on ? '#15803D' : '#A8A29E', fill: on ? '#15803D' : 'transparent', pick: () => this.setState({ purpose: i }) };
+      }),
+      amounts: amts.map((l, i) => { const on = S.amount === i; return { label: i < 3 ? '৳' + l : l, border: on ? '2px solid #15803D' : '1.5px solid #E7E5DF', bg: on ? '#15803D' : '#fff', fg: on ? '#fff' : '#1C1917', pick: () => this.setState({ amount: i }) }; }),
+      isOther: S.amount === 3,
+      methods: ['bKash', 'Nagad'].map((label, i) => ({ label, bg: S.method === i ? '#fff' : 'transparent', fg: S.method === i ? '#14532D' : '#57534E', pick: () => this.setState({ method: i }) })),
+      method: ['bKash', 'Nagad'][S.method],
+      submitLabel: S.amount < 3 ? '৳' + amts[S.amount] + ' দান নিশ্চিত করুন' : 'দান নিশ্চিত করুন',
+      sent: S.sent, notSent: !S.sent, send: () => this.setState({ sent: true }), reset: () => this.setState({ sent: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

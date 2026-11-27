@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FAFAF7;font-family:'Hind Siliguri',sans-serif;}a{color:#15803D;text-decoration:none;}a:hover{color:#14532D;text-decoration:underline;}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="container-type:inline-size;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:#FAFAF7;color:#1C1917;font-size:16px;line-height:1.6;">
+<div style="position:sticky;top:0;z-index:20;"><dc-import name="SiteHeader" mode="{{ mode }}" active="committee" hint-size="100%,72px"></dc-import></div>
+
+<section data-screen-label="কমিটি">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(28px,4cqw,48px) clamp(16px,3.5cqw,40px) 0;">
+    <div style="font-size:15px;color:#57534E;">হোম / কমিটি</div>
+    <h1 style="margin:4px 0 6px;font-size:clamp(28px,3.4cqw,42px);font-weight:700;line-height:1.3;">কার্যনির্বাহী কমিটি</h1>
+    <p style="margin:0 0 20px;font-size:17px;color:#57534E;">{{ sessionLabel }}</p>
+    <div style="display:inline-flex;background:#EFEDE6;border-radius:12px;padding:4px;gap:4px;">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="2">
+        <sc-if value="{{ t.on }}" hint-placeholder-val="{{ false }}"><button onClick="{{ t.pick }}" style="height:48px;padding:0 18px;border:none;border-radius:9px;background:#fff;color:#14532D;font-family:inherit;font-size:17px;font-weight:700;box-shadow:0 1px 3px rgba(28,25,23,.12);cursor:pointer;">{{ t.label }}</button></sc-if>
+        <sc-if value="{{ t.off }}" hint-placeholder-val="{{ true }}"><button onClick="{{ t.pick }}" style="height:48px;padding:0 18px;border:none;border-radius:9px;background:transparent;color:#57534E;font-family:inherit;font-size:17px;font-weight:500;cursor:pointer;">{{ t.label }}</button></sc-if>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div style="max-width:1200px;margin:0 auto;padding:24px clamp(16px,3.5cqw,40px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:14px;">
+    <sc-for list="{{ members }}" as="c" hint-placeholder-count="8">
+      <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;box-shadow:0 1px 2px rgba(28,25,23,.04);">
+        <div style="width:96px;height:96px;border-radius:50%;background:repeating-linear-gradient(135deg,#ECEEE4 0 8px,#E3E6D9 8px 16px);border:3px solid #F0FDF4;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#15803D;margin-bottom:8px;">{{ c.initial }}</div>
+        <div style="font-size:15px;font-weight:600;color:#15803D;">{{ c.role }}</div>
+        <div style="font-size:19px;font-weight:600;line-height:1.4;">{{ c.name }}</div>
+        <div style="font-size:15px;color:#57534E;">{{ c.para }}</div>
+        <sc-if value="{{ c.phone }}" hint-placeholder-val="{{ false }}">
+          <a href="#" style="margin-top:10px;height:48px;width:100%;border-radius:10px;border:1.5px solid #15803D;color:#15803D;display:flex;align-items:center;justify-content:center;gap:8px;font-size:17px;font-weight:600;text-decoration:none;box-sizing:border-box;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>কল করুন</a>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section data-screen-label="উপদেষ্টা পরিষদ">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(40px,5.5cqw,64px) clamp(16px,3.5cqw,40px);">
+    <h2 style="margin:0 0 4px;font-size:clamp(24px,2.4cqw,32px);font-weight:700;line-height:1.3;">উপদেষ্টা পরিষদ</h2>
+    <p style="margin:0 0 18px;font-size:17px;color:#57534E;">গ্রামের মুরুব্বি, ইমাম ও শিক্ষকেরা সংগঠনকে পরামর্শ দেন।</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:14px;">
+      <sc-for list="{{ advisors }}" as="c" hint-placeholder-count="4">
+        <div style="background:#F0FDF4;border:1px solid #DCEFE1;border-radius:12px;padding:16px;display:flex;align-items:center;gap:14px;">
+          <div style="width:64px;height:64px;flex:none;border-radius:50%;background:#fff;border:2px solid #DCEFE1;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#15803D;">{{ c.initial }}</div>
+          <div><div style="font-size:18px;font-weight:600;line-height:1.4;">{{ c.name }}</div><div style="font-size:15px;color:#57534E;">{{ c.role }}</div></div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ true }}"><div style="position:sticky;bottom:0;z-index:20;"><dc-import name="BottomNav" active="none" hint-size="100%,68px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;mobile&quot;,&quot;desktop&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { w: 0, tab: 0 };
+  rootRef = React.createRef();
+  componentDidMount() { const el = this.rootRef.current; if (!el) return; this.ro = new ResizeObserver(([e]) => this.setState({ w: e.contentRect.width })); this.ro.observe(el); }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  renderVals() {
+    const m = this.props.mode; const mode = m && m !== 'auto' ? m : (this.state.w >= 900 ? 'desktop' : 'mobile');
+    const mk = ([role, name, para, phone]) => ({ role, name, para, phone: !!phone, initial: name.replace('মোঃ ', '')[0] });
+    const current = [
+      ['সভাপতি', 'মোঃ রফিকুল ইসলাম', 'মধ্যপাড়া', 1], ['সাধারণ সম্পাদক', 'মোঃ সাইফুল হাসান', 'উত্তরপাড়া', 1],
+      ['সহ-সভাপতি', 'আব্দুল মালেক', 'পশ্চিমপাড়া'], ['যুগ্ম সাধারণ সম্পাদক', 'মোঃ আরিফ হোসেন', 'দক্ষিণপাড়া'],
+      ['কোষাধ্যক্ষ', 'মোঃ জাহিদুল আলম', 'দক্ষিণপাড়া'], ['সাংগঠনিক সম্পাদক', 'মোঃ নাজমুল হক', 'পূর্বপাড়া'],
+      ['রক্তদান বিষয়ক সম্পাদক', 'মোঃ সোহেল রানা', 'মধ্যপাড়া'], ['ক্রীড়া সম্পাদক', 'মোঃ রাকিব হাসান', 'নদীপাড়া'],
+      ['ধর্ম বিষয়ক সম্পাদক', 'হাফেজ মোঃ ইউসুফ আলী', 'উত্তরপাড়া'], ['প্রচার সম্পাদক', 'মোঃ তানভীর আহমেদ', 'পশ্চিমপাড়া']
+    ].map(mk);
+    const past = [
+      ['সভাপতি', 'মোঃ আব্দুল হালিম', 'উত্তরপাড়া', 1], ['সাধারণ সম্পাদক', 'মোঃ রফিকুল ইসলাম', 'মধ্যপাড়া', 1],
+      ['কোষাধ্যক্ষ', 'মোঃ শাহিন আলম', 'পূর্বপাড়া'], ['সাংগঠনিক সম্পাদক', 'মোঃ মামুন মিয়া', 'নদীপাড়া']
+    ].map(mk);
+    const tab = this.state.tab;
+    return {
+      rootRef: this.rootRef, mode, isMobile: mode === 'mobile',
+      tabs: ['বর্তমান কমিটি', 'পূর্ববর্তী কমিটি'].map((label, i) => ({ label, on: i === tab, off: i !== tab, pick: () => this.setState({ tab: i }) })),
+      sessionLabel: tab === 0 ? 'সেশন ২০২৬–২০২৭ · মোট ১০ জন' : 'সেশন ২০২৪–২০২৫',
+      members: tab === 0 ? current : past,
+      advisors: [
+        { name: 'আলহাজ্ব মোঃ আজিজুল হক', role: 'প্রবীণ মুরুব্বি', initial: 'আ' },
+        { name: 'মাওলানা আব্দুর রহিম', role: 'ইমাম, কেন্দ্রীয় জামে মসজিদ', initial: 'আ' },
+        { name: 'মোছাঃ ফাতেমা খাতুন', role: 'প্রধান শিক্ষক, প্রাথমিক বিদ্যালয়', initial: 'ফ' },
+        { name: 'মোঃ গোলাম মোস্তফা', role: 'অবসরপ্রাপ্ত শিক্ষক', initial: 'গ' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

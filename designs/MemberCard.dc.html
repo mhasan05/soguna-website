@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FAFAF7;font-family:'Hind Siliguri',sans-serif;}a{color:#15803D;text-decoration:none;}a:hover{color:#14532D;text-decoration:underline;}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="container-type:inline-size;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:#FAFAF7;color:#1C1917;font-size:16px;line-height:1.6;">
+<div style="position:sticky;top:0;z-index:20;"><dc-import name="SiteHeader" mode="{{ mode }}" active="none" hint-size="100%,72px"></dc-import></div>
+
+<sc-if value="{{ isCard }}" hint-placeholder-val="{{ true }}">
+<div data-screen-label="ডিজিটাল সদস্য কার্ড" style="max-width:520px;margin:0 auto;padding:clamp(20px,3cqw,40px) clamp(16px,3.5cqw,40px) clamp(40px,5cqw,64px);display:flex;flex-direction:column;gap:18px;">
+  <a href="Dashboard.dc.html" style="align-self:flex-start;min-height:44px;display:inline-flex;align-items:center;gap:6px;font-size:16px;font-weight:600;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>ড্যাশবোর্ড</a>
+  <h1 style="margin:0;font-size:clamp(24px,3cqw,32px);font-weight:700;">আমার সদস্য কার্ড</h1>
+
+  <div style="background:#14532D;border-radius:20px;overflow:hidden;color:#fff;box-shadow:0 16px 40px rgba(20,83,45,.25);">
+    <div style="display:flex;align-items:center;gap:10px;padding:16px 18px;background:#15803D;">
+      <div style="width:40px;height:40px;border-radius:50%;background:#14532D;border:2px solid #D97706;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;padding-top:2px;box-sizing:border-box;">স</div>
+      <div style="line-height:1.3;"><div style="font-weight:700;font-size:17px;">সগুনা আদর্শ যুব সমাজ</div><div style="font-size:13px;opacity:.9;">বেলকুচি, সিরাজগঞ্জ · সদস্য কার্ড</div></div>
+    </div>
+    <div style="height:6px;background:repeating-linear-gradient(90deg,#14532D 0 16px,#D97706 16px 20px,#15803D 20px 30px,#FAFAF7 30px 32px);"></div>
+    <div style="padding:18px;display:flex;gap:16px;align-items:flex-start;">
+      <div style="width:92px;height:112px;flex:none;border-radius:10px;background:#F0FDF4;color:#15803D;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:700;">রা</div>
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px;">
+        <div style="font-size:21px;font-weight:700;line-height:1.3;">মোঃ রাকিব হাসান</div>
+        <div style="font-family:ui-monospace,Menlo,monospace;font-size:16px;color:#FCD34D;">SAJS-0045</div>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:15px;margin-top:4px;">
+          <span style="opacity:.8;">রক্ত</span><span style="font-weight:700;">B+</span>
+          <span style="opacity:.8;">পাড়া</span><span style="font-weight:600;">নদীপাড়া</span>
+          <span style="opacity:.8;">সদস্য</span><span style="font-weight:600;">২০২৩ থেকে</span>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;padding:0 18px 18px;">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=8&data=https%3A%2F%2Fsoguna.org%2Fverify%2FSAJS-0045" alt="যাচাই QR কোড" style="width:104px;height:104px;border-radius:10px;background:#fff;flex:none;">
+      <div style="font-size:15px;opacity:.95;">QR স্ক্যান করলে যাচাই পাতা খুলবে।<br><span style="display:inline-block;margin-top:6px;font-size:14px;font-weight:600;padding:2px 12px;border-radius:999px;background:#DCFCE7;color:#14532D;">সক্রিয় সদস্য</span></div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;">
+    <button style="height:56px;border-radius:12px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:17px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>ছবি ডাউনলোড</button>
+    <button style="height:56px;border-radius:12px;border:1.5px solid #15803D;background:#fff;color:#15803D;font-family:inherit;font-size:17px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"></path></svg>শেয়ার</button>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isVerify }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="QR যাচাই" style="max-width:520px;margin:0 auto;padding:clamp(28px,5cqw,64px) clamp(16px,3.5cqw,40px);">
+  <div style="background:#fff;border:1px solid #E7E5DF;border-radius:16px;padding:28px 22px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;">
+    <div style="width:84px;height:84px;border-radius:50%;background:#DCFCE7;color:#15803D;display:flex;align-items:center;justify-content:center;"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div>
+    <div style="font-size:15px;color:#57534E;">যাচাই সম্পন্ন · SAJS-0045</div>
+    <div style="width:80px;height:80px;border-radius:50%;background:#F0FDF4;color:#15803D;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:700;">রা</div>
+    <h1 style="margin:0;font-size:26px;font-weight:700;line-height:1.3;">মোঃ রাকিব হাসান</h1>
+    <p style="margin:0;font-size:19px;line-height:1.6;">এই ব্যক্তি <strong style="color:#15803D;">সগুনা আদর্শ যুব সমাজের সক্রিয় সদস্য</strong>।</p>
+    <div style="font-size:15px;color:#57534E;">যাচাইয়ের সময়: ২৬ নভেম্বর ২০২৬</div>
+  </div>
+</div>
+</sc-if>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ true }}"><div style="position:sticky;bottom:0;z-index:20;"><dc-import name="BottomNav" active="me" hint-size="100%,68px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;mobile&quot;,&quot;desktop&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;view&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;card&quot;,&quot;verify&quot;],&quot;default&quot;:&quot;card&quot;,&quot;tsType&quot;:&quot;'card'|'verify'&quot;}}">
+class Component extends DCLogic {
+  state = { w: 0 };
+  rootRef = React.createRef();
+  componentDidMount() { const el = this.rootRef.current; if (!el) return; this.ro = new ResizeObserver(([e]) => this.setState({ w: e.contentRect.width })); this.ro.observe(el); }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  renderVals() {
+    const m = this.props.mode; const mode = m && m !== 'auto' ? m : (this.state.w >= 900 ? 'desktop' : 'mobile');
+    const v = this.props.view ?? 'card';
+    return { rootRef: this.rootRef, mode, isMobile: mode === 'mobile', isCard: v === 'card', isVerify: v === 'verify' };
+  }
+}
+</script>
+</body>
+</html>

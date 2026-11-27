@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#F4F3EE;font-family:'Hind Siliguri',sans-serif;}a{color:#15803D;text-decoration:none;}a:hover{color:#14532D;text-decoration:underline;}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="container-type:inline-size;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:#F4F3EE;color:#1C1917;font-size:16px;line-height:1.6;min-height:100%;display:flex;flex-direction:column;">
+
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ true }}">
+  <div style="position:sticky;top:0;z-index:20;background:#14532D;color:#fff;">
+    <div style="display:flex;align-items:center;gap:10px;padding:10px 16px;">
+      <div style="width:40px;height:40px;flex:none;border-radius:50%;background:#15803D;border:2px solid #D97706;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;padding-top:2px;box-sizing:border-box;">স</div>
+      <div style="flex:1;min-width:0;line-height:1.25;"><div style="font-weight:700;font-size:16px;">অ্যাডমিন প্যানেল</div><div style="font-size:13px;opacity:.85;">{{ roleLabel }}</div></div>
+      <button onClick="{{ toggleMenu }}" aria-label="মেনু" style="width:48px;height:48px;flex:none;border-radius:10px;border:1.5px solid rgba(255,255,255,.5);background:transparent;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+    </div>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;left:0;right:0;top:100%;background:#14532D;padding:4px 12px 14px;display:flex;flex-direction:column;gap:2px;box-shadow:0 10px 24px rgba(0,0,0,.25);">
+        <sc-for list="{{ menu }}" as="it" hint-placeholder-count="13">
+          <button onClick="{{ it.go }}" style="min-height:48px;border:none;border-radius:10px;background:{{ it.bg }};color:#fff;font-family:inherit;font-size:17px;font-weight:{{ it.weight }};text-align:left;padding:0 14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;">{{ it.label }}<span style="font-size:13px;opacity:.7;">{{ it.badge }}</span></button>
+        </sc-for>
+      </div>
+    </sc-if>
+  </div>
+</sc-if>
+
+<div style="display:flex;flex:1;min-height:0;">
+<sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ false }}">
+  <aside style="width:264px;flex:none;background:#14532D;color:#fff;display:flex;flex-direction:column;">
+    <div style="display:flex;align-items:center;gap:10px;padding:18px 18px 14px;">
+      <div style="width:44px;height:44px;flex:none;border-radius:50%;background:#15803D;border:2px solid #D97706;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px;padding-top:3px;box-sizing:border-box;">স</div>
+      <div style="line-height:1.25;"><div style="font-weight:700;font-size:16px;">সগুনা আদর্শ যুব সমাজ</div><div style="font-size:13px;opacity:.85;">অ্যাডমিন প্যানেল</div></div>
+    </div>
+    <div style="height:5px;background:repeating-linear-gradient(90deg,#15803D 0 16px,#D97706 16px 20px,#14532D 20px 30px,#FAFAF7 30px 32px);"></div>
+    <nav style="padding:12px;display:flex;flex-direction:column;gap:2px;flex:1;">
+      <sc-for list="{{ menu }}" as="it" hint-placeholder-count="13">
+        <button onClick="{{ it.go }}" style="min-height:46px;border:none;border-radius:10px;background:{{ it.bg }};color:#fff;font-family:inherit;font-size:16px;font-weight:{{ it.weight }};text-align:left;padding:0 14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;">{{ it.label }}<span style="font-size:13px;font-weight:700;padding:0 8px;border-radius:999px;background:{{ it.badgeBg }};">{{ it.badge }}</span></button>
+      </sc-for>
+    </nav>
+    <div style="padding:14px 18px;border-top:1px solid rgba(255,255,255,.12);font-size:15px;"><div style="font-weight:600;">মোঃ রফিকুল ইসলাম</div><div style="opacity:.8;">{{ roleLabel }}</div></div>
+  </aside>
+</sc-if>
+
+<main data-screen-label="অ্যাডমিন" style="flex:1;min-width:0;padding:clamp(16px,2.4cqw,32px);display:flex;flex-direction:column;gap:18px;">
+  <sc-if value="{{ hasConfirm }}" hint-placeholder-val="{{ false }}">
+    <div style="position:sticky;top:8px;z-index:15;background:#fff;border:2px solid #DC2626;border-radius:12px;padding:14px 16px;box-shadow:0 10px 30px rgba(28,25,23,.18);display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+      <div style="flex:1 1 240px;min-width:0;"><div style="font-size:17px;font-weight:700;">{{ confirmText }}</div><div style="font-size:15px;color:#57534E;">{{ confirmWarn }}</div></div>
+      <div style="display:flex;gap:8px;"><button onClick="{{ confirmNo }}" style="height:48px;padding:0 16px;border-radius:10px;border:1.5px solid #D6D3CB;background:#fff;color:#44403C;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">না, থাক</button><button onClick="{{ confirmYes }}" style="height:48px;padding:0 16px;border-radius:10px;border:none;background:#DC2626;color:#fff;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;">হ্যাঁ, মুছুন</button></div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+    <div style="position:sticky;top:8px;z-index:14;background:#1C1917;color:#fff;border-radius:12px;padding:10px 12px 10px 16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;">
+      <span style="font-size:16px;">{{ toast }}</span>
+      <div style="display:flex;gap:6px;"><sc-if value="{{ canUndo }}" hint-placeholder-val="{{ false }}"><button onClick="{{ undo }}" style="height:40px;padding:0 12px;border-radius:8px;border:none;background:#FCD34D;color:#1C1917;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;">ফিরিয়ে আনুন</button></sc-if><button onClick="{{ closeToast }}" aria-label="বন্ধ" style="height:40px;width:40px;border-radius:8px;border:none;background:rgba(255,255,255,.12);color:#fff;font-size:18px;cursor:pointer;">×</button></div>
+    </div>
+  </sc-if>
+  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;">
+    <div><div style="font-size:14px;color:#57534E;">ফেজ {{ phase }}</div><h1 style="margin:0;font-size:clamp(24px,2.6cqw,32px);font-weight:700;line-height:1.3;">{{ title }}</h1></div>
+    <a href="Home.dc.html" style="min-height:44px;display:inline-flex;align-items:center;font-size:16px;font-weight:600;">সাইট দেখুন →</a>
+  </div>
+
+  <sc-if value="{{ p.dashboard }}" hint-placeholder-val="{{ true }}">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:12px;">
+      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="5">
+        <button onClick="{{ s.go }}" style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:16px;text-align:left;font-family:inherit;cursor:pointer;color:#1C1917;">
+          <div style="font-size:15px;color:#57534E;">{{ s.label }}</div>
+          <div style="font-size:30px;font-weight:700;color:{{ s.color }};line-height:1.25;">{{ s.value }}</div>
+          <div style="font-size:14px;color:#57534E;">{{ s.sub }}</div>
+        </button>
+      </sc-for>
+    </div>
+    <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:16px 18px;">
+      <div style="display:flex;justify-content:space-between;gap:8px;margin-bottom:8px;"><h2 style="margin:0;font-size:19px;font-weight:700;">এ মাসের চাঁদা আদায়</h2><span style="font-size:16px;font-weight:700;color:#B45309;">৫১%</span></div>
+      <div style="height:14px;border-radius:999px;background:#F3EFE6;overflow:hidden;"><div style="height:100%;width:51%;background:#D97706;border-radius:999px;"></div></div>
+      <div style="font-size:15px;color:#57534E;margin-top:6px;">৳১২,৪০০ আদায় · ৬২ জন দিয়েছেন · ৬০ জন বাকি</div>
+    </div>
+    <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:6px 18px;">
+      <h2 style="margin:12px 0 4px;font-size:19px;font-weight:700;">সাম্প্রতিক কার্যকলাপ</h2>
+      <sc-for list="{{ activity }}" as="a" hint-placeholder-count="6">
+        <div style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #F0EEE8;align-items:flex-start;">
+          <span style="width:10px;height:10px;flex:none;border-radius:50%;background:{{ a.dot }};margin-top:8px;"></span>
+          <div style="flex:1;min-width:0;"><div style="font-size:16px;">{{ a.text }}</div><div style="font-size:14px;color:#57534E;">{{ a.meta }}</div></div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ p.members }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;">
+      <button onClick="{{ addMember }}" style="height:48px;padding:0 18px;border-radius:10px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">+ সদস্য যোগ করুন</button>
+      <button style="height:48px;padding:0 16px;border-radius:10px;border:1.5px solid #15803D;background:#fff;color:#15803D;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">CSV ইমপোর্ট</button>
+      <button style="height:48px;padding:0 16px;border-radius:10px;border:1.5px solid #D6D3CB;background:#fff;color:#44403C;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">Excel এক্সপোর্ট</button>
+    </div>
+    <div style="background:#fff;border:1.5px solid #F5C97A;border-radius:12px;padding:6px 18px;">
+      <h2 style="margin:12px 0 4px;font-size:19px;font-weight:700;">নতুন আবেদন · {{ pendingCount }}</h2>
+      <sc-for list="{{ applicants }}" as="ap" hint-placeholder-count="3">
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #F0EEE8;">
+          <div style="width:48px;height:48px;flex:none;border-radius:50%;background:#FEF3C7;color:#B45309;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;">{{ ap.initial }}</div>
+          <div style="flex:1 1 180px;min-width:0;"><div style="font-size:17px;font-weight:600;">{{ ap.name }}</div><div style="font-size:15px;color:#57534E;">{{ ap.meta }}</div></div>
+          <sc-if value="{{ ap.open }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;gap:8px;">
+              <button onClick="{{ ap.approve }}" style="height:48px;padding:0 16px;border-radius:10px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">অনুমোদন</button>
+              <button onClick="{{ ap.reject }}" style="height:48px;padding:0 14px;border-radius:10px;border:1.5px solid #D6D3CB;background:#fff;color:#44403C;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">বাতিল</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ ap.closed }}" hint-placeholder-val="{{ false }}"><span style="font-size:15px;font-weight:700;padding:2px 12px;border-radius:999px;background:{{ ap.doneBg }};color:{{ ap.doneFg }};">{{ ap.doneLabel }}</span></sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:16px 18px;">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+        <input placeholder="নাম বা ফোন দিয়ে খুঁজুন" style="flex:1 1 220px;height:48px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:16px;min-width:0;">
+        <select style="height:48px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 10px;font-family:inherit;font-size:16px;background:#fff;"><option>সব পাড়া</option><option>নদীপাড়া</option></select>
+        <select style="height:48px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 10px;font-family:inherit;font-size:16px;background:#fff;"><option>সব অবস্থা</option><option>সক্রিয়</option><option>নিষ্ক্রিয়</option></select>
+      </div>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;min-width:760px;font-size:16px;">
+          <thead><tr style="text-align:left;color:#57534E;font-size:14px;"><th style="padding:8px;border-bottom:1px solid #E7E5DF;">নম্বর</th><th style="padding:8px;border-bottom:1px solid #E7E5DF;">নাম</th><th style="padding:8px;border-bottom:1px solid #E7E5DF;">পাড়া</th><th style="padding:8px;border-bottom:1px solid #E7E5DF;">রোল</th><th style="padding:8px;border-bottom:1px solid #E7E5DF;">অবস্থা</th><th style="padding:8px;border-bottom:1px solid #E7E5DF;"></th></tr></thead>
+          <tbody>
+            <sc-for list="{{ memberRows }}" as="r" hint-placeholder-count="6">
+              <tr><td style="padding:10px 8px;border-bottom:1px solid #F0EEE8;font-family:ui-monospace,Menlo,monospace;font-size:14px;">{{ r.no }}</td>
+              <td style="padding:10px 8px;border-bottom:1px solid #F0EEE8;font-weight:600;"><sc-if value="{{ r.notEditing }}" hint-placeholder-val="{{ true }}">{{ r.name }}</sc-if><sc-if value="{{ r.isEditing }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:6px;flex:1 1 220px;min-width:0;"><input value="{{ r.draft }}" onChange="{{ r.setDraft }}" style="flex:1;min-width:0;height:44px;border-radius:8px;border:2px solid #15803D;padding:0 10px;font-family:inherit;font-size:16px;"><button onClick="{{ r.save }}" style="height:44px;padding:0 12px;border-radius:8px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">সংরক্ষণ</button><button onClick="{{ r.cancel }}" aria-label="বাতিল" style="height:44px;width:44px;border-radius:8px;border:1.5px solid #D6D3CB;background:#fff;color:#57534E;font-size:18px;cursor:pointer;">×</button></div></sc-if></td>
+              <td style="padding:10px 8px;border-bottom:1px solid #F0EEE8;"><select value="{{ r.para }}" onChange="{{ r.setPara }}" style="height:40px;border-radius:8px;border:1px solid #D6D3CB;padding:0 6px;font-family:inherit;font-size:15px;background:#fff;"><sc-for list="{{ paraNames }}" as="pn"><option value="{{ pn }}">{{ pn }}</option></sc-for></select></td>
+              <td style="padding:10px 8px;border-bottom:1px solid #F0EEE8;"><select value="{{ r.role }}" onChange="{{ r.setRole }}" style="height:40px;border-radius:8px;border:1px solid #D6D3CB;padding:0 6px;font-family:inherit;font-size:15px;background:#fff;"><option>সদস্য</option><option>স্বেচ্ছাসেবক</option><option>ক্যাশিয়ার</option><option>অ্যাডমিন</option></select></td>
+              <td style="padding:10px 8px;border-bottom:1px solid #F0EEE8;"><button onClick="{{ r.toggle }}" title="চাপলে অবস্থা বদলাবে" style="height:34px;padding:0 10px;border:none;border-radius:999px;background:{{ r.bg }};color:{{ r.fg }};font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;">{{ r.status }}</button></td>
+              <td style="padding:10px 8px;border-bottom:1px solid #F0EEE8;"><div style="display:flex;gap:6px;justify-content:flex-end;"><button onClick="{{ r.edit }}" style="height:40px;padding:0 12px;border-radius:8px;border:1.5px solid #D6D3CB;background:#fff;color:#44403C;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">এডিট</button><button onClick="{{ r.del }}" style="height:40px;padding:0 12px;border-radius:8px;border:1.5px solid #FCA5A5;background:#fff;color:#B91C1C;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">মুছুন</button></div></td></tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ p.committee }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+      <select style="height:48px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 12px;font-family:inherit;font-size:16px;background:#fff;"><option>সেশন ২০২৬–২০২৭ (বর্তমান)</option><option>সেশন ২০২৪–২০২৫</option></select>
+      <button style="height:48px;padding:0 16px;border-radius:10px;border:1.5px solid #15803D;background:#fff;color:#15803D;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">+ নতুন সেশন</button>
+      <button style="height:48px;padding:0 16px;border-radius:10px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">+ পদবি যোগ</button>
+    </div>
+    <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:4px 16px;">
+      <sc-for list="{{ positions }}" as="ps" hint-placeholder-count="6">
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #F0EEE8;">
+          <div style="display:flex;flex-direction:column;flex:none;"><button onClick="{{ ps.up }}" aria-label="উপরে" style="width:36px;height:24px;border:none;background:none;cursor:pointer;color:#57534E;font-size:14px;">▲</button><button onClick="{{ ps.down }}" aria-label="নিচে" style="width:36px;height:24px;border:none;background:none;cursor:pointer;color:#57534E;font-size:14px;">▼</button></div>
+          <div style="flex:1 1 140px;font-size:17px;font-weight:600;">{{ ps.title }}</div>
+          <select style="flex:1 1 200px;height:48px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 10px;font-family:inherit;font-size:16px;background:#fff;min-width:0;"><option>{{ ps.name }}</option><option>— সদস্য বাছাই করুন —</option></select>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ p.notices }}" hint-placeholder-val="{{ false }}">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:16px;align-items:start;">
+      <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px;">
+        <h2 style="margin:0;font-size:19px;font-weight:700;">নতুন নোটিশ</h2>
+        <sc-if value="{{ noticeDraft }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:16px;font-weight:600;">শিরোনাম</span><input value="{{ nTitle }}" onChange="{{ setNTitle }}" placeholder="যেমন: ডিসেম্বর মাসের সাধারণ সভা" style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:17px;"></label>
+            <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:16px;font-weight:600;">ক্যাটাগরি</span><select style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 12px;font-family:inherit;font-size:17px;background:#fff;"><option>সভা</option><option>জরুরি</option><option>শোকসংবাদ</option><option>ইভেন্ট</option><option>সরকারি ঘোষণা</option><option>অন্যান্য</option></select></label>
+            <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:16px;font-weight:600;">লেখা</span><textarea rows="5" style="border-radius:10px;border:1.5px solid #D6D3CB;padding:12px 14px;font-family:inherit;font-size:17px;resize:vertical;"></textarea></label>
+            <button style="min-height:64px;border-radius:10px;border:2px dashed #86C49B;background:#F0FDF4;color:#14532D;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">ছবি বা PDF সংযুক্ত করুন</button>
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;">
+              <sc-for list="{{ visOpts }}" as="v" hint-placeholder-count="2"><button onClick="{{ v.pick }}" style="height:48px;border-radius:10px;border:{{ v.border }};background:{{ v.bg }};color:{{ v.fg }};font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">{{ v.label }}</button></sc-for>
+            </div>
+            <label style="display:flex;align-items:center;gap:12px;min-height:48px;font-size:17px;cursor:pointer;background:#FEF2F2;border-radius:10px;padding:4px 14px;"><input type="checkbox" style="width:22px;height:22px;accent-color:#DC2626;">জরুরি — হোম পেজের উপরে পিন করুন</label>
+            <button onClick="{{ publish }}" style="height:54px;border-radius:10px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:18px;font-weight:700;cursor:pointer;">প্রকাশ করুন</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ noticePublished }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#F0FDF4;border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px;">
+            <div style="font-size:17px;"><strong style="color:#15803D;">নোটিশ প্রকাশিত হয়েছে।</strong> এখন WhatsApp গ্রুপে লিংক পাঠান।</div>
+            <button style="height:52px;border-radius:10px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:17px;font-weight:700;cursor:pointer;">WhatsApp-এ শেয়ার</button>
+            <button onClick="{{ newNotice }}" style="height:48px;border-radius:10px;border:1.5px solid #15803D;background:#fff;color:#15803D;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">আরেকটি নোটিশ লিখুন</button>
+          </div>
+        </sc-if>
+      </div>
+      <div style="background:#fff;border:1.5px solid #F5C97A;border-radius:12px;padding:6px 18px;">
+        <h2 style="margin:12px 0 4px;font-size:19px;font-weight:700;">স্বেচ্ছাসেবকের খসড়া · অনুমোদনের অপেক্ষায়</h2>
+        <sc-for list="{{ drafts }}" as="d" hint-placeholder-count="2">
+          <div style="padding:12px 0;border-bottom:1px solid #F0EEE8;display:flex;flex-direction:column;gap:8px;">
+            <div><div style="font-size:17px;font-weight:600;">{{ d.title }}</div><div style="font-size:15px;color:#57534E;">{{ d.meta }}</div></div>
+            <div style="display:flex;gap:8px;"><button style="height:44px;padding:0 14px;border-radius:10px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">অনুমোদন ও প্রকাশ</button><button style="height:44px;padding:0 14px;border-radius:10px;border:1.5px solid #D6D3CB;background:#fff;color:#44403C;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">এডিট</button></div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ p.notices }}" hint-placeholder-val="{{ false }}">
+    <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:6px 18px;">
+      <h2 style="margin:12px 0 4px;font-size:19px;font-weight:700;">প্রকাশিত নোটিশ · {{ noticeCount }}</h2>
+      <sc-for list="{{ noticeRows }}" as="n" hint-placeholder-count="4">
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #F0EEE8;">
+          <sc-if value="{{ n.notEditing }}" hint-placeholder-val="{{ true }}"><div style="flex:1 1 220px;min-width:0;"><div style="font-size:17px;font-weight:600;">{{ n.title }}</div><div style="font-size:15px;color:#57534E;">{{ n.cat }} · {{ n.date }} · {{ n.vis }}</div></div><button onClick="{{ n.edit }}" style="height:40px;padding:0 12px;border-radius:8px;border:1.5px solid #D6D3CB;background:#fff;color:#44403C;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">এডিট</button><button onClick="{{ n.del }}" style="height:40px;padding:0 12px;border-radius:8px;border:1.5px solid #FCA5A5;background:#fff;color:#B91C1C;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">মুছুন</button></sc-if>
+          <sc-if value="{{ n.isEditing }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:6px;flex:1 1 220px;min-width:0;"><input value="{{ n.draft }}" onChange="{{ n.setDraft }}" style="flex:1;min-width:0;height:44px;border-radius:8px;border:2px solid #15803D;padding:0 10px;font-family:inherit;font-size:16px;"><button onClick="{{ n.save }}" style="height:44px;padding:0 12px;border-radius:8px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">সংরক্ষণ</button><button onClick="{{ n.cancel }}" aria-label="বাতিল" style="height:44px;width:44px;border-radius:8px;border:1.5px solid #D6D3CB;background:#fff;color:#57534E;font-size:18px;cursor:pointer;">×</button></div></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ p.emergency }}" hint-placeholder-val="{{ false }}">
+    <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:4px 16px;">
+      <sc-for list="{{ emergencyRows }}" as="e" hint-placeholder-count="8">
+        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #F0EEE8;">
+          <div style="display:flex;flex-direction:column;flex:none;"><button onClick="{{ e.up }}" aria-label="উপরে" style="width:36px;height:24px;border:none;background:none;cursor:pointer;color:#57534E;font-size:14px;">▲</button><button onClick="{{ e.down }}" aria-label="নিচে" style="width:36px;height:24px;border:none;background:none;cursor:pointer;color:#57534E;font-size:14px;">▼</button></div>
+          <input value="{{ e.title }}" onChange="{{ e.setTitle }}" aria-label="নাম" style="flex:1 1 200px;height:48px;border-radius:10px;border:1.5px solid #E7E5DF;padding:0 12px;font-family:inherit;font-size:16px;min-width:0;">
+          <input value="{{ e.phone }}" onChange="{{ e.setPhone }}" aria-label="নম্বর" placeholder="নম্বর" style="flex:0 1 170px;height:48px;border-radius:10px;border:1.5px solid #E7E5DF;padding:0 12px;font-family:inherit;font-size:16px;min-width:0;">
+          <button onClick="{{ e.del }}" style="height:40px;padding:0 12px;border-radius:8px;border:1.5px solid #FCA5A5;background:#fff;color:#B91C1C;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">মুছুন</button>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;"><button onClick="{{ addEmergency }}" style="height:48px;padding:0 18px;border-radius:10px;border:1.5px solid #15803D;background:#fff;color:#15803D;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">+ নম্বর যোগ করুন</button><button onClick="{{ saveAll }}" style="height:48px;padding:0 20px;border-radius:10px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">সংরক্ষণ</button></div>
+  </sc-if>
+
+  <sc-if value="{{ p.events }}" hint-placeholder-val="{{ false }}">
+    <button onClick="{{ addEvent }}" style="align-self:flex-start;height:48px;padding:0 18px;border-radius:10px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">+ নতুন ইভেন্ট</button>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:12px;">
+      <sc-for list="{{ eventRows }}" as="ev" hint-placeholder-count="4">
+        <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;justify-content:space-between;gap:8px;"><span style="font-size:14px;font-weight:600;padding:2px 10px;border-radius:999px;background:{{ ev.bg }};color:{{ ev.fg }};">{{ ev.status }}</span><span style="font-size:15px;color:#57534E;">{{ ev.date }}</span></div>
+          <sc-if value="{{ ev.notEditing }}" hint-placeholder-val="{{ true }}"><div style="font-size:18px;font-weight:600;">{{ ev.title }}</div></sc-if>
+          <sc-if value="{{ ev.isEditing }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:6px;flex:1 1 220px;min-width:0;"><input value="{{ ev.draft }}" onChange="{{ ev.setDraft }}" style="flex:1;min-width:0;height:44px;border-radius:8px;border:2px solid #15803D;padding:0 10px;font-family:inherit;font-size:16px;"><button onClick="{{ ev.save }}" style="height:44px;padding:0 12px;border-radius:8px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">সংরক্ষণ</button><button onClick="{{ ev.cancel }}" aria-label="বাতিল" style="height:44px;width:44px;border-radius:8px;border:1.5px solid #D6D3CB;background:#fff;color:#57534E;font-size:18px;cursor:pointer;">×</button></div></sc-if>
+          <div style="font-size:15px;color:#57534E;">{{ ev.meta }}</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;"><button style="height:40px;padding:0 12px;border-radius:8px;border:1.5px solid #15803D;background:#fff;color:#15803D;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">{{ ev.action }}</button><button onClick="{{ ev.edit }}" style="height:40px;padding:0 12px;border-radius:8px;border:1.5px solid #D6D3CB;background:#fff;color:#44403C;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">এডিট</button><button onClick="{{ ev.del }}" style="height:40px;padding:0 12px;border-radius:8px;border:1.5px solid #FCA5A5;background:#fff;color:#B91C1C;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">মুছুন</button></div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ p.gallery }}" hint-placeholder-val="{{ false }}">
+    <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;"><select style="flex:1 1 220px;height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 12px;font-family:inherit;font-size:17px;background:#fff;min-width:0;"><option>অ্যালবাম: শীতবস্ত্র বিতরণ ২০২৬</option><option>সগুনার স্মৃতি</option></select><button style="height:52px;padding:0 16px;border-radius:10px;border:1.5px solid #15803D;background:#fff;color:#15803D;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">+ নতুন অ্যালবাম</button></div>
+      <button style="min-height:140px;border-radius:12px;border:2px dashed #86C49B;background:#F0FDF4;color:#14532D;font-family:inherit;font-size:18px;font-weight:600;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"></path></svg>একসাথে অনেক ছবি আপলোড করুন<span style="font-size:15px;font-weight:400;color:#57534E;">ছবি নিজে থেকে ছোট (WebP) হয়ে যাবে</span></button>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(110px,30%),1fr));gap:8px;">
+        <sc-for list="{{ uploads }}" as="u" hint-placeholder-count="6"><div style="position:relative;"><img src="{{ u.src }}" alt="" loading="lazy" style="display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;background:#E3E6D9;"><span style="position:absolute;left:6px;bottom:6px;font-size:12px;background:rgba(255,255,255,.9);padding:1px 6px;border-radius:6px;">{{ u.size }}</span></div></sc-for>
+      </div>
+      <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:16px;font-weight:600;">YouTube ভিডিও লিংক</span><input placeholder="https://youtube.com/watch?v=..." style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:16px;"></label>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ p.dues }}" hint-placeholder-val="{{ false }}">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:12px;">
+      <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;"><span style="font-size:16px;font-weight:600;">মাসিক চাঁদা</span><div style="display:flex;gap:8px;"><input value="২০০" style="flex:1;min-width:0;height:48px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 12px;font-family:inherit;font-size:18px;font-weight:700;"><button style="height:48px;padding:0 16px;border-radius:10px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">সংরক্ষণ</button></div><span style="font-size:14px;color:#57534E;">জানুয়ারি ২০২৬ থেকে কার্যকর</span></div>
+      <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;"><span style="font-size:16px;font-weight:600;">বাকিদার · নভেম্বর</span><div style="font-size:28px;font-weight:700;color:#B91C1C;line-height:1.2;">৬০ জন</div><button style="height:48px;border-radius:10px;border:1.5px solid #15803D;background:#fff;color:#15803D;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">সবাইকে SMS রিমাইন্ডার</button></div>
+    </div>
+    <div style="background:#fff;border:1.5px solid #F5C97A;border-radius:12px;padding:6px 18px;">
+      <h2 style="margin:12px 0 4px;font-size:19px;font-weight:700;">অনলাইন পেমেন্ট যাচাই · {{ verifyCount }}</h2>
+      <sc-for list="{{ verify }}" as="v" hint-placeholder-count="3">
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #F0EEE8;">
+          <div style="flex:1 1 200px;min-width:0;"><div style="font-size:17px;font-weight:600;">{{ v.name }} · {{ v.amount }}</div><div style="font-size:15px;color:#57534E;">{{ v.meta }}</div><div style="font-family:ui-monospace,Menlo,monospace;font-size:14px;color:#44403C;">TrxID: {{ v.trx }}</div></div>
+          <sc-if value="{{ v.open }}" hint-placeholder-val="{{ true }}"><div style="display:flex;gap:8px;"><button onClick="{{ v.ok }}" style="height:48px;padding:0 16px;border-radius:10px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">মিলেছে</button><button onClick="{{ v.no }}" style="height:48px;padding:0 14px;border-radius:10px;border:1.5px solid #D6D3CB;background:#fff;color:#44403C;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">মেলেনি</button></div></sc-if>
+          <sc-if value="{{ v.closed }}" hint-placeholder-val="{{ false }}"><span style="font-size:15px;font-weight:700;padding:2px 12px;border-radius:999px;background:{{ v.doneBg }};color:{{ v.doneFg }};">{{ v.doneLabel }}</span></sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:16px;">
+      <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px;"><h2 style="margin:0;font-size:19px;font-weight:700;">সদস্য × মাস</h2><button style="height:44px;padding:0 14px;border-radius:10px;border:1.5px solid #15803D;background:#fff;color:#15803D;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">+ নগদ এন্ট্রি</button></div>
+      <div style="overflow-x:auto;">
+        <table style="border-collapse:separate;border-spacing:4px;font-size:14px;min-width:700px;">
+          <thead><tr><th style="text-align:left;padding:4px 8px;color:#57534E;font-weight:600;">সদস্য</th><sc-for list="{{ monthHeads }}" as="mh"><th style="padding:4px;color:#57534E;font-weight:600;">{{ mh }}</th></sc-for></tr></thead>
+          <tbody>
+            <sc-for list="{{ grid }}" as="g" hint-placeholder-count="6">
+              <tr><td style="padding:4px 8px;font-size:15px;font-weight:600;white-space:nowrap;">{{ g.name }}</td><sc-for list="{{ g.cells }}" as="c"><td style="width:40px;height:36px;border-radius:6px;background:{{ c.bg }};color:{{ c.fg }};text-align:center;font-weight:700;">{{ c.t }}</td></sc-for></tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ p.finance }}" hint-placeholder-val="{{ false }}">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr));gap:16px;align-items:start;">
+      <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px;">
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:#EFEDE6;border-radius:12px;padding:4px;gap:4px;">
+          <sc-for list="{{ entryTypes }}" as="et" hint-placeholder-count="2"><button onClick="{{ et.pick }}" style="height:48px;border:none;border-radius:9px;background:{{ et.bg }};color:{{ et.fg }};font-family:inherit;font-size:17px;font-weight:700;cursor:pointer;">{{ et.label }}</button></sc-for>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:16px;font-weight:600;">খাত</span><select style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 12px;font-family:inherit;font-size:17px;background:#fff;"><sc-for list="{{ entryCats }}" as="ec"><option>{{ ec }}</option></sc-for></select></label>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;">
+          <label style="display:flex;flex-direction:column;gap:6px;min-width:0;"><span style="font-size:16px;font-weight:600;">টাকা</span><input inputmode="numeric" placeholder="৳" style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 12px;font-family:inherit;font-size:17px;width:100%;box-sizing:border-box;"></label>
+          <label style="display:flex;flex-direction:column;gap:6px;min-width:0;"><span style="font-size:16px;font-weight:600;">তারিখ</span><input type="date" style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 10px;font-family:inherit;font-size:16px;width:100%;box-sizing:border-box;background:#fff;"></label>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:16px;font-weight:600;">ইভেন্ট / আবেদনের সাথে লিংক <span style="font-weight:400;color:#57534E;">(ঐচ্ছিক)</span></span><select style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 12px;font-family:inherit;font-size:17px;background:#fff;"><option>কোনোটি না</option><option>শীতবস্ত্র বিতরণ ২০২৬</option><option>কিডনি রোগীর চিকিৎসা সহায়তা</option></select></label>
+        <sc-if value="{{ isExpense }}" hint-placeholder-val="{{ false }}"><button style="min-height:64px;border-radius:10px;border:2px dashed #FCD9A0;background:#FFFBEB;color:#92400E;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">ভাউচারের ছবি তুলুন (বাধ্যতামূলক)</button></sc-if>
+        <button style="height:54px;border-radius:10px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:18px;font-weight:700;cursor:pointer;">এন্ট্রি সংরক্ষণ</button>
+        <div style="font-size:14px;color:#57534E;">প্রতিটি এন্ট্রি অডিট লগে থাকে। মুছে ফেলা যায় না — শুধু কারণসহ বাতিল করা যায়।</div>
+      </div>
+      <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:6px 18px;">
+        <h2 style="margin:12px 0 4px;font-size:19px;font-weight:700;">সাম্প্রতিক এন্ট্রি</h2>
+        <sc-for list="{{ entries }}" as="en" hint-placeholder-count="5">
+          <div style="padding:12px 0;border-bottom:1px solid #F0EEE8;display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;gap:10px;align-items:center;opacity:{{ en.op }};">
+              <div style="flex:1;min-width:0;"><sc-if value="{{ en.notEditing }}" hint-placeholder-val="{{ true }}"><div style="font-size:16px;font-weight:600;text-decoration:{{ en.strike }};">{{ en.title }}</div></sc-if><sc-if value="{{ en.isEditing }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:6px;flex:1 1 220px;min-width:0;"><input value="{{ en.draft }}" onChange="{{ en.setDraft }}" style="flex:1;min-width:0;height:44px;border-radius:8px;border:2px solid #15803D;padding:0 10px;font-family:inherit;font-size:16px;"><button onClick="{{ en.save }}" style="height:44px;padding:0 12px;border-radius:8px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">সংরক্ষণ</button><button onClick="{{ en.cancel }}" aria-label="বাতিল" style="height:44px;width:44px;border-radius:8px;border:1.5px solid #D6D3CB;background:#fff;color:#57534E;font-size:18px;cursor:pointer;">×</button></div></sc-if><div style="font-size:14px;color:#57534E;">{{ en.meta }}</div></div>
+              <div style="text-align:right;flex:none;"><div style="font-size:17px;font-weight:700;color:{{ en.color }};text-decoration:{{ en.strike }};">{{ en.amount }}</div><span style="font-size:13px;color:#57534E;">{{ en.tag }}</span></div>
+            </div>
+            <sc-if value="{{ en.canAct }}" hint-placeholder-val="{{ true }}"><div style="display:flex;gap:6px;"><button onClick="{{ en.edit }}" style="height:40px;padding:0 12px;border-radius:8px;border:1.5px solid #D6D3CB;background:#fff;color:#44403C;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">এডিট</button><button onClick="{{ en.startVoid }}" style="height:40px;padding:0 12px;border-radius:8px;border:1.5px solid #FCA5A5;background:#fff;color:#B91C1C;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">বাতিল করুন</button></div></sc-if>
+            <sc-if value="{{ en.voiding }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-wrap:wrap;gap:6px;background:#FEF2F2;border-radius:10px;padding:10px;"><input value="{{ voidReason }}" onChange="{{ setVoidReason }}" placeholder="বাতিলের কারণ লিখুন (বাধ্যতামূলক)" style="flex:1 1 200px;min-width:0;height:44px;border-radius:8px;border:1.5px solid #FCA5A5;padding:0 10px;font-family:inherit;font-size:15px;"><button onClick="{{ en.confirmVoid }}" style="height:44px;padding:0 12px;border-radius:8px;border:none;background:#DC2626;color:#fff;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">বাতিল নিশ্চিত</button><button onClick="{{ cancelVoid }}" style="height:44px;padding:0 12px;border-radius:8px;border:1.5px solid #D6D3CB;background:#fff;color:#44403C;font-family:inherit;font-size:15px;cursor:pointer;">থাক</button></div></sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ p.aid }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <sc-for list="{{ aidReqs }}" as="ar" hint-placeholder-count="3">
+        <div style="background:#fff;border:1px solid {{ ar.border }};border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;"><span style="font-size:15px;color:#57534E;">{{ ar.type }} · আবেদনকারী {{ ar.by }} · {{ ar.date }}</span><span style="font-size:14px;font-weight:700;padding:2px 10px;border-radius:999px;background:{{ ar.bg }};color:{{ ar.fg }};">{{ ar.status }}</span></div>
+          <div style="font-size:18px;font-weight:600;">{{ ar.title }}</div>
+          <div style="font-size:16px;color:#44403C;">{{ ar.desc }}</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;"><sc-for list="{{ ar.docs }}" as="dc"><a href="#" style="display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 12px;border-radius:8px;background:#F5F5F4;color:#44403C;font-size:15px;">📎 {{ dc }}</a></sc-for></div>
+          <sc-if value="{{ ar.review }}" hint-placeholder-val="{{ false }}">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:10px;background:#FAFAF7;border-radius:10px;padding:12px;">
+              <label style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:15px;font-weight:600;">লক্ষ্য টাকা</span><input value="৳৩০,০০০" style="height:48px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 12px;font-family:inherit;font-size:16px;min-width:0;"></label>
+              <label style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:15px;font-weight:600;">শেষ তারিখ</span><input type="date" style="height:48px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 10px;font-family:inherit;font-size:16px;min-width:0;background:#fff;"></label>
+              <label style="display:flex;align-items:center;gap:10px;font-size:16px;min-height:48px;"><input type="checkbox" style="width:22px;height:22px;accent-color:#15803D;">পাবলিকে নাম দেখাবে</label>
+              <div style="display:flex;gap:8px;align-items:flex-end;"><button style="flex:1;height:48px;border-radius:10px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">অনুমোদন</button><button style="height:48px;padding:0 14px;border-radius:10px;border:1.5px solid #D6D3CB;background:#fff;color:#44403C;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">বাতিল</button></div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ p.services }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;"><button onClick="{{ addService }}" style="height:48px;padding:0 18px;border-radius:10px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">+ সেবাদাতা যোগ</button><button onClick="{{ goServiceCats }}" style="height:48px;padding:0 16px;border-radius:10px;border:1.5px solid #15803D;background:#fff;color:#15803D;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">ক্যাটাগরি ব্যবস্থাপনা →</button></div>
+    <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:4px 16px;">
+      <sc-for list="{{ serviceRows }}" as="pv" hint-placeholder-count="5">
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #F0EEE8;">
+          <div style="flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:4px;">
+            <select value="{{ pv.cat }}" onChange="{{ pv.setCat }}" style="align-self:flex-start;height:36px;border-radius:8px;border:1px solid #DCEFE1;padding:0 6px;font-family:inherit;font-size:14px;font-weight:600;color:#15803D;background:#F0FDF4;"><sc-for list="{{ serviceCatNames }}" as="sc"><option value="{{ sc }}">{{ sc }}</option></sc-for></select>
+            <sc-if value="{{ pv.notEditing }}" hint-placeholder-val="{{ true }}"><div style="font-size:17px;font-weight:600;">{{ pv.name }}</div></sc-if>
+            <sc-if value="{{ pv.isEditing }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:6px;flex:1 1 220px;min-width:0;"><input value="{{ pv.draft }}" onChange="{{ pv.setDraft }}" style="flex:1;min-width:0;height:44px;border-radius:8px;border:2px solid #15803D;padding:0 10px;font-family:inherit;font-size:16px;"><button onClick="{{ pv.save }}" style="height:44px;padding:0 12px;border-radius:8px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">সংরক্ষণ</button><button onClick="{{ pv.cancel }}" aria-label="বাতিল" style="height:44px;width:44px;border-radius:8px;border:1.5px solid #D6D3CB;background:#fff;color:#57534E;font-size:18px;cursor:pointer;">×</button></div></sc-if>
+            <div style="font-size:15px;color:#57534E;">{{ pv.para }} · ০১৭XX-XXXXXX</div>
+          </div>
+          <button onClick="{{ pv.toggle }}" style="height:34px;padding:0 10px;border:none;border-radius:999px;background:{{ pv.bg }};color:{{ pv.fg }};font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;">{{ pv.status }}</button>
+          <button onClick="{{ pv.edit }}" style="height:40px;padding:0 12px;border-radius:8px;border:1.5px solid #D6D3CB;background:#fff;color:#44403C;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">এডিট</button><button onClick="{{ pv.del }}" style="height:40px;padding:0 12px;border-radius:8px;border:1.5px solid #FCA5A5;background:#fff;color:#B91C1C;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">মুছুন</button>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ p.reports }}" hint-placeholder-val="{{ false }}">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:12px;">
+      <sc-for list="{{ reports }}" as="rp" hint-placeholder-count="3">
+        <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;">
+          <div style="font-size:18px;font-weight:600;">{{ rp.title }}</div>
+          <select style="height:48px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 10px;font-family:inherit;font-size:16px;background:#fff;"><option>{{ rp.period }}</option></select>
+          <button style="height:48px;border-radius:10px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">PDF ডাউনলোড</button>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:12px;">
+      <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:16px;">
+        <h2 style="margin:0 0 12px;font-size:19px;font-weight:700;">পাড়া অনুযায়ী সদস্য</h2>
+        <sc-for list="{{ byPara }}" as="bp" hint-placeholder-count="6"><div style="display:grid;grid-template-columns:100px 1fr 40px;gap:10px;align-items:center;margin-bottom:8px;font-size:15px;"><span>{{ bp.name }}</span><div style="height:12px;border-radius:999px;background:#F0FDF4;"><div style="height:100%;width:{{ bp.w }};background:#15803D;border-radius:999px;"></div></div><span style="text-align:right;font-weight:700;">{{ bp.n }}</span></div></sc-for>
+      </div>
+      <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:16px;">
+        <h2 style="margin:0 0 12px;font-size:19px;font-weight:700;">রক্তের গ্রুপ</h2>
+        <sc-for list="{{ byBlood }}" as="bb" hint-placeholder-count="8"><div style="display:grid;grid-template-columns:60px 1fr 40px;gap:10px;align-items:center;margin-bottom:8px;font-size:15px;"><span style="font-weight:700;color:#DC2626;">{{ bb.name }}</span><div style="height:12px;border-radius:999px;background:#FEF2F2;"><div style="height:100%;width:{{ bb.w }};background:#DC2626;border-radius:999px;"></div></div><span style="text-align:right;font-weight:700;">{{ bb.n }}</span></div></sc-for>
+        <div style="margin-top:10px;font-size:15px;color:#57534E;">প্রবাসী সদস্য: ১৮ জন · ঢাকায়: ২৭ জন</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ p.settings }}" hint-placeholder-val="{{ false }}">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr));gap:16px;align-items:start;">
+      <sc-for list="{{ settingGroups }}" as="sg" hint-placeholder-count="4">
+        <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px;">
+          <h2 style="margin:0;font-size:19px;font-weight:700;">{{ sg.title }}</h2>
+          <sc-for list="{{ sg.fields }}" as="sf"><label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:15px;font-weight:600;">{{ sf.k }}</span><input value="{{ sf.v }}" style="height:50px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 12px;font-family:inherit;font-size:16px;"></label></sc-for>
+        </div>
+      </sc-for>
+      <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px;">
+        <h2 style="margin:0;font-size:19px;font-weight:700;">হোম পেজের হিরো</h2>
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Village_river.jpg?width=800" alt="বর্তমান হিরো ছবি" style="display:block;width:100%;aspect-ratio:16/8;object-fit:cover;border-radius:10px;background:#E3E6D9;">
+        <button style="height:48px;border-radius:10px;border:1.5px solid #15803D;background:#fff;color:#15803D;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">ছবি বদলান</button>
+        <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:15px;font-weight:600;">শিরোনাম</span><input value="আমরা সগুনার তরুণ, আমরা এক সাথে" style="height:50px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 12px;font-family:inherit;font-size:16px;"></label>
+        <button onClick="{{ goLists }}" style="height:52px;border-radius:10px;border:1.5px solid #15803D;background:#F0FDF4;color:#14532D;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;">পাড়া, খাত ও ক্যাটাগরি সম্পাদনা →</button>
+      </div>
+    </div>
+    <button style="align-self:flex-start;height:52px;padding:0 28px;border-radius:10px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:17px;font-weight:700;cursor:pointer;">সব সেটিংস সংরক্ষণ</button>
+  </sc-if>
+  <sc-if value="{{ p.lists }}" hint-placeholder-val="{{ false }}">
+    <p style="margin:-8px 0 0;font-size:16px;color:#57534E;">এখানে যোগ, এডিট বা মুছলে পুরো সাইটের ফর্ম ও ফিল্টারে সাথে সাথে বদলাবে।</p>
+    <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;">
+      <sc-for list="{{ listTabs }}" as="lt" hint-placeholder-count="8">
+        <button onClick="{{ lt.pick }}" style="flex:none;height:48px;padding:0 14px;border-radius:999px;border:1.5px solid {{ lt.border }};background:{{ lt.bg }};color:{{ lt.fg }};font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;">{{ lt.label }}<span style="font-size:13px;opacity:.8;">{{ lt.count }}</span></button>
+      </sc-for>
+    </div>
+    <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px;max-width:760px;">
+      <div><h2 style="margin:0;font-size:20px;font-weight:700;">{{ listTitle }}</h2><div style="font-size:15px;color:#57534E;">{{ listHelp }}</div></div>
+      <div style="display:flex;gap:8px;">
+        <input value="{{ newItem }}" onChange="{{ setNewItem }}" placeholder="{{ listPlaceholder }}" style="flex:1;min-width:0;height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:17px;">
+        <button onClick="{{ addListItem }}" style="height:52px;padding:0 18px;border-radius:10px;border:none;background:{{ addBg }};color:#fff;font-family:inherit;font-size:17px;font-weight:700;cursor:pointer;">+ যোগ</button>
+      </div>
+      <div style="display:flex;flex-direction:column;">
+        <sc-for list="{{ listRows }}" as="li" hint-placeholder-count="6">
+          <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #F0EEE8;">
+            <div style="display:flex;flex-direction:column;flex:none;"><button onClick="{{ li.up }}" aria-label="উপরে" style="width:32px;height:22px;border:none;background:none;cursor:pointer;color:#57534E;font-size:13px;">▲</button><button onClick="{{ li.down }}" aria-label="নিচে" style="width:32px;height:22px;border:none;background:none;cursor:pointer;color:#57534E;font-size:13px;">▼</button></div>
+            <sc-if value="{{ li.notEditing }}" hint-placeholder-val="{{ true }}">
+              <div style="flex:1 1 160px;min-width:0;"><div style="font-size:17px;font-weight:600;">{{ li.name }}</div><div style="font-size:14px;color:#57534E;">{{ li.usage }}</div></div>
+              <button onClick="{{ li.edit }}" style="height:40px;padding:0 12px;border-radius:8px;border:1.5px solid #D6D3CB;background:#fff;color:#44403C;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">এডিট</button><button onClick="{{ li.del }}" style="height:40px;padding:0 12px;border-radius:8px;border:1.5px solid #FCA5A5;background:#fff;color:#B91C1C;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">মুছুন</button>
+            </sc-if>
+            <sc-if value="{{ li.isEditing }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:6px;flex:1 1 220px;min-width:0;"><input value="{{ li.draft }}" onChange="{{ li.setDraft }}" style="flex:1;min-width:0;height:44px;border-radius:8px;border:2px solid #15803D;padding:0 10px;font-family:inherit;font-size:16px;"><button onClick="{{ li.save }}" style="height:44px;padding:0 12px;border-radius:8px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">সংরক্ষণ</button><button onClick="{{ li.cancel }}" aria-label="বাতিল" style="height:44px;width:44px;border-radius:8px;border:1.5px solid #D6D3CB;background:#fff;color:#57534E;font-size:18px;cursor:pointer;">×</button></div></sc-if>
+          </div>
+        </sc-for>
+        <sc-if value="{{ listEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:28px 10px;text-align:center;font-size:17px;color:#57534E;">এই তালিকা খালি। উপরে নতুন নাম লিখে যোগ করুন।</div></sc-if>
+      </div>
+    </div>
+  </sc-if>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;mobile&quot;,&quot;desktop&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;role&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;admin&quot;,&quot;cashier&quot;,&quot;volunteer&quot;],&quot;default&quot;:&quot;admin&quot;,&quot;tsType&quot;:&quot;'admin'|'cashier'|'volunteer'&quot;},&quot;page&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dashboard&quot;,&quot;members&quot;,&quot;committee&quot;,&quot;notices&quot;,&quot;emergency&quot;,&quot;events&quot;,&quot;gallery&quot;,&quot;dues&quot;,&quot;finance&quot;,&quot;aid&quot;,&quot;services&quot;,&quot;reports&quot;,&quot;settings&quot;],&quot;default&quot;:&quot;dashboard&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  seed() {
+    let id = 1;
+    const L = a => a.map(([name, count]) => ({ id: id++, name, count }));
+    return {
+      list_para: L([['উত্তরপাড়া', 24], ['দক্ষিণপাড়া', 21], ['মধ্যপাড়া', 26], ['পূর্বপাড়া', 17], ['পশ্চিমপাড়া', 19], ['নদীপাড়া', 15]]),
+      list_noticeCat: L([['জরুরি', 6], ['শোকসংবাদ', 9], ['সভা', 14], ['ইভেন্ট', 11], ['সরকারি ঘোষণা', 4], ['অন্যান্য', 7]]),
+      list_eventCat: L([['খেলাধুলা', 5], ['ইফতার মাহফিল', 3], ['শীতবস্ত্র বিতরণ', 4], ['বৃক্ষরোপণ', 2], ['রক্তদান ক্যাম্প', 3], ['সভা', 8], ['দুর্যোগে সহায়তা', 3]]),
+      list_incomeCat: L([['মাসিক চাঁদা', 486], ['দান', 73], ['স্পন্সর', 6]]),
+      list_expenseCat: L([['ত্রাণ ও দুর্যোগ', 18], ['শীতবস্ত্র', 9], ['ইফতার ও ধর্মীয়', 12], ['কৃষি সহায়তা', 4], ['খেলাধুলা', 7], ['চিকিৎসা সহায়তা', 5], ['প্রশাসনিক (SMS, সাইট)', 11]]),
+      list_serviceCat: L([['ইলেকট্রিশিয়ান', 1], ['দর্জি', 1], ['তাঁতি', 1], ['মিস্ত্রি', 1], ['দোকান', 0], ['টিউটর', 1], ['ডাক্তার', 0]]),
+      list_profession: L([['তাঁতি', 21], ['কৃষক', 18], ['শিক্ষার্থী', 26], ['ব্যবসায়ী', 14], ['চাকরিজীবী', 19], ['প্রবাসী শ্রমিক', 18], ['শিক্ষক', 6]]),
+      list_position: L([['সভাপতি', 1], ['সহ-সভাপতি', 1], ['সাধারণ সম্পাদক', 1], ['যুগ্ম সাধারণ সম্পাদক', 1], ['কোষাধ্যক্ষ', 1], ['সাংগঠনিক সম্পাদক', 1], ['রক্তদান বিষয়ক সম্পাদক', 1], ['ক্রীড়া সম্পাদক', 1]]),
+      members: [['SAJS-0001', 'মোঃ রফিকুল ইসলাম', 'মধ্যপাড়া', 'অ্যাডমিন', 1], ['SAJS-0002', 'মোঃ সাইফুল হাসান', 'উত্তরপাড়া', 'অ্যাডমিন', 1], ['SAJS-0005', 'মোঃ জাহিদুল আলম', 'দক্ষিণপাড়া', 'ক্যাশিয়ার', 1], ['SAJS-0031', 'মোঃ রুবেল মিয়া', 'নদীপাড়া', 'স্বেচ্ছাসেবক', 1], ['SAJS-0045', 'মোঃ রাকিব হাসান', 'নদীপাড়া', 'সদস্য', 1], ['SAJS-0067', 'মোঃ কামাল হোসেন', 'পূর্বপাড়া', 'সদস্য', 0]].map(([no, name, para, role, active]) => ({ id: id++, no, name, para, role, active: !!active })),
+      notices: [['ডিসেম্বর মাসের সাধারণ সভা', 'সভা', '২৪ নভেম্বর', 'পাবলিক'], ['শীতবস্ত্র বিতরণের জন্য স্বেচ্ছাসেবক দরকার', 'ইভেন্ট', '২০ নভেম্বর', 'পাবলিক'], ['অক্টোবরের আয়-ব্যয় সভার কার্যবিবরণী', 'সভা', '১২ নভেম্বর', 'সদস্য-কেবল'], ['শিশুদের টাইফয়েড টিকা ক্যাম্পেইন', 'সরকারি ঘোষণা', '১৮ নভেম্বর', 'পাবলিক']].map(([title, cat, date, vis]) => ({ id: id++, title, cat, date, vis })),
+      events: [['আসন্ন', '১৩ ডিসেম্বর', 'শীতবস্ত্র বিতরণ ২০২৬', '৪২ জন আসছেন · ৯ জন স্বেচ্ছাসেবক', 'আসছেন তালিকা', 1], ['আসন্ন', '২৭ ডিসেম্বর', 'স্বেচ্ছায় রক্তদান ক্যাম্প', '২৮ জন আসছেন', 'আসছেন তালিকা', 1], ['সম্পন্ন', '১৮ আগস্ট', 'যমুনার বন্যায় ত্রাণ বিতরণ', 'রিপোর্ট ✓ · ৬টি ছবি · খরচ লিংক ✓', 'রিপোর্ট এডিট', 0], ['সম্পন্ন', '১২ জুলাই', 'আমন বীজ বিতরণ', 'রিপোর্ট বাকি', 'রিপোর্ট ও ছবি যোগ', 0]].map(([status, date, title, meta, action, up]) => ({ id: id++, status, date, title, meta, action, up: !!up })),
+      services: [['ইলেকট্রিশিয়ান', 'মোঃ বাবলু মিয়া', 'মধ্যপাড়া', 1], ['দর্জি', 'মোছাঃ সালমা খাতুন', 'উত্তরপাড়া', 1], ['তাঁতি', 'মোঃ হারুন অর রশিদ', 'পূর্বপাড়া', 1], ['টিউটর', 'মোঃ শরিফুল ইসলাম', 'পশ্চিমপাড়া', 1], ['মিস্ত্রি', 'মোঃ কালাম শেখ', 'নদীপাড়া', 0]].map(([cat, name, para, a]) => ({ id: id++, cat, name, para, active: !!a })),
+      emergency: [['জাতীয় জরুরি সেবা', '৯৯৯'], ['অ্যাম্বুলেন্স', '০১৭XX-XXXXXX'], ['বেলকুচি উপজেলা স্বাস্থ্য কমপ্লেক্স', '০১৭XX-XXXXXX'], ['বেলকুচি থানা', '০১৭XX-XXXXXX'], ['ফায়ার সার্ভিস', '০১৭XX-XXXXXX'], ['পল্লী বিদ্যুৎ (অভিযোগ)', '০১৭XX-XXXXXX'], ['ইউনিয়ন পরিষদ', '০১৭XX-XXXXXX'], ['গ্রামের ডাক্তার', '০১৭XX-XXXXXX']].map(([title, phone]) => ({ id: id++, title, phone })),
+      entries: [['৩০০ কম্বল ক্রয় (অগ্রিম)', '২০ নভেম্বর · শীতবস্ত্র · জাহিদুল আলম', '−৳১৮,০০০', '#B45309', 'ভাউচার ✓'], ['প্রবাসী দান', '২২ নভেম্বর · শীতবস্ত্র', '+৳২৫,০০০', '#15803D', 'যাচাইকৃত'], ['দান — ভুল TrxID', '১৭ নভেম্বর · কোষাধ্যক্ষ', '+৳৫,০০০', '#57534E', 'বাতিল: পুনরায় এন্ট্রি দেওয়া হয়েছে', 1], ['SMS প্যাকেজ', '১০ নভেম্বর · প্রশাসনিক', '−৳১,২০০', '#B45309', 'ভাউচার ✓'], ['স্থানীয় ব্যবসায়ী স্পন্সর', '৮ নভেম্বর · খেলাধুলা', '+৳১০,০০০', '#15803D', 'যাচাইকৃত']].map(([title, meta, amount, color, tag, v]) => ({ id: id++, title, meta, amount, color, tag, voided: !!v }))
+    };
+  }
+  state = { w: 0, page: null, menu: false, apps: {}, ver: {}, vis: 0, published: false, entry: 1, order: null, data: this.seed(), editing: {}, confirm: null, toast: '', undoSnap: null, listTab: 'list_para', newItem: '', nTitle: '', voidId: null, voidReason: '' };
+  rootRef = React.createRef();
+  componentDidMount() { const el = this.rootRef.current; if (!el) return; this.ro = new ResizeObserver(([e]) => this.setState({ w: e.contentRect.width })); this.ro.observe(el); }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); clearTimeout(this.tt); }
+  flash(toast, undoSnap = null) { clearTimeout(this.tt); this.setState({ toast, undoSnap }); this.tt = setTimeout(() => this.setState({ toast: '', undoSnap: null }), 7000); }
+  setColl(c, fn) { this.setState(s => ({ data: { ...s.data, [c]: fn(s.data[c]) } })); }
+  upd(c, id, patch) { this.setColl(c, arr => arr.map(x => x.id === id ? { ...x, ...patch } : x)); }
+  add(c, item, field) { const id = Date.now() + Math.floor(Math.random() * 1000); this.setState(s => ({ data: { ...s.data, [c]: [{ id, ...item }, ...s.data[c]] }, editing: field ? { ...s.editing, [c + ':' + id]: item[field] } : s.editing })); return id; }
+  renderVals() {
+    const m = this.props.mode; const mode = m && m !== 'auto' ? m : (this.state.w >= 900 ? 'desktop' : 'mobile');
+    const bn = n => String(n).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+    const S = this.state, D = S.data;
+    const role = this.props.role ?? 'admin';
+    const pages = [
+      ['dashboard', 'ড্যাশবোর্ড', '১', ['admin', 'cashier', 'volunteer']], ['members', 'সদস্য ব্যবস্থাপনা', '১', ['admin', 'volunteer'], '৫'], ['committee', 'কমিটি', '১', ['admin']],
+      ['notices', 'নোটিশ', '১', ['admin', 'volunteer'], '২'], ['emergency', 'জরুরি নম্বর', '১', ['admin']], ['events', 'ইভেন্ট', '২', ['admin', 'volunteer']],
+      ['gallery', 'গ্যালারি', '২', ['admin', 'volunteer']], ['dues', 'চাঁদা', '২', ['admin', 'cashier'], '৭'], ['finance', 'আয়-ব্যয়', '২', ['admin', 'cashier']],
+      ['aid', 'সাহায্যের আবেদন', '৩', ['admin'], '১'], ['services', 'সেবা ডিরেক্টরি', '৩', ['admin']], ['reports', 'রিপোর্ট', '২', ['admin', 'cashier']],
+      ['lists', 'তালিকা ও ক্যাটাগরি', '১', ['admin']], ['settings', 'সেটিংস', '১', ['admin']]
+    ].filter(x => x[3].includes(role));
+    const want = S.page ?? this.props.page;
+    const page = pages.find(x => x[0] === want) ? want : pages[0][0];
+    const cur = pages.find(x => x[0] === page);
+    const go = id => () => this.setState({ page: id, menu: false });
+    const p = {}; pages.forEach(x => p[x[0]] = x[0] === page);
+    const names = c => D[c].map(x => x.name);
+
+    const crud = (c, it, field, label) => {
+      const k = c + ':' + it.id; const ed = S.editing[k];
+      const clear = s => { const e = { ...s.editing }; delete e[k]; return e; };
+      return {
+        ...it, isEditing: ed !== undefined, notEditing: ed === undefined, draft: ed ?? '',
+        setDraft: e => { const v = e.target.value; this.setState(s => ({ editing: { ...s.editing, [k]: v } })); },
+        edit: () => this.setState(s => ({ editing: { ...s.editing, [k]: it[field] } })),
+        save: () => { const v = (S.editing[k] || '').trim(); if (!v) return; this.upd(c, it.id, { [field]: v }); this.setState(s => ({ editing: clear(s) })); this.flash('"' + v + '" সংরক্ষণ হয়েছে · অডিট লগে লেখা হলো'); },
+        cancel: () => this.setState(s => ({ editing: clear(s) })),
+        del: () => this.setState({ confirm: { c, id: it.id, text: '"' + it[field] + '" মুছে ফেলবেন?', warn: label ? label(it) : 'এটি অডিট লগে লেখা থাকবে।' } })
+      };
+    };
+    const mover = (c, idx) => d => () => this.setColl(c, arr => { const a = [...arr]; const j = idx + d; if (j < 0 || j >= a.length) return a; [a[idx], a[j]] = [a[j], a[idx]]; return a; });
+
+    const appsRaw = [['মোঃ আল আমিন', 'নদীপাড়া · তাঁতি · O+ · ২৪ নভেম্বর'], ['মোঃ সাকিব হোসেন', 'উত্তরপাড়া · শিক্ষার্থী · B+ · ২৩ নভেম্বর'], ['মোঃ মেহেদী হাসান', 'প্রবাসে (মালয়েশিয়া) · A+ · ২০ নভেম্বর']];
+    const applicants = appsRaw.map(([name, meta], i) => { const st = S.apps[i]; return { name, meta, initial: name.replace('মোঃ ', '')[0], open: !st, closed: !!st, doneLabel: st === 'ok' ? 'অনুমোদিত · SMS গেছে' : 'বাতিল', doneBg: st === 'ok' ? '#DCFCE7' : '#F5F5F4', doneFg: st === 'ok' ? '#14532D' : '#44403C', approve: () => this.setState(s => ({ apps: { ...s.apps, [i]: 'ok' } })), reject: () => this.setState(s => ({ apps: { ...s.apps, [i]: 'no' } })) }; });
+    const verRaw = [['মোঃ রাকিব হাসান', '৳২০০', 'নভেম্বর · bKash · ২৪ নভেম্বর', '9K7X2M4QPL'], ['মোঃ সোহেল রানা', '৳৪০০', 'অক্টো–নভে · Nagad · ২৩ নভেম্বর', '71HQ3ZP0AA'], ['নাম প্রকাশে অনিচ্ছুক (দান)', '৳২৫,০০০', 'শীতবস্ত্র · bKash · ২২ নভেম্বর', 'BKX55T09LM']];
+    const verify = verRaw.map(([name, amount, meta, trx], i) => { const st = S.ver[i]; return { name, amount, meta, trx, open: !st, closed: !!st, doneLabel: st === 'ok' ? 'যাচাই হয়েছে' : 'বাতিল — সদস্যকে জানানো হয়েছে', doneBg: st === 'ok' ? '#DCFCE7' : '#FEE2E2', doneFg: st === 'ok' ? '#14532D' : '#991B1B', ok: () => this.setState(s => ({ ver: { ...s.ver, [i]: 'ok' } })), no: () => this.setState(s => ({ ver: { ...s.ver, [i]: 'no' } })) }; });
+    const posNames = names('list_position');
+    const posPeople = ['মোঃ রফিকুল ইসলাম', 'আব্দুল মালেক', 'মোঃ সাইফুল হাসান', 'মোঃ আরিফ হোসেন', 'মোঃ জাহিদুল আলম', 'মোঃ নাজমুল হক', 'মোঃ সোহেল রানা', 'মোঃ রাকিব হাসান'];
+    const order = (S.order && S.order.length === posNames.length) ? S.order : posNames.map((_, i) => i);
+    const mv = (i, d) => () => { const o = [...order]; const j = i + d; if (j < 0 || j >= o.length) return; [o[i], o[j]] = [o[j], o[i]]; this.setState({ order: o }); };
+    const F = (n, w = 300) => 'https://commons.wikimedia.org/wiki/Special:FilePath/' + n + '?width=' + w;
+    const months = ['জা', 'ফে', 'মা', 'এ', 'মে', 'জু', 'জু', 'আ', 'সে', 'অ', 'ন', 'ডি'];
+    const gridNames = ['মোঃ রফিকুল ইসলাম', 'মোঃ সাইফুল হাসান', 'মোঃ রাকিব হাসান', 'মোঃ সোহেল রানা', 'আব্দুল্লাহ আল মামুন', 'মোঃ শামীম হোসেন'];
+    const cell = { p: ['#DCFCE7', '#15803D', '✓'], d: ['#FEE2E2', '#B91C1C', '!'], w: ['#FEF3C7', '#92400E', '?'], f: ['#F5F5F4', '#A8A29E', ''] };
+    const pattern = ['ppppppppppwf', 'ppppppppppdf', 'ppppppppdpwf', 'ppppppppppwf', 'ppppppdddddf', 'pppppppppddf'];
+    const isExp = S.entry === 1;
+
+    const listMeta = {
+      list_para: ['পাড়া / মহল্লা', 'নিবন্ধন, সদস্য তালিকা ও রক্তদাতা ফিল্টারে', 'নতুন পাড়ার নাম', ' জন সদস্যের তালিকায়'],
+      list_noticeCat: ['নোটিশ ক্যাটাগরি', 'নোটিশ বোর্ডের ট্যাব ও নোটিশ ফর্মে', 'যেমন: খেলার খবর', 'টি নোটিশে'],
+      list_eventCat: ['ইভেন্ট ক্যাটাগরি', 'কার্যক্রম কার্ড ও ইভেন্ট ফর্মে', 'যেমন: মেডিকেল ক্যাম্প', 'টি ইভেন্টে'],
+      list_incomeCat: ['আয়ের খাত', 'আয় এন্ট্রি ও রিপোর্টে', 'যেমন: প্রবাসী অনুদান', 'টি এন্ট্রিতে'],
+      list_expenseCat: ['ব্যয়ের খাত', 'খরচ এন্ট্রি, পাবলিক হিসাবের "খরচ কোন খাতে" চার্টে', 'যেমন: মসজিদ সংস্কার', 'টি এন্ট্রিতে'],
+      list_serviceCat: ['সেবার ক্যাটাগরি', 'গ্রামের সেবা ডিরেক্টরিতে', 'যেমন: প্লাম্বার', ' জন সেবাদাতার তালিকায়'],
+      list_profession: ['পেশা', 'নিবন্ধন ফর্ম ও সদস্য তালিকার ফিল্টারে', 'যেমন: ড্রাইভার', ' জন সদস্যের তালিকায়'],
+      list_position: ['কমিটির পদবি', 'কমিটি পাতায় এই ক্রমে সাজানো থাকে', 'যেমন: শিক্ষা বিষয়ক সম্পাদক', ' জনের পদে']
+    };
+    const lt = S.listTab, lm = listMeta[lt];
+    const listRows = D[lt].map((it, idx) => ({ ...crud(lt, it, 'name', x => x.count ? 'এটি ' + bn(x.count) + lm[3] + ' ব্যবহৃত। মুছলে সেগুলো "অন্যান্য"-তে চলে যাবে।' : 'এটি কোথাও ব্যবহৃত হয়নি।'), usage: it.count ? bn(it.count) + lm[3] + ' ব্যবহৃত' : 'এখনো ব্যবহৃত হয়নি', up: mover(lt, idx)(-1), down: mover(lt, idx)(1) }));
+    const newOk = S.newItem.trim().length > 0;
+
+    return {
+      rootRef: this.rootRef, mode, isMobile: mode === 'mobile', isDesktop: mode !== 'mobile',
+      roleLabel: { admin: 'অ্যাডমিন · সভাপতি', cashier: 'ক্যাশিয়ার · কোষাধ্যক্ষ', volunteer: 'স্বেচ্ছাসেবক · নদীপাড়া' }[role],
+      menuOpen: S.menu, toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
+      menu: pages.map(x => ({ label: x[1], go: go(x[0]), bg: x[0] === page ? 'rgba(255,255,255,.16)' : 'transparent', weight: x[0] === page ? 700 : 500, badge: x[4] || '', badgeBg: x[4] ? '#D97706' : 'transparent' })),
+      p, title: cur[1], phase: cur[2],
+      hasConfirm: !!S.confirm, confirmText: S.confirm ? S.confirm.text : '', confirmWarn: S.confirm ? S.confirm.warn : '',
+      confirmNo: () => this.setState({ confirm: null }),
+      confirmYes: () => { const c = S.confirm; const arr = D[c.c]; const idx = arr.findIndex(x => x.id === c.id); const item = arr[idx]; this.setState({ confirm: null }); this.setColl(c.c, a => a.filter(x => x.id !== c.id)); this.flash('মুছে ফেলা হয়েছে · অডিট লগে লেখা হলো', { c: c.c, item, idx }); },
+      hasToast: !!S.toast, toast: S.toast, canUndo: !!S.undoSnap, closeToast: () => this.setState({ toast: '', undoSnap: null }),
+      undo: () => { const u = S.undoSnap; this.setColl(u.c, a => { const b = [...a]; b.splice(u.idx, 0, u.item); return b; }); this.flash('ফিরিয়ে আনা হয়েছে'); },
+      stats: [
+        ['মোট সদস্য', '১২২', 'এ মাসে নতুন ৪ জন', '#15803D', 'members'], ['অনুমোদনের অপেক্ষায়', '৫', 'নতুন আবেদন', '#B45309', 'members'], ['এ মাসের চাঁদা', '৳১২,৪০০', '৫১% আদায়', '#15803D', 'dues'],
+        ['ব্যালেন্স', '৳১,৪৬,৮২০', 'যাচাইকৃত হিসাব', '#14532D', 'finance'], ['পেমেন্ট যাচাই বাকি', '৭', 'Transaction ID মেলাতে হবে', '#B45309', 'dues']
+      ].filter(s => pages.find(x => x[0] === s[4])).map(([label, value, sub, color, to]) => ({ label, value, sub, color, go: go(to) })),
+      activity: [
+        ['কোষাধ্যক্ষ ৳১৮,০০০ খরচ এন্ট্রি দিয়েছেন (কম্বল ক্রয়)', '২০ নভেম্বর · ভাউচারসহ', '#D97706'], ['স্বেচ্ছাসেবক রুবেল মিয়া ৩ জন সদস্য যোগ করেছেন', '১৯ নভেম্বর · অনুমোদনের অপেক্ষায়', '#15803D'],
+        ['অ্যাডমিন নতুন ব্যয়ের খাত যোগ করেছেন: "চিকিৎসা সহায়তা"', '১৮ নভেম্বর', '#15803D'], ['O− রক্তের অনুরোধ — ৩ জন দাতাকে SMS', '২৫ নভেম্বর', '#DC2626'],
+        ['একটি দান এন্ট্রি বাতিল: "ভুল TrxID, পুনরায় এন্ট্রি"', '১৭ নভেম্বর · কোষাধ্যক্ষ', '#57534E'], ['সভাপতি রফিকুল ইসলাম লগইন করেছেন', 'আজ সকাল ৮:১০', '#A8A29E']
+      ].map(([text, meta, dot]) => ({ text, meta, dot })),
+      applicants, pendingCount: bn(applicants.filter(a => a.open).length) + ' জন',
+      paraNames: names('list_para'),
+      memberRows: D.members.map(r => ({ ...crud('members', r, 'name', () => 'সাধারণত মুছে না ফেলে "নিষ্ক্রিয়" করাই ভালো — চাঁদার ইতিহাস থেকে যায়।'), status: r.active ? 'সক্রিয়' : 'নিষ্ক্রিয়', bg: r.active ? '#DCFCE7' : '#F5F5F4', fg: r.active ? '#14532D' : '#57534E', toggle: () => this.upd('members', r.id, { active: !r.active }), setPara: e => this.upd('members', r.id, { para: e.target.value }), setRole: e => this.upd('members', r.id, { role: e.target.value }) })),
+      addMember: () => this.add('members', { no: 'SAJS-0' + (123 + D.members.length - 6), name: 'নতুন সদস্য', para: names('list_para')[0] || '', role: 'সদস্য', active: true }, 'name'),
+      positions: order.map((k, i) => ({ title: posNames[k], name: posPeople[k] || '— খালি —', up: mv(i, -1), down: mv(i, 1) })),
+      visOpts: ['পাবলিক', 'সদস্য-কেবল'].map((label, i) => ({ label, border: S.vis === i ? '2px solid #15803D' : '1.5px solid #E7E5DF', bg: S.vis === i ? '#F0FDF4' : '#fff', fg: S.vis === i ? '#14532D' : '#44403C', pick: () => this.setState({ vis: i }) })),
+      nTitle: S.nTitle, setNTitle: e => this.setState({ nTitle: e.target.value }),
+      noticeDraft: !S.published, noticePublished: S.published,
+      publish: () => { this.add('notices', { title: S.nTitle.trim() || 'নতুন নোটিশ', cat: 'সভা', date: '২৬ নভেম্বর', vis: S.vis ? 'সদস্য-কেবল' : 'পাবলিক' }); this.setState({ published: true, nTitle: '' }); },
+      newNotice: () => this.setState({ published: false }),
+      noticeRows: D.notices.map(n => crud('notices', n, 'title')), noticeCount: bn(D.notices.length) + 'টি',
+      drafts: [{ title: 'নদীপাড়ার রাস্তা মেরামতে স্বেচ্ছাশ্রম', meta: 'রুবেল মিয়া (স্বেচ্ছাসেবক) · ২৪ নভেম্বর · ইভেন্ট' }, { title: 'পশ্চিমপাড়ার আব্দুর রশিদ হাসপাতালে ভর্তি', meta: 'তানভীর আহমেদ · ২৫ নভেম্বর · অন্যান্য' }],
+      emergencyRows: D.emergency.map((e, idx) => ({ ...crud('emergency', e, 'title'), setTitle: ev => this.upd('emergency', e.id, { title: ev.target.value }), setPhone: ev => this.upd('emergency', e.id, { phone: ev.target.value }), up: mover('emergency', idx)(-1), down: mover('emergency', idx)(1) })),
+      addEmergency: () => this.setColl('emergency', a => [...a, { id: Date.now(), title: '', phone: '' }]),
+      saveAll: () => this.flash('জরুরি নম্বর সংরক্ষণ হয়েছে'),
+      eventRows: D.events.map(ev => ({ ...crud('events', ev, 'title', x => x.up ? 'যারা "আমি আসছি" দিয়েছেন তাদের SMS-এ জানানো হবে।' : 'রিপোর্ট ও ছবিও মুছে যাবে। খরচের এন্ট্রি থেকে যাবে।'), bg: ev.up ? '#FEF3C7' : '#F5F5F4', fg: ev.up ? '#92400E' : '#44403C' })),
+      addEvent: () => this.add('events', { status: 'আসন্ন', date: 'তারিখ দিন', title: 'নতুন ইভেন্ট', meta: 'খসড়া', action: 'বিস্তারিত যোগ', up: true }, 'title'),
+      serviceCatNames: names('list_serviceCat'),
+      serviceRows: D.services.map(s => ({ ...crud('services', s, 'name'), status: s.active ? 'প্রকাশিত' : 'অনুমোদনের অপেক্ষায়', bg: s.active ? '#DCFCE7' : '#FEF3C7', fg: s.active ? '#14532D' : '#92400E', toggle: () => this.upd('services', s.id, { active: !s.active }), setCat: e => this.upd('services', s.id, { cat: e.target.value }) })),
+      addService: () => this.add('services', { cat: names('list_serviceCat')[0] || '', name: 'নতুন সেবাদাতা', para: names('list_para')[0] || '', active: false }, 'name'),
+      goServiceCats: () => this.setState({ page: 'lists', listTab: 'list_serviceCat' }),
+      uploads: ['A_smiling_farmer_on_a_winter_morning.jpg', 'Busy_farmer_at_winter_morning.jpg', 'Village_children_in_Bangladesh.jpg', 'Winter_Fair.jpg', 'Our_village.jpg', 'Canal_Of_Village.jpg'].map((n, i) => ({ src: F(n), size: bn([180, 142, 210, 96, 164, 120][i]) + ' KB' })),
+      verify, verifyCount: bn(verify.filter(v => v.open).length) + 'টি',
+      monthHeads: months, grid: gridNames.map((name, r) => ({ name, cells: pattern[r].split('').map(c => ({ bg: cell[c][0], fg: cell[c][1], t: cell[c][2] })) })),
+      entryTypes: ['আয়', 'ব্যয়'].map((label, i) => ({ label, bg: S.entry === i ? '#fff' : 'transparent', fg: S.entry === i ? (i ? '#B45309' : '#15803D') : '#57534E', pick: () => this.setState({ entry: i }) })),
+      isExpense: isExp, entryCats: isExp ? names('list_expenseCat') : names('list_incomeCat'),
+      entries: D.entries.map(en => ({ ...crud('entries', en, 'title'), op: en.voided ? 0.6 : 1, strike: en.voided ? 'line-through' : 'none', canAct: !en.voided && S.voidId !== en.id, voiding: S.voidId === en.id, startVoid: () => this.setState({ voidId: en.id, voidReason: '' }), confirmVoid: () => { const r = S.voidReason.trim(); if (!r) return; this.upd('entries', en.id, { voided: true, tag: 'বাতিল: ' + r, color: '#57534E' }); this.setState({ voidId: null }); this.flash('এন্ট্রি বাতিল হয়েছে · কারণসহ অডিট লগে রাখা হলো'); } })),
+      voidReason: S.voidReason, setVoidReason: e => this.setState({ voidReason: e.target.value }), cancelVoid: () => this.setState({ voidId: null }),
+      aidReqs: [
+        { type: 'চিকিৎসা', by: 'মোঃ রাকিব হাসান', date: '২১ নভেম্বর', title: 'বাবার চোখের ছানি অপারেশন', desc: 'সিরাজগঞ্জ চক্ষু হাসপাতালে অপারেশন, আনুমানিক খরচ ৳৩০,০০০।', docs: ['প্রেসক্রিপশন.jpg', 'খরচের হিসাব.pdf'], status: 'অপেক্ষমাণ', bg: '#FEF3C7', fg: '#92400E', border: '#F5C97A', review: true },
+        { type: 'চিকিৎসা', by: 'নাম গোপন', date: '১২ অক্টোবর', title: 'কিডনি রোগীর চিকিৎসা সহায়তা', desc: 'লক্ষ্য ৳১,৫০,০০০ · উঠেছে ৳৯৬,৫০০ · শেষ তারিখ ৩১ ডিসেম্বর', docs: ['রিপোর্ট.pdf'], status: 'অনুমোদিত', bg: '#DCFCE7', fg: '#14532D', border: '#E7E5DF', review: false },
+        { type: 'দুর্যোগ', by: 'মোঃ রুবেল মিয়া', date: '২০ আগস্ট', title: 'বন্যায় ঘরের ক্ষতি', desc: '৳৮,০০০ হস্তান্তর হয়েছে, খরচ এন্ট্রি লিংক করা আছে।', docs: ['ছবি.jpg'], status: 'সম্পন্ন', bg: '#E0E7FF', fg: '#3730A3', border: '#E7E5DF', review: false }
+      ],
+      reports: [['মাসিক আয়-ব্যয় রিপোর্ট', 'নভেম্বর ২০২৬'], ['বার্ষিক আয়-ব্যয় রিপোর্ট', '২০২৬'], ['চাঁদা আদায় রিপোর্ট', 'নভেম্বর ২০২৬']].map(([title, period]) => ({ title, period })),
+      byPara: (() => { const mx = Math.max(1, ...D.list_para.map(x => x.count)); return D.list_para.map(x => ({ name: x.name, n: bn(x.count), w: (x.count / mx * 100) + '%' })); })(),
+      byBlood: [['A+', 11], ['A−', 3], ['B+', 14], ['B−', 2], ['O+', 18], ['O−', 2], ['AB+', 5], ['AB−', 1]].map(([name, n]) => ({ name, n: bn(n), w: (n / 18 * 100) + '%' })),
+      settingGroups: [
+        { title: 'সংগঠনের তথ্য', fields: [{ k: 'নাম', v: 'সগুনা আদর্শ যুব সমাজ' }, { k: 'ঠিকানা', v: 'গ্রাম সগুনা, বেলকুচি, সিরাজগঞ্জ' }, { k: 'ফোন', v: '০১৭XX-XXXXXX' }] },
+        { title: 'পেমেন্ট নম্বর', fields: [{ k: 'bKash (মার্চেন্ট/পার্সোনাল)', v: '০১৭XX-XXXXXX' }, { k: 'Nagad', v: '০১৮XX-XXXXXX' }] },
+        { title: 'সোশ্যাল লিংক', fields: [{ k: 'WhatsApp গ্রুপ', v: 'https://chat.whatsapp.com/...' }, { k: 'Facebook পেজ', v: 'https://facebook.com/soguna.jubo' }] },
+        { title: 'SMS সেটিংস', fields: [{ k: 'SMS গেটওয়ে', v: 'নির্বাচন বাকি' }, { k: 'সেন্ডার আইডি', v: 'SOGUNA' }] }
+      ],
+      goLists: () => this.setState({ page: 'lists' }),
+      listTabs: Object.keys(listMeta).map(k => ({ label: listMeta[k][0], count: bn(D[k].length), border: k === lt ? '#15803D' : '#E7E5DF', bg: k === lt ? '#15803D' : '#fff', fg: k === lt ? '#fff' : '#44403C', pick: () => this.setState({ listTab: k, newItem: '' }) })),
+      listTitle: lm[0], listHelp: 'কোথায় দেখায়: ' + lm[1], listPlaceholder: lm[2],
+      newItem: S.newItem, setNewItem: e => this.setState({ newItem: e.target.value }),
+      addBg: newOk ? '#15803D' : '#86A894',
+      addListItem: () => { const v = S.newItem.trim(); if (!v) return; if (D[lt].some(x => x.name === v)) { this.flash('"' + v + '" আগে থেকেই আছে'); return; } this.setColl(lt, a => [...a, { id: Date.now(), name: v, count: 0 }]); this.setState({ newItem: '' }); this.flash('"' + v + '" যোগ হয়েছে'); },
+      listRows, listEmpty: listRows.length === 0
+    };
+  }
+}
+</script>
+</body>
+</html>

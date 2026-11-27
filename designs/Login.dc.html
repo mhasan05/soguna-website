@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FAFAF7;font-family:'Hind Siliguri',sans-serif;}a{color:#15803D;text-decoration:none;}a:hover{color:#14532D;text-decoration:underline;}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="container-type:inline-size;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:#FAFAF7;color:#1C1917;font-size:16px;line-height:1.6;">
+<div style="position:sticky;top:0;z-index:20;"><dc-import name="SiteHeader" mode="{{ mode }}" active="none" hint-size="100%,72px"></dc-import></div>
+
+<div data-screen-label="লগইন" style="max-width:1200px;margin:0 auto;padding:clamp(28px,5cqw,64px) clamp(16px,3.5cqw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:32px 56px;align-items:center;">
+  <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ false }}">
+    <div style="position:relative;border-radius:16px;overflow:hidden;min-height:480px;">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/A_conversation_session_of_village_people.jpg?width=1200" alt="গ্রামের মানুষের আড্ডা" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,83,45,0) 30%,rgba(20,83,45,.9));"></div>
+      <div style="position:absolute;left:28px;right:28px;bottom:28px;color:#fff;">
+        <div style="font-size:30px;font-weight:700;line-height:1.3;">১২২ জন সদস্য, এক পরিবার</div>
+        <div style="font-size:18px;opacity:.95;margin-top:4px;">লগইন করে রক্তদাতার তালিকা, চাঁদার হিসাব আর সদস্য কার্ড দেখুন।</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <div style="background:#fff;border:1px solid #E7E5DF;border-radius:16px;padding:clamp(22px,3cqw,36px);max-width:480px;width:100%;box-sizing:border-box;justify-self:center;">
+    <sc-if value="{{ stepPhone }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;flex-direction:column;gap:18px;">
+        <div>
+          <h1 style="margin:0;font-size:clamp(26px,3cqw,34px);font-weight:700;line-height:1.3;">লগইন করুন</h1>
+          <p style="margin:6px 0 0;font-size:17px;color:#57534E;">আপনার ফোন নম্বর দিন। একটি ৬ সংখ্যার কোড SMS-এ যাবে — কোনো পাসওয়ার্ড লাগবে না।</p>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font-size:17px;font-weight:600;">ফোন নম্বর</span>
+          <div style="display:flex;height:60px;border:2px solid #15803D;border-radius:12px;overflow:hidden;">
+            <span style="display:flex;align-items:center;padding:0 14px;background:#F0FDF4;font-size:20px;font-weight:600;color:#14532D;border-right:1px solid #DCEFE1;">+৮৮</span>
+            <input value="{{ phone }}" onChange="{{ setPhone }}" inputmode="tel" placeholder="০১৭XXXXXXXX" style="flex:1;min-width:0;border:none;outline:none;padding:0 14px;font-family:inherit;font-size:22px;letter-spacing:1px;">
+          </div>
+          <span style="font-size:15px;color:#57534E;">বাংলা বা ইংরেজি — যেকোনো সংখ্যায় লিখতে পারেন।</span>
+        </label>
+        <button onClick="{{ sendOtp }}" style="height:56px;border-radius:12px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:19px;font-weight:700;cursor:pointer;">কোড পাঠান</button>
+        <div style="text-align:center;font-size:17px;color:#57534E;">নতুন? <a href="Register.dc.html" style="font-weight:600;">সদস্য হওয়ার আবেদন করুন</a></div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ stepOtp }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:18px;">
+        <button onClick="{{ back }}" style="align-self:flex-start;min-height:44px;border:none;background:none;padding:0;display:inline-flex;align-items:center;gap:6px;font-family:inherit;font-size:16px;font-weight:600;color:#15803D;cursor:pointer;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>নম্বর বদলান</button>
+        <div>
+          <h1 style="margin:0;font-size:clamp(26px,3cqw,34px);font-weight:700;line-height:1.3;">কোড লিখুন</h1>
+          <p style="margin:6px 0 0;font-size:17px;color:#57534E;">{{ phoneShown }} নম্বরে ৬ সংখ্যার কোড পাঠানো হয়েছে।</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;">
+          <sc-for list="{{ boxes }}" as="b" hint-placeholder-count="6">
+            <div style="height:64px;border-radius:12px;border:2px solid {{ b.border }};background:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#1C1917;">{{ b.d }}</div>
+          </sc-for>
+        </div>
+        <input value="{{ otp }}" onChange="{{ setOtp }}" inputmode="numeric" autocomplete="one-time-code" aria-label="OTP কোড" placeholder="এখানে কোড টাইপ করুন" style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:18px;">
+        <a href="Dashboard.dc.html" style="height:56px;border-radius:12px;background:{{ goBg }};color:#fff;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:700;text-decoration:none;">লগইন করুন</a>
+        <div style="text-align:center;font-size:16px;color:#57534E;">{{ resendLabel }}</div>
+      </div>
+    </sc-if>
+  </div>
+</div>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ true }}"><div style="position:sticky;bottom:0;z-index:20;"><dc-import name="BottomNav" active="me" hint-size="100%,68px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;mobile&quot;,&quot;desktop&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;step&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;phone&quot;,&quot;otp&quot;],&quot;default&quot;:&quot;phone&quot;,&quot;tsType&quot;:&quot;'phone'|'otp'&quot;}}">
+class Component extends DCLogic {
+  state = { w: 0, step: null, phone: '০১৭১২৩৪৫৬৭৮', otp: '৪৮২' };
+  rootRef = React.createRef();
+  componentDidMount() { const el = this.rootRef.current; if (!el) return; this.ro = new ResizeObserver(([e]) => this.setState({ w: e.contentRect.width })); this.ro.observe(el); }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  renderVals() {
+    const m = this.props.mode; const mode = m && m !== 'auto' ? m : (this.state.w >= 900 ? 'desktop' : 'mobile');
+    const step = this.state.step ?? this.props.step ?? 'phone';
+    const toBn = s => String(s).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+    const digits = toBn(this.state.otp).replace(/[^০-৯]/g, '').slice(0, 6);
+    const p = toBn(this.state.phone);
+    return {
+      rootRef: this.rootRef, mode, isMobile: mode === 'mobile', isDesktop: mode !== 'mobile',
+      stepPhone: step === 'phone', stepOtp: step === 'otp',
+      phone: this.state.phone, setPhone: e => this.setState({ phone: e.target.value }),
+      sendOtp: () => this.setState({ step: 'otp' }), back: () => this.setState({ step: 'phone' }),
+      phoneShown: p.slice(0, 5) + '-' + p.slice(5),
+      otp: this.state.otp, setOtp: e => this.setState({ otp: e.target.value }),
+      boxes: Array.from({ length: 6 }, (_, i) => ({ d: digits[i] || '', border: i === digits.length ? '#15803D' : (digits[i] ? '#86C49B' : '#D6D3CB') })),
+      goBg: digits.length === 6 ? '#15803D' : '#86A894',
+      resendLabel: 'কোড আসেনি? ৪৫ সেকেন্ড পর আবার পাঠাতে পারবেন'
+    };
+  }
+}
+</script>
+</body>
+</html>

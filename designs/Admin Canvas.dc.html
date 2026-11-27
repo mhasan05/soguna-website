@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#ECEAE3;font-family:'Hind Siliguri',sans-serif;}a{color:#15803D;}a:hover{color:#14532D;}</style>
+</helmet>
+<section style="padding:48px;display:flex;flex-direction:column;gap:72px;">
+  <div style="font-size:32px;font-weight:700;color:#1C1917;">সগুনা আদর্শ যুব সমাজ — অ্যাডমিন প্যানেল</div>
+  <div style="font-size:18px;color:#57534E;margin-top:-56px;display:flex;gap:16px;flex-wrap:wrap;">অন্য অংশ: <a href="Site%20Canvas.dc.html">পাবলিক ফেজ ১</a><a href="Site%20Canvas%20Phase%202.dc.html">পাবলিক ফেজ ২ ও ৩</a><a href="Member%20Canvas.dc.html">সদস্য প্যানেল</a></div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">অ্যাডমিন — ড্যাশবোর্ড <span style="font-size:15px;font-weight:400;color:#57534E;">Admin.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="30a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">30a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#F4F3EE;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Admin" mode="mobile" role="admin" page="dashboard" hint-size="360px,1400px"></dc-import>
+        </div>
+      </div>
+      <div id="30b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">30b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;min-height:820px;background:#F4F3EE;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);display:flex;flex-direction:column;">
+          <dc-import name="Admin" mode="desktop" role="admin" page="dashboard" hint-size="1280px,900px" style="flex:1;display:flex;flex-direction:column;"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">অ্যাডমিন — সদস্য ব্যবস্থাপনা <span style="font-size:15px;font-weight:400;color:#57534E;">Admin.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="31a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">31a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#F4F3EE;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Admin" mode="mobile" role="admin" page="members" hint-size="360px,1400px"></dc-import>
+        </div>
+      </div>
+      <div id="31b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">31b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;min-height:820px;background:#F4F3EE;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);display:flex;flex-direction:column;">
+          <dc-import name="Admin" mode="desktop" role="admin" page="members" hint-size="1280px,900px" style="flex:1;display:flex;flex-direction:column;"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">অ্যাডমিন — কমিটি <span style="font-size:15px;font-weight:400;color:#57534E;">Admin.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="32a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">32a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#F4F3EE;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Admin" mode="mobile" role="admin" page="committee" hint-size="360px,1400px"></dc-import>
+        </div>
+      </div>
+      <div id="32b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">32b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;min-height:820px;background:#F4F3EE;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);display:flex;flex-direction:column;">
+          <dc-import name="Admin" mode="desktop" role="admin" page="committee" hint-size="1280px,900px" style="flex:1;display:flex;flex-direction:column;"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">অ্যাডমিন — নোটিশ <span style="font-size:15px;font-weight:400;color:#57534E;">Admin.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="33a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">33a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#F4F3EE;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Admin" mode="mobile" role="admin" page="notices" hint-size="360px,1400px"></dc-import>
+        </div>
+      </div>
+      <div id="33b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">33b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;min-height:820px;background:#F4F3EE;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);display:flex;flex-direction:column;">
+          <dc-import name="Admin" mode="desktop" role="admin" page="notices" hint-size="1280px,900px" style="flex:1;display:flex;flex-direction:column;"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">অ্যাডমিন — জরুরি নম্বর <span style="font-size:15px;font-weight:400;color:#57534E;">Admin.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="34a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">34a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#F4F3EE;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Admin" mode="mobile" role="admin" page="emergency" hint-size="360px,1400px"></dc-import>
+        </div>
+      </div>
+      <div id="34b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">34b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;min-height:820px;background:#F4F3EE;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);display:flex;flex-direction:column;">
+          <dc-import name="Admin" mode="desktop" role="admin" page="emergency" hint-size="1280px,900px" style="flex:1;display:flex;flex-direction:column;"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">অ্যাডমিন — ইভেন্ট <span style="font-size:15px;font-weight:400;color:#57534E;">Admin.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="35a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">35a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#F4F3EE;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Admin" mode="mobile" role="admin" page="events" hint-size="360px,1400px"></dc-import>
+        </div>
+      </div>
+      <div id="35b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">35b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;min-height:820px;background:#F4F3EE;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);display:flex;flex-direction:column;">
+          <dc-import name="Admin" mode="desktop" role="admin" page="events" hint-size="1280px,900px" style="flex:1;display:flex;flex-direction:column;"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">অ্যাডমিন — গ্যালারি <span style="font-size:15px;font-weight:400;color:#57534E;">Admin.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="36a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">36a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#F4F3EE;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Admin" mode="mobile" role="admin" page="gallery" hint-size="360px,1400px"></dc-import>
+        </div>
+      </div>
+      <div id="36b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">36b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;min-height:820px;background:#F4F3EE;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);display:flex;flex-direction:column;">
+          <dc-import name="Admin" mode="desktop" role="admin" page="gallery" hint-size="1280px,900px" style="flex:1;display:flex;flex-direction:column;"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">অ্যাডমিন — চাঁদা <span style="font-size:15px;font-weight:400;color:#57534E;">Admin.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="37a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">37a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#F4F3EE;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Admin" mode="mobile" role="admin" page="dues" hint-size="360px,1400px"></dc-import>
+        </div>
+      </div>
+      <div id="37b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">37b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;min-height:820px;background:#F4F3EE;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);display:flex;flex-direction:column;">
+          <dc-import name="Admin" mode="desktop" role="admin" page="dues" hint-size="1280px,900px" style="flex:1;display:flex;flex-direction:column;"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">অ্যাডমিন — আয়-ব্যয় <span style="font-size:15px;font-weight:400;color:#57534E;">Admin.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="38a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">38a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#F4F3EE;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Admin" mode="mobile" role="admin" page="finance" hint-size="360px,1400px"></dc-import>
+        </div>
+      </div>
+      <div id="38b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">38b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;min-height:820px;background:#F4F3EE;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);display:flex;flex-direction:column;">
+          <dc-import name="Admin" mode="desktop" role="admin" page="finance" hint-size="1280px,900px" style="flex:1;display:flex;flex-direction:column;"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">অ্যাডমিন — সাহায্যের আবেদন <span style="font-size:15px;font-weight:400;color:#57534E;">Admin.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="39a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">39a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#F4F3EE;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Admin" mode="mobile" role="admin" page="aid" hint-size="360px,1400px"></dc-import>
+        </div>
+      </div>
+      <div id="39b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">39b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;min-height:820px;background:#F4F3EE;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);display:flex;flex-direction:column;">
+          <dc-import name="Admin" mode="desktop" role="admin" page="aid" hint-size="1280px,900px" style="flex:1;display:flex;flex-direction:column;"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">অ্যাডমিন — সেবা ডিরেক্টরি <span style="font-size:15px;font-weight:400;color:#57534E;">Admin.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="40a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">40a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#F4F3EE;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Admin" mode="mobile" role="admin" page="services" hint-size="360px,1400px"></dc-import>
+        </div>
+      </div>
+      <div id="40b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">40b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;min-height:820px;background:#F4F3EE;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);display:flex;flex-direction:column;">
+          <dc-import name="Admin" mode="desktop" role="admin" page="services" hint-size="1280px,900px" style="flex:1;display:flex;flex-direction:column;"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">অ্যাডমিন — রিপোর্ট <span style="font-size:15px;font-weight:400;color:#57534E;">Admin.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="41a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">41a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#F4F3EE;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Admin" mode="mobile" role="admin" page="reports" hint-size="360px,1400px"></dc-import>
+        </div>
+      </div>
+      <div id="41b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">41b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;min-height:820px;background:#F4F3EE;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);display:flex;flex-direction:column;">
+          <dc-import name="Admin" mode="desktop" role="admin" page="reports" hint-size="1280px,900px" style="flex:1;display:flex;flex-direction:column;"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">অ্যাডমিন — তালিকা ও ক্যাটাগরি (পাড়া, খাত, ক্যাটাগরি CRUD) <span style="font-size:15px;font-weight:400;color:#57534E;">Admin.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="42La" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">42La</span>মোবাইল · ৩৬০px</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#F4F3EE;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Admin" mode="mobile" role="admin" page="lists" hint-size="360px,1400px"></dc-import>
+        </div>
+      </div>
+      <div id="42Lb" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">42Lb</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;min-height:820px;background:#F4F3EE;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);display:flex;flex-direction:column;">
+          <dc-import name="Admin" mode="desktop" role="admin" page="lists" hint-size="1280px,900px" style="flex:1;display:flex;flex-direction:column;"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">অ্যাডমিন — সেটিংস <span style="font-size:15px;font-weight:400;color:#57534E;">Admin.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="42a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">42a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#F4F3EE;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Admin" mode="mobile" role="admin" page="settings" hint-size="360px,1400px"></dc-import>
+        </div>
+      </div>
+      <div id="42b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">42b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;min-height:820px;background:#F4F3EE;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);display:flex;flex-direction:column;">
+          <dc-import name="Admin" mode="desktop" role="admin" page="settings" hint-size="1280px,900px" style="flex:1;display:flex;flex-direction:column;"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">ক্যাশিয়ার রোল — মেনু সীমিত <span style="font-size:15px;font-weight:400;color:#57534E;">Admin.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="43a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">43a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#F4F3EE;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Admin" mode="mobile" role="cashier" page="dashboard" hint-size="360px,1400px"></dc-import>
+        </div>
+      </div>
+      <div id="43b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">43b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;min-height:820px;background:#F4F3EE;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);display:flex;flex-direction:column;">
+          <dc-import name="Admin" mode="desktop" role="cashier" page="dashboard" hint-size="1280px,900px" style="flex:1;display:flex;flex-direction:column;"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">স্বেচ্ছাসেবক রোল — মেনু সীমিত <span style="font-size:15px;font-weight:400;color:#57534E;">Admin.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="44a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">44a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#F4F3EE;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Admin" mode="mobile" role="volunteer" page="dashboard" hint-size="360px,1400px"></dc-import>
+        </div>
+      </div>
+      <div id="44b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">44b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;min-height:820px;background:#F4F3EE;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);display:flex;flex-direction:column;">
+          <dc-import name="Admin" mode="desktop" role="volunteer" page="dashboard" hint-size="1280px,900px" style="flex:1;display:flex;flex-direction:column;"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</x-dc>
+</body>
+</html>

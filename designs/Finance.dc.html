@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FAFAF7;font-family:'Hind Siliguri',sans-serif;}a{color:#15803D;text-decoration:none;}a:hover{color:#14532D;text-decoration:underline;}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="container-type:inline-size;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:#FAFAF7;color:#1C1917;font-size:16px;line-height:1.6;">
+<div style="position:sticky;top:0;z-index:20;"><dc-import name="SiteHeader" mode="{{ mode }}" active="donate" hint-size="100%,72px"></dc-import></div>
+
+<div data-screen-label="ফান্ডের হিসাব" style="max-width:1200px;margin:0 auto;padding:clamp(28px,4cqw,48px) clamp(16px,3.5cqw,40px) clamp(40px,5cqw,64px);display:flex;flex-direction:column;gap:clamp(24px,3cqw,36px);">
+  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px;">
+    <div>
+      <div style="font-size:15px;color:#57534E;">হোম / ফান্ডের হিসাব</div>
+      <h1 style="margin:4px 0 4px;font-size:clamp(28px,3.4cqw,42px);font-weight:700;line-height:1.3;">ফান্ডের হিসাব</h1>
+      <p style="margin:0;font-size:17px;color:#57534E;">জানুয়ারি – নভেম্বর ২০২৬ · কোষাধ্যক্ষ যাচাই করা হিসাব</p>
+    </div>
+    <a href="Donate.dc.html" style="height:52px;padding:0 24px;border-radius:10px;background:#D97706;color:#fff;display:inline-flex;align-items:center;gap:8px;font-size:18px;font-weight:700;text-decoration:none;">দান করুন</a>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:12px;">
+    <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:18px;"><div style="font-size:16px;color:#57534E;">মোট আয়</div><div style="font-size:clamp(28px,3cqw,36px);font-weight:700;color:#15803D;line-height:1.2;">৳৪,৮২,৬৫০</div></div>
+    <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:18px;"><div style="font-size:16px;color:#57534E;">মোট ব্যয়</div><div style="font-size:clamp(28px,3cqw,36px);font-weight:700;color:#B45309;line-height:1.2;">৳৩,৩৫,৮৩০</div></div>
+    <div style="background:#14532D;border-radius:12px;padding:18px;color:#fff;"><div style="font-size:16px;opacity:.9;">বর্তমান ব্যালেন্স</div><div style="font-size:clamp(28px,3cqw,36px);font-weight:700;line-height:1.2;">৳১,৪৬,৮২০</div></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr));gap:16px;align-items:start;">
+    <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:18px;">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;margin-bottom:14px;">
+        <h2 style="margin:0;font-size:20px;font-weight:700;">মাসিক আয়-ব্যয়</h2>
+        <div style="display:flex;gap:14px;font-size:15px;color:#57534E;"><span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;border-radius:3px;background:#15803D;"></span>আয়</span><span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;border-radius:3px;background:#D97706;"></span>ব্যয়</span></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;align-items:end;height:200px;border-bottom:1px solid #E7E5DF;">
+        <sc-for list="{{ months }}" as="mo" hint-placeholder-count="6">
+          <div style="display:flex;gap:3px;align-items:flex-end;justify-content:center;height:100%;">
+            <div title="{{ mo.inLabel }}" style="width:42%;max-width:22px;height:{{ mo.inH }};background:#15803D;border-radius:4px 4px 0 0;"></div>
+            <div title="{{ mo.outLabel }}" style="width:42%;max-width:22px;height:{{ mo.outH }};background:#D97706;border-radius:4px 4px 0 0;"></div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:6px;">
+        <sc-for list="{{ months }}" as="mo" hint-placeholder-count="6"><div style="text-align:center;font-size:14px;color:#57534E;">{{ mo.name }}</div></sc-for>
+      </div>
+    </div>
+    <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:18px;">
+      <h2 style="margin:0 0 14px;font-size:20px;font-weight:700;">খরচ কোন খাতে</h2>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <sc-for list="{{ cats }}" as="c" hint-placeholder-count="5">
+          <div>
+            <div style="display:flex;justify-content:space-between;gap:8px;font-size:16px;"><span style="font-weight:600;">{{ c.name }}</span><span style="color:#57534E;">{{ c.amount }} · {{ c.pct }}</span></div>
+            <div style="height:10px;border-radius:999px;background:#F3EFE6;margin-top:4px;overflow:hidden;"><div style="height:100%;width:{{ c.w }};background:#D97706;border-radius:999px;"></div></div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h2 style="margin:0 0 12px;font-size:clamp(22px,2.4cqw,28px);font-weight:700;">সাম্প্রতিক লেনদেন</h2>
+    <sc-if value="{{ isVisitor }}" hint-placeholder-val="{{ true }}">
+      <div style="background:#F0FDF4;border:1px solid #DCEFE1;border-radius:12px;padding:20px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;">
+        <div style="display:flex;gap:12px;align-items:flex-start;flex:1 1 300px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><span style="font-size:17px;">প্রতিটি লেনদেন ও ভাউচারের ছবি সদস্যরা লগইন করে দেখতে পারেন।</span></div>
+        <a href="Login.dc.html" style="height:48px;padding:0 22px;border-radius:10px;background:#15803D;color:#fff;display:inline-flex;align-items:center;font-size:17px;font-weight:600;text-decoration:none;">লগইন করুন</a>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isMember }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:4px 18px;">
+        <sc-for list="{{ tx }}" as="t" hint-placeholder-count="6">
+          <div style="display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid #F0EEE8;">
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:{{ t.iconBg }};color:{{ t.iconFg }};display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;">{{ t.sign }}</div>
+            <div style="flex:1;min-width:0;"><div style="font-size:17px;font-weight:600;line-height:1.4;">{{ t.title }}</div><div style="font-size:15px;color:#57534E;">{{ t.meta }}</div></div>
+            <div style="text-align:right;flex:none;"><div style="font-size:18px;font-weight:700;color:{{ t.amtColor }};">{{ t.amount }}</div><sc-if value="{{ t.voucher }}" hint-placeholder-val="{{ false }}"><a href="#" style="font-size:14px;">ভাউচার</a></sc-if></div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+  </div>
+</div>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ true }}"><div style="position:sticky;bottom:0;z-index:20;"><dc-import name="BottomNav" active="none" hint-size="100%,68px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;mobile&quot;,&quot;desktop&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;viewAs&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;visitor&quot;,&quot;member&quot;],&quot;default&quot;:&quot;visitor&quot;,&quot;tsType&quot;:&quot;'visitor'|'member'&quot;}}">
+class Component extends DCLogic {
+  state = { w: 0 };
+  rootRef = React.createRef();
+  componentDidMount() { const el = this.rootRef.current; if (!el) return; this.ro = new ResizeObserver(([e]) => this.setState({ w: e.contentRect.width })); this.ro.observe(el); }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  renderVals() {
+    const m = this.props.mode; const mode = m && m !== 'auto' ? m : (this.state.w >= 900 ? 'desktop' : 'mobile');
+    const bn = n => String(n).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+    const tk = n => '৳' + bn(n.toLocaleString('en-IN'));
+    const mdata = [['জুন', 38000, 21000], ['জুলাই', 41500, 36200], ['আগস্ট', 96000, 88400], ['সেপ্টে', 35200, 12800], ['অক্টো', 39800, 18500], ['নভে', 52300, 24600]];
+    const max = 100000;
+    const cats = [['ত্রাণ ও দুর্যোগ', 128400], ['শীতবস্ত্র', 92000], ['ইফতার ও ধর্মীয়', 41200], ['কৃষি সহায়তা', 32000], ['খেলাধুলা', 24630], ['প্রশাসনিক (SMS, সাইট)', 17600]];
+    const tot = cats.reduce((s, c) => s + c[1], 0);
+    const viewAs = this.props.viewAs ?? 'visitor';
+    const tx = [
+      ['+', 'মাসিক চাঁদা — ৪৮ জন সদস্য', 'নভেম্বর ২০২৬ · bKash/Nagad/নগদ', 9600, 0],
+      ['+', 'প্রবাসী দান — নাম প্রকাশে অনিচ্ছুক', '২২ নভেম্বর · শীতবস্ত্র বিতরণ', 25000, 0],
+      ['−', '৩০০ কম্বল ক্রয় (অগ্রিম)', '২০ নভেম্বর · শীতবস্ত্র · কোষাধ্যক্ষ', 18000, 1],
+      ['+', 'মোঃ কামরুল হাসান (ঢাকা)', '১৮ নভেম্বর · সাধারণ তহবিল', 5000, 0],
+      ['−', 'SMS প্যাকেজ (২০০০ SMS)', '১০ নভেম্বর · প্রশাসনিক', 1200, 1],
+      ['−', 'ডায়ালাইসিস খরচ হস্তান্তর', '৫ নভেম্বর · চিকিৎসা সহায়তা', 5400, 1]
+    ].map(([s, title, meta, amt, v]) => ({ sign: s, title, meta, amount: (s === '+' ? '+' : '−') + tk(amt), voucher: !!v, iconBg: s === '+' ? '#DCFCE7' : '#FEF3C7', iconFg: s === '+' ? '#15803D' : '#B45309', amtColor: s === '+' ? '#15803D' : '#B45309' }));
+    return {
+      rootRef: this.rootRef, mode, isMobile: mode === 'mobile',
+      months: mdata.map(([name, i, o]) => ({ name, inH: (i / max * 100) + '%', outH: (o / max * 100) + '%', inLabel: 'আয় ' + tk(i), outLabel: 'ব্যয় ' + tk(o) })),
+      cats: cats.map(([name, a]) => ({ name, amount: tk(a), pct: bn(Math.round(a / tot * 100)) + '%', w: (a / cats[0][1] * 100) + '%' })),
+      isVisitor: viewAs === 'visitor', isMember: viewAs === 'member', tx
+    };
+  }
+}
+</script>
+</body>
+</html>

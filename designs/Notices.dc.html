@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FAFAF7;font-family:'Hind Siliguri',sans-serif;}a{color:#15803D;text-decoration:none;}a:hover{color:#14532D;text-decoration:underline;}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="container-type:inline-size;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:#FAFAF7;color:#1C1917;font-size:16px;line-height:1.6;">
+<div style="position:sticky;top:0;z-index:20;"><dc-import name="SiteHeader" mode="{{ mode }}" active="notices" hint-size="100%,72px"></dc-import></div>
+
+<section data-screen-label="নোটিশ বোর্ড">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(28px,4cqw,48px) clamp(16px,3.5cqw,40px) 0;">
+    <div style="font-size:15px;color:#57534E;">হোম / নোটিশ</div>
+    <h1 style="margin:4px 0 16px;font-size:clamp(28px,3.4cqw,42px);font-weight:700;line-height:1.3;">নোটিশ বোর্ড</h1>
+    <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin:0 calc(-1 * clamp(16px,3.5cqw,40px));padding-left:clamp(16px,3.5cqw,40px);padding-right:clamp(16px,3.5cqw,40px);">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="7">
+        <sc-if value="{{ t.on }}" hint-placeholder-val="{{ false }}"><button onClick="{{ t.pick }}" style="flex:none;height:48px;padding:0 18px;border-radius:999px;border:1.5px solid #15803D;background:#15803D;color:#fff;font-family:inherit;font-size:17px;font-weight:600;cursor:pointer;">{{ t.label }}</button></sc-if>
+        <sc-if value="{{ t.off }}" hint-placeholder-val="{{ true }}"><button onClick="{{ t.pick }}" style="flex:none;height:48px;padding:0 18px;border-radius:999px;border:1.5px solid #E7E5DF;background:#fff;color:#44403C;font-family:inherit;font-size:17px;font-weight:500;cursor:pointer;">{{ t.label }}</button></sc-if>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div style="max-width:1200px;margin:0 auto;padding:18px clamp(16px,3.5cqw,40px) clamp(40px,5cqw,64px);">
+    <sc-if value="{{ hasItems }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:14px;">
+        <sc-for list="{{ items }}" as="n" hint-placeholder-count="6">
+          <a href="NoticeDetail.dc.html" style="display:flex;flex-direction:column;text-decoration:none;color:#1C1917;background:#fff;border:1px solid {{ n.border }};border-radius:12px;padding:18px;box-shadow:0 1px 2px rgba(28,25,23,.04);">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">
+              <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+                <sc-if value="{{ n.pinned }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:4px;font-size:14px;font-weight:600;color:#B45309;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5M9 10.76V6h6v4.76l2 3.24H7z"></path><path d="M8 2h8"></path></svg>পিন করা</span></sc-if>
+                <span style="font-size:14px;font-weight:600;padding:2px 12px;border-radius:999px;background:{{ n.bg }};color:{{ n.fg }};">{{ n.cat }}</span>
+              </div>
+              <span style="font-size:15px;color:#57534E;">{{ n.date }}</span>
+            </div>
+            <h3 style="margin:12px 0 6px;font-size:19px;font-weight:600;line-height:1.45;">{{ n.title }}</h3>
+            <sc-if value="{{ n.open }}" hint-placeholder-val="{{ true }}">
+              <p style="margin:0;font-size:16px;color:#57534E;line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">{{ n.preview }}</p>
+            </sc-if>
+            <sc-if value="{{ n.locked }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;align-items:center;gap:8px;font-size:16px;color:#57534E;background:#F5F5F4;border-radius:8px;padding:10px 12px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>সদস্য-কেবল নোটিশ — লগইন করে পড়ুন</div>
+            </sc-if>
+          </a>
+        </sc-for>
+      </div>
+    </sc-if>
+    <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px dashed #D6D3CB;border-radius:12px;padding:48px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;">
+        <div style="width:64px;height:64px;border-radius:50%;background:#F0FDF4;color:#15803D;display:flex;align-items:center;justify-content:center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg></div>
+        <div style="font-size:18px;font-weight:600;">এই বিভাগে এখন কোনো নোটিশ নেই</div>
+        <button onClick="{{ showAll }}" style="height:48px;padding:0 20px;border-radius:10px;border:1.5px solid #15803D;background:#fff;color:#15803D;font-family:inherit;font-size:17px;font-weight:600;cursor:pointer;">সব নোটিশ দেখুন</button>
+      </div>
+    </sc-if>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ true }}"><div style="position:sticky;bottom:0;z-index:20;"><dc-import name="BottomNav" active="notices" hint-size="100%,68px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;mobile&quot;,&quot;desktop&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { w: 0, cat: 'সব' };
+  rootRef = React.createRef();
+  componentDidMount() { const el = this.rootRef.current; if (!el) return; this.ro = new ResizeObserver(([e]) => this.setState({ w: e.contentRect.width })); this.ro.observe(el); }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  renderVals() {
+    const m = this.props.mode; const mode = m && m !== 'auto' ? m : (this.state.w >= 900 ? 'desktop' : 'mobile');
+    const col = { 'জরুরি': ['#FEF2F2', '#B91C1C'], 'শোকসংবাদ': ['#FEF2F2', '#B91C1C'], 'সভা': ['#F0FDF4', '#15803D'], 'ইভেন্ট': ['#FEF3C7', '#92400E'], 'সরকারি ঘোষণা': ['#F5F5F4', '#44403C'], 'অন্যান্য': ['#F5F5F4', '#44403C'] };
+    const all = [
+      { cat: 'সভা', pinned: true, date: '২৪ নভেম্বর ২০২৬', title: 'ডিসেম্বর মাসের সাধারণ সভা', preview: 'আগামী শুক্রবার বাদ জুমা ক্লাব ঘরে মাসিক সভা হবে। শীতবস্ত্র বিতরণ ও চাঁদা আদায় নিয়ে আলোচনা হবে, সবার উপস্থিতি কাম্য।' },
+      { cat: 'শোকসংবাদ', date: '২৬ নভেম্বর ২০২৬', title: 'দক্ষিণপাড়ার মোঃ আব্দুল করিম ইন্তেকাল করেছেন', preview: 'জানাজা বাদ আসর, বিকাল ৪টা ১৫ মিনিটে, সগুনা কেন্দ্রীয় জামে মসজিদ মাঠে। সবাইকে জানাজায় শরিক হওয়ার অনুরোধ।' },
+      { cat: 'জরুরি', date: '২৫ নভেম্বর ২০২৬', title: 'O− রক্ত দরকার — বেলকুচি উপজেলা স্বাস্থ্য কমপ্লেক্স', preview: 'প্রসূতি রোগীর জন্য ২ ব্যাগ O− রক্ত প্রয়োজন। যোগাযোগ: রক্তদান বিষয়ক সম্পাদক।' },
+      { cat: 'ইভেন্ট', date: '২০ নভেম্বর ২০২৬', title: 'শীতবস্ত্র বিতরণের জন্য স্বেচ্ছাসেবক দরকার', preview: 'প্রতি পাড়া থেকে ২ জন স্বেচ্ছাসেবক প্রয়োজন। তালিকা তৈরি ও বিতরণে সাহায্য করতে আগ্রহীরা নাম দিন।' },
+      { cat: 'সরকারি ঘোষণা', date: '১৮ নভেম্বর ২০২৬', title: 'শিশুদের টাইফয়েড টিকা ক্যাম্পেইন', preview: 'বেলকুচি উপজেলা স্বাস্থ্য কমপ্লেক্সের উদ্যোগে সগুনা কমিউনিটি ক্লিনিকে ৯ মাস থেকে ১৫ বছরের শিশুদের বিনামূল্যে টিকা দেওয়া হবে।' },
+      { cat: 'সভা', locked: true, date: '১২ নভেম্বর ২০২৬', title: 'অক্টোবর মাসের আয়-ব্যয় পর্যালোচনা সভার কার্যবিবরণী', preview: '' },
+      { cat: 'অন্যান্য', date: '৫ নভেম্বর ২০২৬', title: 'সদস্য তথ্য হালনাগাদের অনুরোধ', preview: 'যাঁরা এখনও প্রোফাইলে রক্তের গ্রুপ ও পাড়া যোগ করেননি, পাড়ার স্বেচ্ছাসেবকের সাহায্য নিয়ে আজই পূরণ করুন।' }
+    ];
+    const cat = this.state.cat;
+    const items = all.filter(n => cat === 'সব' || n.cat === cat).map(n => ({ ...n, pinned: !!n.pinned, locked: !!n.locked, open: !n.locked, bg: col[n.cat][0], fg: col[n.cat][1], border: n.pinned ? '#F5C97A' : '#E7E5DF' }));
+    return {
+      rootRef: this.rootRef, mode, isMobile: mode === 'mobile',
+      tabs: ['সব', 'জরুরি', 'শোকসংবাদ', 'সভা', 'ইভেন্ট', 'সরকারি ঘোষণা', 'অন্যান্য'].map(l => ({ label: l, on: l === cat, off: l !== cat, pick: () => this.setState({ cat: l }) })),
+      items, hasItems: items.length > 0, empty: items.length === 0, showAll: () => this.setState({ cat: 'সব' })
+    };
+  }
+}
+</script>
+</body>
+</html>

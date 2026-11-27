@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#ECEAE3;font-family:'Hind Siliguri',sans-serif;}a{color:#15803D;}a:hover{color:#14532D;}</style>
+</helmet>
+<section style="padding:48px;display:flex;flex-direction:column;gap:72px;">
+  <div style="font-size:32px;font-weight:700;color:#1C1917;">সগুনা আদর্শ যুব সমাজ — পাবলিক পেজ (ফেজ ২ ও ৩)</div>
+  <div style="font-size:18px;color:#57534E;margin-top:-56px;">ফেজ ১ পেজ: <a href="Site%20Canvas.dc.html">Site Canvas</a></div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">কার্যক্রম ও ইভেন্ট <span style="font-size:15px;font-weight:400;color:#57534E;">Events.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="9a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">9a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#FAFAF7;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Events" mode="mobile" hint-size="360px,1800px"></dc-import>
+        </div>
+      </div>
+      <div id="9b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">9b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;background:#FAFAF7;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);">
+          <dc-import name="Events" mode="desktop" hint-size="1280px,2000px"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">ইভেন্ট বিস্তারিত — আসন্ন <span style="font-size:15px;font-weight:400;color:#57534E;">EventDetail.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="10a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">10a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#FAFAF7;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="EventDetail" mode="mobile" status="upcoming" hint-size="360px,1800px"></dc-import>
+        </div>
+      </div>
+      <div id="10b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">10b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;background:#FAFAF7;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);">
+          <dc-import name="EventDetail" mode="desktop" status="upcoming" hint-size="1280px,2000px"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">ইভেন্ট বিস্তারিত — সম্পন্ন <span style="font-size:15px;font-weight:400;color:#57534E;">EventDetail.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="11a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">11a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#FAFAF7;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="EventDetail" mode="mobile" status="completed" hint-size="360px,1800px"></dc-import>
+        </div>
+      </div>
+      <div id="11b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">11b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;background:#FAFAF7;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);">
+          <dc-import name="EventDetail" mode="desktop" status="completed" hint-size="1280px,2000px"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">গ্যালারি <span style="font-size:15px;font-weight:400;color:#57534E;">Gallery.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="12a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">12a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#FAFAF7;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Gallery" mode="mobile" hint-size="360px,1800px"></dc-import>
+        </div>
+      </div>
+      <div id="12b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">12b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;background:#FAFAF7;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);">
+          <dc-import name="Gallery" mode="desktop" hint-size="1280px,2000px"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">দান করুন <span style="font-size:15px;font-weight:400;color:#57534E;">Donate.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="13a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">13a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#FAFAF7;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Donate" mode="mobile" hint-size="360px,1800px"></dc-import>
+        </div>
+      </div>
+      <div id="13b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">13b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;background:#FAFAF7;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);">
+          <dc-import name="Donate" mode="desktop" hint-size="1280px,2000px"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">ফান্ডের হিসাব — ভিজিটর <span style="font-size:15px;font-weight:400;color:#57534E;">Finance.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="14a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">14a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#FAFAF7;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Finance" mode="mobile" view-as="visitor" hint-size="360px,1800px"></dc-import>
+        </div>
+      </div>
+      <div id="14b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">14b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;background:#FAFAF7;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);">
+          <dc-import name="Finance" mode="desktop" view-as="visitor" hint-size="1280px,2000px"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">ফান্ডের হিসাব — সদস্য <span style="font-size:15px;font-weight:400;color:#57534E;">Finance.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="15a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">15a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#FAFAF7;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Finance" mode="mobile" view-as="member" hint-size="360px,1800px"></dc-import>
+        </div>
+      </div>
+      <div id="15b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">15b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;background:#FAFAF7;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);">
+          <dc-import name="Finance" mode="desktop" view-as="member" hint-size="1280px,2000px"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="font-size:24px;font-weight:700;color:#1C1917;">সাহায্য তহবিল ও গ্রামের সেবা (ফেজ ৩) <span style="font-size:15px;font-weight:400;color:#57534E;">Aid.dc.html</span></div>
+    <div style="display:flex;gap:48px;align-items:flex-start;">
+      <div id="16a" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">16a</span>মোবাইল · ৩৬০px (ভেতরে স্ক্রল)</div>
+        <div style="width:360px;height:780px;overflow-y:auto;border-radius:24px;border:8px solid #1C1917;background:#FAFAF7;box-shadow:0 20px 40px rgba(28,25,23,.15);">
+          <dc-import name="Aid" mode="mobile" hint-size="360px,1800px"></dc-import>
+        </div>
+      </div>
+      <div id="16b" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;color:#57534E;display:flex;gap:8px;align-items:center;"><span style="background:#14532D;color:#fff;padding:2px 10px;border-radius:999px;font-weight:600;">16b</span>ডেস্কটপ · ১২৮০px</div>
+        <div style="width:1280px;background:#FAFAF7;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(28,25,23,.12);">
+          <dc-import name="Aid" mode="desktop" hint-size="1280px,2000px"></dc-import>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</x-dc>
+</body>
+</html>

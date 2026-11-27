@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<nav style="background:#fff;border-top:1px solid #E7E5DF;box-shadow:0 -4px 16px rgba(28,25,23,.06);display:grid;grid-template-columns:repeat(5,1fr);height:68px;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;">
+  <a href="Home.dc.html" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:{{ c.home }};font-size:14px;font-weight:{{ w.home }};text-decoration:none;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"></path></svg>হোম</a>
+  <a href="Notices.dc.html" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:{{ c.notices }};font-size:14px;font-weight:{{ w.notices }};text-decoration:none;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>নোটিশ</a>
+  <a href="Blood.dc.html" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#DC2626;font-size:14px;font-weight:{{ w.blood }};text-decoration:none;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"></path></svg>রক্ত</a>
+  <a href="Events.dc.html" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:{{ c.events }};font-size:14px;font-weight:{{ w.events }};text-decoration:none;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>কার্যক্রম</a>
+  <a href="Dashboard.dc.html" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:{{ c.me }};font-size:14px;font-weight:{{ w.me }};text-decoration:none;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>আমি</a>
+</nav>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:360,&quot;height&quot;:68},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;notices&quot;,&quot;blood&quot;,&quot;events&quot;,&quot;me&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const a = this.props.active ?? 'home';
+    const ids = ['home', 'notices', 'blood', 'events', 'me'];
+    const c = {}, w = {};
+    ids.forEach(id => { c[id] = id === a ? '#15803D' : '#57534E'; w[id] = id === a ? 700 : 400; });
+    return { c, w };
+  }
+}
+</script>
+</body>
+</html>

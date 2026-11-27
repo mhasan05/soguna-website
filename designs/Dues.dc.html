@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FAFAF7;font-family:'Hind Siliguri',sans-serif;}a{color:#15803D;text-decoration:none;}a:hover{color:#14532D;text-decoration:underline;}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="container-type:inline-size;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:#FAFAF7;color:#1C1917;font-size:16px;line-height:1.6;">
+<div style="position:sticky;top:0;z-index:20;"><dc-import name="SiteHeader" mode="{{ mode }}" active="none" hint-size="100%,72px"></dc-import></div>
+
+<div data-screen-label="আমার চাঁদা" style="max-width:1200px;margin:0 auto;padding:clamp(20px,3cqw,40px) clamp(16px,3.5cqw,40px) clamp(40px,5cqw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr));gap:20px 32px;align-items:start;">
+  <div style="display:flex;flex-direction:column;gap:16px;">
+    <a href="Dashboard.dc.html" style="align-self:flex-start;min-height:44px;display:inline-flex;align-items:center;gap:6px;font-size:16px;font-weight:600;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>ড্যাশবোর্ড</a>
+    <div>
+      <h1 style="margin:0;font-size:clamp(26px,3cqw,36px);font-weight:700;line-height:1.3;">আমার চাঁদা · ২০২৬</h1>
+      <p style="margin:4px 0 0;font-size:17px;color:#57534E;">মাসিক চাঁদা ৳২০০ · বাকি মাস চাপলে বাছাই হবে</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(96px,30%),1fr));gap:8px;">
+      <sc-for list="{{ months }}" as="mo" hint-placeholder-count="12">
+        <button onClick="{{ mo.toggle }}" style="min-height:72px;border-radius:12px;border:{{ mo.border }};background:{{ mo.bg }};color:{{ mo.fg }};font-family:inherit;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:{{ mo.cursor }};padding:6px;">
+          <span style="font-size:17px;font-weight:700;">{{ mo.name }}</span>
+          <span style="font-size:13px;font-weight:600;">{{ mo.status }}</span>
+        </button>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px 16px;font-size:15px;color:#57534E;">
+      <span style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:14px;border-radius:4px;background:#DCFCE7;border:1.5px solid #15803D;"></span>পরিশোধিত</span>
+      <span style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:14px;border-radius:4px;background:#FEE2E2;border:1.5px solid #DC2626;"></span>বাকি</span>
+      <span style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:14px;border-radius:4px;background:#FEF3C7;border:1.5px solid #D97706;"></span>যাচাইয়ের অপেক্ষায়</span>
+    </div>
+    <div>
+      <h2 style="margin:8px 0 10px;font-size:20px;font-weight:700;">পেমেন্ট ইতিহাস</h2>
+      <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:2px 16px;">
+        <sc-for list="{{ history }}" as="h" hint-placeholder-count="4">
+          <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #F0EEE8;">
+            <div style="flex:1;min-width:0;"><div style="font-size:17px;font-weight:600;">{{ h.months }}</div><div style="font-size:15px;color:#57534E;">{{ h.meta }}</div></div>
+            <div style="text-align:right;flex:none;"><div style="font-size:17px;font-weight:700;">{{ h.amount }}</div><a href="#" style="font-size:14px;">রসিদ</a></div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#fff;border:1px solid #E7E5DF;border-radius:16px;padding:clamp(18px,2.6cqw,28px);display:flex;flex-direction:column;gap:16px;">
+    <h2 style="margin:0;font-size:clamp(22px,2.4cqw,28px);font-weight:700;">চাঁদা দিন</h2>
+    <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="background:#FAFAF7;border-radius:12px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+          <div><div style="font-size:15px;color:#57534E;">বাছাই করা মাস</div><div style="font-size:18px;font-weight:600;">{{ selLabel }}</div></div>
+          <div style="text-align:right;"><div style="font-size:15px;color:#57534E;">মোট</div><div style="font-size:28px;font-weight:700;color:#15803D;line-height:1.2;">{{ total }}</div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font-size:17px;font-weight:600;">কীভাবে দেবেন</span>
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;">
+            <sc-for list="{{ methods }}" as="mt" hint-placeholder-count="3">
+              <button onClick="{{ mt.pick }}" style="min-height:52px;border-radius:10px;border:{{ mt.border }};background:{{ mt.bg }};color:{{ mt.fg }};font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;padding:4px;">{{ mt.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+        <sc-if value="{{ online }}" hint-placeholder-val="{{ true }}">
+          <div style="background:#FFFBEB;border:1px solid #FCD9A0;border-radius:10px;padding:12px 14px;font-size:16px;color:#44403C;">সংগঠনের নম্বরে <strong>০১৭XX-XXXXXX</strong> Send Money করে Transaction ID লিখুন।</div>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:16px;font-weight:600;">Transaction ID</span><input placeholder="যেমন: 9K7X2M4QPL" style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:ui-monospace,Menlo,monospace;font-size:17px;"></label>
+        </sc-if>
+        <sc-if value="{{ cash }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#F0FDF4;border-radius:10px;padding:12px 14px;font-size:16px;">কোষাধ্যক্ষ <strong>মোঃ জাহিদুল আলম</strong>-কে নগদ দিন। তিনি এন্ট্রি দিলে এখানে সবুজ হয়ে যাবে।</div>
+        </sc-if>
+        <button onClick="{{ send }}" style="height:56px;border-radius:12px;border:none;background:{{ payBg }};color:#fff;font-family:inherit;font-size:19px;font-weight:700;cursor:pointer;">{{ payLabel }}</button>
+      </div>
+    </sc-if>
+    <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#FEF3C7;border-radius:12px;padding:18px;font-size:17px;"><strong style="color:#92400E;">জমা হয়েছে — যাচাইয়ের অপেক্ষায়।</strong> কোষাধ্যক্ষ Transaction ID মিলিয়ে নিলে মাসগুলো সবুজ হবে ও SMS-এ রসিদ যাবে।</div>
+    </sc-if>
+  </div>
+</div>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ true }}"><div style="position:sticky;bottom:0;z-index:20;"><dc-import name="BottomNav" active="me" hint-size="100%,68px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;mobile&quot;,&quot;desktop&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { w: 0, sel: [8], method: 0, sent: false };
+  rootRef = React.createRef();
+  componentDidMount() { const el = this.rootRef.current; if (!el) return; this.ro = new ResizeObserver(([e]) => this.setState({ w: e.contentRect.width })); this.ro.observe(el); }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  renderVals() {
+    const m = this.props.mode; const mode = m && m !== 'auto' ? m : (this.state.w >= 900 ? 'desktop' : 'mobile');
+    const bn = n => String(n).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+    const names = ['জানু', 'ফেব্রু', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টে', 'অক্টো', 'নভে', 'ডিসে'];
+    const st = ['paid', 'paid', 'paid', 'paid', 'paid', 'paid', 'paid', 'paid', 'due', 'paid', 'pending', 'future'];
+    const S = this.state;
+    const sty = { paid: ['1.5px solid #86C49B', '#DCFCE7', '#14532D', 'পরিশোধিত'], due: ['1.5px solid #DC2626', '#FEE2E2', '#991B1B', 'বাকি'], pending: ['1.5px solid #D97706', '#FEF3C7', '#92400E', 'যাচাই চলছে'], future: ['1.5px dashed #D6D3CB', '#fff', '#57534E', 'আগাম দিন'] };
+    const months = names.map((name, i) => {
+      const s = st[i], chosen = S.sel.includes(i), selectable = s === 'due' || s === 'future';
+      const [border, bg, fg, status] = chosen ? ['2.5px solid #15803D', '#15803D', '#fff', '✓ বাছাই'] : sty[s];
+      return { name, border, bg, fg, status, cursor: selectable ? 'pointer' : 'default', toggle: () => selectable && this.setState(p => ({ sel: p.sel.includes(i) ? p.sel.filter(x => x !== i) : [...p.sel, i].sort((a, b) => a - b), sent: false })) };
+    });
+    const n = S.sel.length;
+    return {
+      rootRef: this.rootRef, mode, isMobile: mode === 'mobile', months,
+      selLabel: n ? S.sel.map(i => names[i]).join(', ') : 'কোনো মাস বাছাই হয়নি',
+      total: '৳' + bn(n * 200),
+      methods: ['bKash', 'Nagad', 'নগদ ক্যাশিয়ারকে'].map((label, i) => ({ label, border: S.method === i ? '2px solid #15803D' : '1.5px solid #E7E5DF', bg: S.method === i ? '#F0FDF4' : '#fff', fg: S.method === i ? '#14532D' : '#44403C', pick: () => this.setState({ method: i }) })),
+      online: S.method < 2, cash: S.method === 2,
+      payBg: n ? '#15803D' : '#86A894', payLabel: n ? '৳' + bn(n * 200) + ' জমা দিন' : 'মাস বাছাই করুন',
+      sent: S.sent, notSent: !S.sent, send: () => n && this.setState({ sent: true }),
+      history: [
+        { months: 'নভেম্বর', meta: '২৪ নভেম্বর · bKash · যাচাই চলছে', amount: '৳২০০' },
+        { months: 'অক্টোবর', meta: '৩ অক্টোবর · Nagad · যাচাই করেছেন কোষাধ্যক্ষ', amount: '৳২০০' },
+        { months: 'জুলাই–আগস্ট', meta: '১২ জুলাই · নগদ ক্যাশিয়ারকে', amount: '৳৪০০' },
+        { months: 'জানুয়ারি–জুন', meta: '৮ জানুয়ারি · bKash', amount: '৳১,২০০' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FAFAF7;font-family:'Hind Siliguri',sans-serif;}a{color:#15803D;text-decoration:none;}a:hover{color:#14532D;text-decoration:underline;}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="container-type:inline-size;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:#FAFAF7;color:#1C1917;font-size:16px;line-height:1.6;">
+<div style="position:sticky;top:0;z-index:20;"><dc-import name="SiteHeader" mode="{{ mode }}" active="none" hint-size="100%,72px"></dc-import></div>
+
+<div data-screen-label="সাহায্য তহবিল ও গ্রামের সেবা" style="max-width:1200px;margin:0 auto;padding:clamp(28px,4cqw,48px) clamp(16px,3.5cqw,40px) clamp(40px,5cqw,64px);">
+  <div style="font-size:15px;color:#57534E;">হোম / সাহায্য ও সেবা</div>
+  <h1 style="margin:4px 0 16px;font-size:clamp(28px,3.4cqw,42px);font-weight:700;line-height:1.3;">সাহায্য তহবিল ও গ্রামের সেবা</h1>
+  <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;">
+    <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+      <button onClick="{{ t.pick }}" style="flex:none;height:48px;padding:0 18px;border-radius:999px;border:1.5px solid {{ t.border }};background:{{ t.bg }};color:{{ t.fg }};font-family:inherit;font-size:17px;font-weight:600;cursor:pointer;">{{ t.label }}</button>
+    </sc-for>
+  </div>
+
+  <sc-if value="{{ tabFund }}" hint-placeholder-val="{{ true }}">
+    <div style="margin-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:14px;">
+      <sc-for list="{{ aids }}" as="a" hint-placeholder-count="3">
+        <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;">
+          <img src="{{ a.img }}" alt="{{ a.title }}" loading="lazy" style="display:block;width:100%;aspect-ratio:16/8;object-fit:cover;background:#E3E6D9;">
+          <div style="padding:18px;display:flex;flex-direction:column;gap:10px;flex:1;">
+            <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;"><span style="font-size:14px;font-weight:600;padding:2px 12px;border-radius:999px;background:#FEF3C7;color:#92400E;">{{ a.type }}</span><span style="font-size:15px;color:#57534E;">শেষ তারিখ {{ a.due }}</span></div>
+            <h3 style="margin:0;font-size:20px;font-weight:600;line-height:1.4;">{{ a.title }}</h3>
+            <p style="margin:0;font-size:16px;color:#57534E;">{{ a.desc }}</p>
+            <div style="margin-top:auto;">
+              <div style="height:12px;border-radius:999px;background:#F3EFE6;overflow:hidden;"><div style="height:100%;width:{{ a.w }};background:#D97706;border-radius:999px;"></div></div>
+              <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:6px;font-size:16px;"><span><strong style="color:#B45309;font-size:18px;">{{ a.raised }}</strong> উঠেছে</span><span style="color:#57534E;">লক্ষ্য {{ a.target }} · {{ a.pct }}</span></div>
+            </div>
+            <a href="Donate.dc.html" style="height:48px;border-radius:10px;background:#15803D;color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:600;text-decoration:none;">দান করুন</a>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <p style="margin:14px 0 0;font-size:15px;color:#57534E;">আবেদনকারীর গোপনীয়তার জন্য নাম ও ছবি দেখানো হয় না, যদি না তিনি নিজে অনুমতি দেন।</p>
+  </sc-if>
+
+  <sc-if value="{{ tabService }}" hint-placeholder-val="{{ false }}">
+    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;">
+      <sc-for list="{{ svcCats }}" as="c" hint-placeholder-count="8">
+        <button onClick="{{ c.pick }}" style="height:44px;padding:0 14px;border-radius:10px;border:1.5px solid {{ c.border }};background:{{ c.bg }};color:{{ c.fg }};font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">{{ c.label }}</button>
+      </sc-for>
+    </div>
+    <div style="margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:12px;">
+      <sc-for list="{{ services }}" as="s" hint-placeholder-count="6">
+        <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:16px;display:flex;align-items:center;gap:12px;">
+          <div style="flex:1;min-width:0;"><div style="font-size:14px;font-weight:600;color:#15803D;">{{ s.cat }}</div><div style="font-size:18px;font-weight:600;line-height:1.4;">{{ s.name }}</div><div style="font-size:15px;color:#57534E;">{{ s.para }}</div></div>
+          <a href="#" aria-label="কল করুন" style="width:52px;height:52px;flex:none;border-radius:12px;background:#15803D;color:#fff;display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></a>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ tabJobs }}" hint-placeholder-val="{{ false }}">
+    <div style="margin-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:12px;">
+      <sc-for list="{{ jobs }}" as="j" hint-placeholder-count="4">
+        <a href="#" style="display:block;background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:18px;color:#1C1917;text-decoration:none;">
+          <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;"><span style="font-size:14px;font-weight:600;padding:2px 12px;border-radius:999px;background:{{ j.bg }};color:{{ j.fg }};">{{ j.kind }}</span><span style="font-size:15px;color:#57534E;">{{ j.date }}</span></div>
+          <h3 style="margin:10px 0 4px;font-size:19px;font-weight:600;line-height:1.45;">{{ j.title }}</h3>
+          <p style="margin:0;font-size:16px;color:#57534E;">{{ j.desc }}</p>
+        </a>
+      </sc-for>
+    </div>
+  </sc-if>
+</div>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ true }}"><div style="position:sticky;bottom:0;z-index:20;"><dc-import name="BottomNav" active="none" hint-size="100%,68px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;mobile&quot;,&quot;desktop&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { w: 0, tab: 0, svc: 'সব' };
+  rootRef = React.createRef();
+  componentDidMount() { const el = this.rootRef.current; if (!el) return; this.ro = new ResizeObserver(([e]) => this.setState({ w: e.contentRect.width })); this.ro.observe(el); }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  renderVals() {
+    const m = this.props.mode; const mode = m && m !== 'auto' ? m : (this.state.w >= 900 ? 'desktop' : 'mobile');
+    const bn = n => String(n).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+    const tk = n => '৳' + bn(n.toLocaleString('en-IN'));
+    const F = (n, w = 800) => 'https://commons.wikimedia.org/wiki/Special:FilePath/' + n + '?width=' + w;
+    const pill = (on) => ({ border: on ? '#15803D' : '#E7E5DF', bg: on ? '#15803D' : '#fff', fg: on ? '#fff' : '#44403C' });
+    const aids = [
+      { type: 'চিকিৎসা সহায়তা', img: F('Village_river.jpg'), title: 'কিডনি রোগীর চিকিৎসা সহায়তা', desc: 'পশ্চিমপাড়ার এক পরিবারের প্রধান উপার্জনকারীর ডায়ালাইসিসের খরচ।', raised: 96500, target: 150000, due: '৩১ ডিসেম্বর' },
+      { type: 'শিক্ষা সহায়তা', img: F('My_Village_Town_School_Tree_outside_view.jpg'), title: 'মেধাবী শিক্ষার্থীর ভর্তি খরচ', desc: 'বিশ্ববিদ্যালয়ে ভর্তির সুযোগ পাওয়া সগুনার এক শিক্ষার্থীর ভর্তি ও প্রথম বছরের খরচ।', raised: 18000, target: 40000, due: '১৫ ডিসেম্বর' },
+      { type: 'দুর্যোগ', img: F('Sariakandi_Char_Land_Flood_Affected_Bangladesh.jpg'), title: 'নদীভাঙনে ঘর হারানো পরিবারের ঘর মেরামত', desc: 'নদীপাড়ার একটি পরিবারের টিনের ঘর নতুন করে তোলার খরচ।', raised: 61000, target: 70000, due: '১০ ডিসেম্বর' }
+    ].map(a => { const p = Math.round(a.raised / a.target * 100); return { ...a, raised: tk(a.raised), target: tk(a.target), pct: bn(p) + '%', w: p + '%' }; });
+    const svcAll = [['ইলেকট্রিশিয়ান', 'মোঃ বাবলু মিয়া', 'মধ্যপাড়া'], ['দর্জি', 'মোছাঃ সালমা খাতুন', 'উত্তরপাড়া'], ['তাঁতি', 'মোঃ হারুন অর রশিদ', 'পূর্বপাড়া'], ['মিস্ত্রি', 'মোঃ আনোয়ার হোসেন (রাজমিস্ত্রি)', 'দক্ষিণপাড়া'], ['দোকান', 'মায়ের দোয়া স্টোর (মুদি)', 'সগুনা বাজার'], ['টিউটর', 'মোঃ শরিফুল ইসলাম (গণিত, ৬–১০ম)', 'পশ্চিমপাড়া'], ['ডাক্তার', 'ডা. মোঃ মাহবুব আলম (MBBS)', 'সগুনা বাজার'], ['তাঁতি', 'মোঃ সিরাজুল ইসলাম', 'নদীপাড়া']];
+    const svcCats = ['সব', 'ইলেকট্রিশিয়ান', 'দর্জি', 'তাঁতি', 'মিস্ত্রি', 'দোকান', 'টিউটর', 'ডাক্তার'];
+    const tab = this.state.tab;
+    return {
+      rootRef: this.rootRef, mode, isMobile: mode === 'mobile',
+      tabs: ['সাহায্য তহবিল', 'গ্রামের সেবা', 'চাকরি ও শিক্ষা'].map((label, i) => ({ label, ...pill(i === tab), pick: () => this.setState({ tab: i }) })),
+      tabFund: tab === 0, tabService: tab === 1, tabJobs: tab === 2, aids,
+      svcCats: svcCats.map(l => ({ label: l, ...pill(l === this.state.svc), pick: () => this.setState({ svc: l }) })),
+      services: svcAll.filter(s => this.state.svc === 'সব' || s[0] === this.state.svc).map(([cat, name, para]) => ({ cat, name, para })),
+      jobs: [
+        { kind: 'চাকরি', date: '২৩ নভেম্বর', title: 'বেলকুচির তাঁত কারখানায় ১০ জন কারিগর নিয়োগ', desc: 'অভিজ্ঞ তাঁতি ও সহকারী। যোগাযোগ সাধারণ সম্পাদকের মাধ্যমে।' },
+        { kind: 'বৃত্তি', date: '১৯ নভেম্বর', title: 'এসএসসি ২০২৬ উত্তীর্ণদের জন্য সংগঠনের বৃত্তি', desc: 'GPA ৫ পাওয়া দরিদ্র পরিবারের শিক্ষার্থীরা ১৫ ডিসেম্বরের মধ্যে আবেদন করুন।' },
+        { kind: 'সংবর্ধনা', date: '১০ নভেম্বর', title: 'মেধাবী শিক্ষার্থী সংবর্ধনা ২০২৬', desc: 'বিশ্ববিদ্যালয় ও মেডিকেলে চান্স পাওয়া সগুনার ৭ জন শিক্ষার্থীকে সংবর্ধনা দেওয়া হবে।' },
+        { kind: 'চাকরি', date: '৫ নভেম্বর', title: 'সিরাজগঞ্জ শহরে বিক্রয় প্রতিনিধি', desc: 'এইচএসসি পাস, মোটরসাইকেল চালাতে জানেন এমন ২ জন।' }
+      ].map(j => ({ ...j, bg: j.kind === 'চাকরি' ? '#F0FDF4' : '#FEF3C7', fg: j.kind === 'চাকরি' ? '#15803D' : '#92400E' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

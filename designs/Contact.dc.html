@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FAFAF7;font-family:'Hind Siliguri',sans-serif;}a{color:#15803D;text-decoration:none;}a:hover{color:#14532D;text-decoration:underline;}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="container-type:inline-size;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:#FAFAF7;color:#1C1917;font-size:16px;line-height:1.6;">
+<div style="position:sticky;top:0;z-index:20;"><dc-import name="SiteHeader" mode="{{ mode }}" active="contact" hint-size="100%,72px"></dc-import></div>
+
+<section data-screen-label="জরুরি নম্বর">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(28px,4cqw,48px) clamp(16px,3.5cqw,40px) 0;">
+    <div style="font-size:15px;color:#57534E;">হোম / যোগাযোগ</div>
+    <h1 style="margin:4px 0 6px;font-size:clamp(28px,3.4cqw,42px);font-weight:700;line-height:1.3;">জরুরি নম্বর</h1>
+    <p style="margin:0 0 18px;font-size:17px;color:#57534E;">কার্ড চাপলেই কল যাবে।</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:12px;">
+      <a href="tel:999" style="display:flex;align-items:center;gap:14px;background:#DC2626;border-radius:12px;padding:16px;color:#fff;text-decoration:none;min-height:80px;box-sizing:border-box;">
+        <div style="width:52px;height:52px;flex:none;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+        <div><div style="font-size:18px;font-weight:600;">জাতীয় জরুরি সেবা</div><div style="font-size:28px;font-weight:700;line-height:1.2;">৯৯৯</div></div>
+      </a>
+      <sc-for list="{{ contacts }}" as="c" hint-placeholder-count="7">
+        <a href="#" style="display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:16px;color:#1C1917;text-decoration:none;min-height:80px;box-sizing:border-box;">
+          <div style="width:52px;height:52px;flex:none;border-radius:50%;background:#F0FDF4;color:#15803D;display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+          <div style="min-width:0;"><div style="font-size:18px;font-weight:600;line-height:1.4;">{{ c.title }}</div><div style="font-size:17px;color:#57534E;">{{ c.phone }}</div></div>
+        </a>
+      </sc-for>
+    </div>
+    <p style="margin:12px 0 0;font-size:15px;color:#57534E;">নম্বরগুলো কমিটি যাচাই করে হালনাগাদ করে।</p>
+  </div>
+</section>
+
+<section data-screen-label="যোগাযোগ">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(40px,5.5cqw,72px) clamp(16px,3.5cqw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));gap:24px;align-items:start;">
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <h2 style="margin:0;font-size:clamp(24px,2.4cqw,32px);font-weight:700;line-height:1.3;">সংগঠনের সাথে যোগাযোগ</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;">
+        <a href="#" style="height:52px;border-radius:10px;background:#15803D;color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:17px;font-weight:600;text-decoration:none;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>ফোন</a>
+        <a href="#" style="height:52px;border-radius:10px;border:1.5px solid #15803D;color:#15803D;display:flex;align-items:center;justify-content:center;gap:8px;font-size:17px;font-weight:600;text-decoration:none;box-sizing:border-box;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>WhatsApp</a>
+        <a href="#" style="height:52px;border-radius:10px;border:1.5px solid #15803D;color:#15803D;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:600;text-decoration:none;box-sizing:border-box;">Facebook</a>
+      </div>
+      <div style="font-size:17px;color:#44403C;">গ্রাম সগুনা, উপজেলা বেলকুচি, জেলা সিরাজগঞ্জ · অফিস: সগুনা বাজার ক্লাব ঘর</div>
+      <iframe title="সগুনা, বেলকুচির মানচিত্র" src="https://maps.google.com/maps?q=Belkuchi,Sirajganj,Bangladesh&z=12&output=embed" loading="lazy" style="width:100%;height:300px;border:1px solid #E7E5DF;border-radius:12px;"></iframe>
+    </div>
+    <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:22px;">
+      <h2 style="margin:0 0 14px;font-size:clamp(22px,2.2cqw,28px);font-weight:700;">বার্তা পাঠান</h2>
+      <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:16px;font-weight:600;">আপনার নাম</span><input style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:17px;"></label>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:16px;font-weight:600;">ফোন নম্বর</span><input placeholder="০১৭XXXXXXXX" inputmode="tel" style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:17px;"></label>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:16px;font-weight:600;">বিষয়</span><input placeholder="যেমন: সদস্য হতে চাই" style="height:52px;border-radius:10px;border:1.5px solid #D6D3CB;padding:0 14px;font-family:inherit;font-size:17px;"></label>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:16px;font-weight:600;">বার্তা</span><textarea rows="4" style="border-radius:10px;border:1.5px solid #D6D3CB;padding:12px 14px;font-family:inherit;font-size:17px;resize:vertical;"></textarea></label>
+          <button onClick="{{ send }}" style="height:56px;border-radius:10px;border:none;background:#15803D;color:#fff;font-family:inherit;font-size:19px;font-weight:700;cursor:pointer;">বার্তা পাঠান</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#F0FDF4;border-radius:10px;padding:18px;font-size:18px;"><strong style="color:#15803D;">ধন্যবাদ, বার্তা পেয়েছি।</strong> কমিটির কেউ শিগগিরই আপনাকে ফোন করবেন।</div>
+      </sc-if>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ true }}"><div style="position:sticky;bottom:0;z-index:20;"><dc-import name="BottomNav" active="none" hint-size="100%,68px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;mobile&quot;,&quot;desktop&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { w: 0, sent: false };
+  rootRef = React.createRef();
+  componentDidMount() { const el = this.rootRef.current; if (!el) return; this.ro = new ResizeObserver(([e]) => this.setState({ w: e.contentRect.width })); this.ro.observe(el); }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  renderVals() {
+    const m = this.props.mode; const mode = m && m !== 'auto' ? m : (this.state.w >= 900 ? 'desktop' : 'mobile');
+    const ph = '০১৭XX-XXXXXX';
+    return {
+      rootRef: this.rootRef, mode, isMobile: mode === 'mobile',
+      contacts: ['অ্যাম্বুলেন্স', 'বেলকুচি উপজেলা স্বাস্থ্য কমপ্লেক্স', 'বেলকুচি থানা', 'ফায়ার সার্ভিস', 'পল্লী বিদ্যুৎ (অভিযোগ)', 'ইউনিয়ন পরিষদ', 'গ্রামের ডাক্তার'].map(title => ({ title, phone: ph })),
+      sent: this.state.sent, notSent: !this.state.sent, send: () => this.setState({ sent: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

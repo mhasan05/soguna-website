@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FAFAF7;font-family:'Hind Siliguri',sans-serif;}a{color:#15803D;text-decoration:none;}a:hover{color:#14532D;text-decoration:underline;}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="container-type:inline-size;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:#FAFAF7;color:#1C1917;font-size:16px;line-height:1.6;">
+<div style="position:sticky;top:0;z-index:20;"><dc-import name="SiteHeader" mode="{{ mode }}" active="none" hint-size="100%,72px"></dc-import></div>
+
+<div data-screen-label="সদস্য ড্যাশবোর্ড" style="max-width:1200px;margin:0 auto;padding:clamp(20px,3cqw,40px) clamp(16px,3.5cqw,40px) clamp(40px,5cqw,64px);display:flex;flex-direction:column;gap:20px;">
+  <div style="background:#15803D;border-radius:16px;overflow:hidden;color:#fff;">
+    <div style="height:6px;background:repeating-linear-gradient(90deg,#14532D 0 16px,#D97706 16px 20px,#15803D 20px 30px,#FAFAF7 30px 32px);"></div>
+    <div style="padding:clamp(18px,2.6cqw,28px);display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
+      <div style="width:76px;height:76px;flex:none;border-radius:50%;background:#14532D;border:3px solid #FCD34D;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:700;">রা</div>
+      <div style="flex:1 1 200px;min-width:0;">
+        <div style="font-size:16px;opacity:.9;">আসসালামু আলাইকুম,</div>
+        <div style="font-size:clamp(24px,2.8cqw,32px);font-weight:700;line-height:1.3;">মোঃ রাকিব হাসান</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:6px;">
+          <span style="font-family:ui-monospace,Menlo,monospace;font-size:15px;background:rgba(255,255,255,.15);padding:2px 10px;border-radius:6px;">SAJS-0045</span>
+          <sc-if value="{{ duesPaid }}" hint-placeholder-val="{{ true }}"><span style="font-size:14px;font-weight:600;padding:2px 12px;border-radius:999px;background:#DCFCE7;color:#14532D;">সক্রিয়</span></sc-if>
+          <sc-if value="{{ duesDue }}" hint-placeholder-val="{{ false }}"><span style="font-size:14px;font-weight:600;padding:2px 12px;border-radius:999px;background:#FEE2E2;color:#991B1B;">চাঁদা বাকি</span></sc-if>
+        </div>
+      </div>
+      <a href="Profile.dc.html" style="height:48px;padding:0 18px;border-radius:10px;border:1.5px solid rgba(255,255,255,.7);color:#fff;display:inline-flex;align-items:center;font-size:17px;font-weight:600;text-decoration:none;box-sizing:border-box;">প্রোফাইল</a>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));gap:12px;">
+    <a href="Dues.dc.html" style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:16px;color:#1C1917;text-decoration:none;display:flex;flex-direction:column;gap:6px;">
+      <span style="font-size:15px;color:#57534E;">নভেম্বরের চাঁদা</span>
+      <sc-if value="{{ duesPaid }}" hint-placeholder-val="{{ true }}"><span style="align-self:flex-start;font-size:16px;font-weight:700;padding:2px 12px;border-radius:999px;background:#DCFCE7;color:#15803D;">পরিশোধিত</span></sc-if>
+      <sc-if value="{{ duesDue }}" hint-placeholder-val="{{ false }}"><span style="align-self:flex-start;font-size:16px;font-weight:700;padding:2px 12px;border-radius:999px;background:#FEE2E2;color:#B91C1C;">বাকি ৳২০০</span></sc-if>
+    </a>
+    <a href="Dues.dc.html" style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:16px;color:#1C1917;text-decoration:none;"><div style="font-size:15px;color:#57534E;">মোট দেওয়া চাঁদা</div><div style="font-size:26px;font-weight:700;color:#15803D;line-height:1.3;">৳৪,৬০০</div></a>
+    <a href="EventDetail.dc.html" style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:16px;color:#1C1917;text-decoration:none;"><div style="font-size:15px;color:#57534E;">আসন্ন ইভেন্ট</div><div style="font-size:17px;font-weight:600;line-height:1.4;">শীতবস্ত্র বিতরণ · ১৩ ডিসে</div></a>
+    <a href="Notices.dc.html" style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:16px;color:#1C1917;text-decoration:none;"><div style="font-size:15px;color:#57534E;">নতুন নোটিশ</div><div style="font-size:26px;font-weight:700;color:#B45309;line-height:1.3;">৩টি</div></a>
+  </div>
+
+  <div>
+    <h2 style="margin:0 0 12px;font-size:clamp(20px,2.2cqw,26px);font-weight:700;">দ্রুত কাজ</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,46%),1fr));gap:10px;">
+      <a href="Dues.dc.html" style="min-height:96px;background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:14px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;color:#1C1917;text-decoration:none;text-align:center;"><span style="width:44px;height:44px;border-radius:12px;background:#FEF3C7;color:#B45309;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;">৳</span><span style="font-size:17px;font-weight:600;">চাঁদা দিন</span></a>
+      <a href="Blood.dc.html" style="min-height:96px;background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:14px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;color:#1C1917;text-decoration:none;text-align:center;"><span style="width:44px;height:44px;border-radius:12px;background:#FEF2F2;color:#DC2626;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"></path></svg></span><span style="font-size:17px;font-weight:600;">রক্তদাতা খুঁজুন</span></a>
+      <a href="MemberCard.dc.html" style="min-height:96px;background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:14px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;color:#1C1917;text-decoration:none;text-align:center;"><span style="width:44px;height:44px;border-radius:12px;background:#F0FDF4;color:#15803D;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><circle cx="8" cy="12" r="2.5"></circle><path d="M13 10h5M13 14h3"></path></svg></span><span style="font-size:17px;font-weight:600;">সদস্য কার্ড</span></a>
+      <a href="AidApply.dc.html" style="min-height:96px;background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:14px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;color:#1C1917;text-decoration:none;text-align:center;"><span style="width:44px;height:44px;border-radius:12px;background:#F0FDF4;color:#15803D;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg></span><span style="font-size:17px;font-weight:600;">সাহায্যের আবেদন</span></a>
+      <a href="Members.dc.html" style="min-height:96px;background:#fff;border:1px solid #E7E5DF;border-radius:12px;padding:14px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;color:#1C1917;text-decoration:none;text-align:center;"><span style="width:44px;height:44px;border-radius:12px;background:#F0FDF4;color:#15803D;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span><span style="font-size:17px;font-weight:600;">সদস্য তালিকা</span></a>
+    </div>
+  </div>
+
+  <div style="background:#fff;border:1.5px solid #FBD5D5;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px;">
+    <div style="display:flex;align-items:center;gap:10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="#DC2626" stroke="#DC2626" stroke-width="1.5" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"></path></svg><h2 style="margin:0;font-size:20px;font-weight:700;">আমি রক্তদাতা · <span style="color:#DC2626;">B+</span></h2></div>
+    <div style="font-size:16px;color:#57534E;">{{ lastLabel }}</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;background:#FAFAF7;border-radius:10px;padding:8px 14px;">
+      <span style="font-size:17px;font-weight:600;">আমি এখন রক্ত দিতে পারব</span>
+      <button onClick="{{ toggleAvail }}" aria-label="রক্ত দিতে পারব" style="width:60px;height:34px;flex:none;border-radius:999px;border:none;background:{{ availTrack }};position:relative;cursor:pointer;"><span style="position:absolute;top:3px;left:{{ availKnob }};width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);"></span></button>
+    </div>
+    <button onClick="{{ donatedToday }}" style="height:52px;border-radius:10px;border:1.5px solid #DC2626;background:#fff;color:#B91C1C;font-family:inherit;font-size:18px;font-weight:700;cursor:pointer;">{{ todayLabel }}</button>
+  </div>
+</div>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ true }}"><div style="position:sticky;bottom:0;z-index:20;"><dc-import name="BottomNav" active="me" hint-size="100%,68px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;mobile&quot;,&quot;desktop&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;dues&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;paid&quot;,&quot;due&quot;],&quot;default&quot;:&quot;paid&quot;,&quot;tsType&quot;:&quot;'paid'|'due'&quot;}}">
+class Component extends DCLogic {
+  state = { w: 0, avail: true, today: false };
+  rootRef = React.createRef();
+  componentDidMount() { const el = this.rootRef.current; if (!el) return; this.ro = new ResizeObserver(([e]) => this.setState({ w: e.contentRect.width })); this.ro.observe(el); }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  renderVals() {
+    const m = this.props.mode; const mode = m && m !== 'auto' ? m : (this.state.w >= 900 ? 'desktop' : 'mobile');
+    const paid = (this.props.dues ?? 'paid') === 'paid';
+    const S = this.state;
+    const on = S.avail && !S.today;
+    return {
+      rootRef: this.rootRef, mode, isMobile: mode === 'mobile',
+      duesPaid: paid, duesDue: !paid,
+      lastLabel: S.today ? 'শেষ রক্তদান: আজ, ২৬ নভেম্বর ২০২৬ · ৯০ দিন পর আবার তালিকায় আসবেন' : 'শেষ রক্তদান: ১০ আগস্ট ২০২৬ (১০৮ দিন আগে)',
+      availTrack: on ? '#15803D' : '#D6D3CB', availKnob: on ? '29px' : '3px',
+      toggleAvail: () => this.setState(s => ({ avail: !s.avail })),
+      donatedToday: () => this.setState(s => ({ today: !s.today })),
+      todayLabel: S.today ? 'আজকের রক্তদান বাতিল করুন' : 'আজ রক্ত দিয়েছি'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FAFAF7;font-family:'Hind Siliguri',sans-serif;}a{color:#15803D;text-decoration:none;}a:hover{color:#14532D;text-decoration:underline;}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="container-type:inline-size;font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:#FAFAF7;color:#1C1917;font-size:16px;line-height:1.6;">
+<div style="position:sticky;top:0;z-index:20;"><dc-import name="SiteHeader" mode="{{ mode }}" active="gallery" hint-size="100%,72px"></dc-import></div>
+
+<div data-screen-label="গ্যালারি" style="max-width:1200px;margin:0 auto;padding:clamp(28px,4cqw,48px) clamp(16px,3.5cqw,40px) clamp(40px,5cqw,64px);">
+  <sc-if value="{{ showAlbums }}" hint-placeholder-val="{{ true }}">
+    <div style="font-size:15px;color:#57534E;">হোম / গ্যালারি</div>
+    <h1 style="margin:4px 0 18px;font-size:clamp(28px,3.4cqw,42px);font-weight:700;line-height:1.3;">গ্যালারি</h1>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px;">
+      <sc-for list="{{ albums }}" as="a" hint-placeholder-count="6">
+        <button onClick="{{ a.open }}" style="display:flex;flex-direction:column;text-align:left;padding:0;border:1px solid {{ a.border }};background:#fff;border-radius:12px;overflow:hidden;cursor:pointer;font-family:inherit;color:#1C1917;">
+          <div style="display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:3px;width:100%;aspect-ratio:16/10;">
+            <img src="{{ a.c0 }}" alt="" loading="lazy" style="grid-row:span 2;width:100%;height:100%;object-fit:cover;background:#E3E6D9;">
+            <img src="{{ a.c1 }}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;background:#E3E6D9;">
+            <img src="{{ a.c2 }}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;background:#E3E6D9;">
+          </div>
+          <div style="padding:14px 16px;">
+            <div style="font-size:19px;font-weight:600;line-height:1.4;">{{ a.title }}</div>
+            <div style="font-size:15px;color:#57534E;">{{ a.meta }}</div>
+          </div>
+        </button>
+      </sc-for>
+    </div>
+    <h2 style="margin:clamp(36px,5cqw,56px) 0 14px;font-size:clamp(22px,2.4cqw,30px);font-weight:700;">ভিডিও</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));gap:14px;">
+      <div style="background:#fff;border:1px solid #E7E5DF;border-radius:12px;overflow:hidden;">
+        <div style="position:relative;aspect-ratio:16/9;background:#14532D;">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Football_in_the_village_of_Bangladesh.jpg?width=900" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.75;">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:68px;height:68px;border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="#14532D"><path d="M8 5v14l11-7z"></path></svg></div></div>
+        </div>
+        <div style="padding:14px 16px;"><div style="font-size:18px;font-weight:600;">বিজয় দিবস টুর্নামেন্ট ২০২৫ — ফাইনাল</div><div style="font-size:15px;color:#57534E;">YouTube · ১২ মিনিট</div></div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showPhotos }}" hint-placeholder-val="{{ false }}">
+    <button onClick="{{ back }}" style="min-height:48px;border:none;background:none;padding:0;display:inline-flex;align-items:center;gap:6px;font-family:inherit;font-size:17px;font-weight:600;color:#15803D;cursor:pointer;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>সব অ্যালবাম</button>
+    <h1 style="margin:4px 0 2px;font-size:clamp(26px,3.2cqw,38px);font-weight:700;line-height:1.3;">{{ album.title }}</h1>
+    <p style="margin:0 0 18px;font-size:16px;color:#57534E;">{{ album.meta }}</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(160px,45%),1fr));gap:8px;">
+      <sc-for list="{{ photos }}" as="p" hint-placeholder-count="8">
+        <button onClick="{{ p.view }}" style="padding:0;border:none;background:#E3E6D9;border-radius:10px;overflow:hidden;cursor:pointer;aspect-ratio:1;"><img src="{{ p.thumb }}" alt="{{ p.cap }}" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover;"></button>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showViewer }}" hint-placeholder-val="{{ false }}">
+    <div style="background:#1C1917;border-radius:16px;overflow:hidden;color:#fff;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 8px 8px 16px;">
+        <span style="font-size:16px;">{{ counter }}</span>
+        <button onClick="{{ closeViewer }}" aria-label="বন্ধ করুন" style="width:48px;height:48px;border:none;background:rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:26px;cursor:pointer;line-height:1;">×</button>
+      </div>
+      <img src="{{ current.full }}" alt="{{ current.cap }}" style="display:block;width:100%;max-height:70vh;aspect-ratio:4/3;object-fit:contain;background:#0C0A09;">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px;">
+        <button onClick="{{ prev }}" aria-label="আগের ছবি" style="width:56px;height:56px;flex:none;border:none;background:rgba(255,255,255,.12);border-radius:12px;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></button>
+        <span style="font-size:17px;text-align:center;">{{ current.cap }}</span>
+        <button onClick="{{ next }}" aria-label="পরের ছবি" style="width:56px;height:56px;flex:none;border:none;background:rgba(255,255,255,.12);border-radius:12px;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></button>
+      </div>
+    </div>
+  </sc-if>
+</div>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ true }}"><div style="position:sticky;bottom:0;z-index:20;"><dc-import name="BottomNav" active="none" hint-size="100%,68px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;mobile&quot;,&quot;desktop&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { w: 0, album: -1, photo: -1 };
+  rootRef = React.createRef();
+  componentDidMount() { const el = this.rootRef.current; if (!el) return; this.ro = new ResizeObserver(([e]) => this.setState({ w: e.contentRect.width })); this.ro.observe(el); }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  renderVals() {
+    const m = this.props.mode; const mode = m && m !== 'auto' ? m : (this.state.w >= 900 ? 'desktop' : 'mobile');
+    const bn = n => String(n).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+    const F = (n, w) => 'https://commons.wikimedia.org/wiki/Special:FilePath/' + n + '?width=' + w;
+    const raw = [
+      { title: 'সগুনার স্মৃতি', meta: 'গ্রামের পুরনো ও প্রিয় ছবি', memory: true, files: ['Village_river.jpg', 'Our_village.jpg', 'Natural_view_of_Village,_Bangladesh.jpg', 'A_Fisherman_at_Sunset_Time_in_Village_River.jpg', 'Canal_Of_Village.jpg', 'Paddy_field.jpg', 'River_side_road.jpg', 'Hand_weaving_loom.JPG'] },
+      { title: 'যমুনার বন্যায় ত্রাণ বিতরণ', meta: 'আগস্ট ২০২৬ · ৬টি ছবি', files: ['Sariakandi_Char_Land_Flood_Affected_Bangladesh.jpg', 'Flood_in_Bangladesh.jpg', 'Canal_Of_Village.jpg', 'A_conversation_session_of_village_people.jpg', 'Village_river.jpg', 'River_side_road.jpg'] },
+      { title: 'আমন বীজ বিতরণ', meta: 'জুলাই ২০২৬ · ৫টি ছবি', files: ['A_Farmer_walking_in_paddy_field.jpg', 'Paddy_Field_Of_A_Village.jpg', 'Crop_field.jpg', 'Paddy_field.jpg', 'Bangladesh_Village_Landscape_(36143248590).jpg'] },
+      { title: 'ইফতার মাহফিল', meta: 'মার্চ ২০২৬ · ৪টি ছবি', files: ['Iftar_beguni.JPG', 'Namaj_Time_in_Bangladesh.jpg', 'A_conversation_session_of_village_people.jpg', 'Our_village.jpg'] },
+      { title: 'বিজয় দিবস টুর্নামেন্ট', meta: 'ডিসেম্বর ২০২৫ · ৪টি ছবি', files: ['Football_in_the_village_of_Bangladesh.jpg', 'Village_children_in_Bangladesh.jpg', 'Winter_Fair.jpg', 'My_beautiful_village_field.jpg'] },
+      { title: 'শীতবস্ত্র বিতরণ ২০২৫', meta: 'ডিসেম্বর ২০২৫ · ৪টি ছবি', files: ['Busy_farmer_at_winter_morning.jpg', 'A_smiling_farmer_on_a_winter_morning.jpg', 'Village_children_in_Bangladesh.jpg', 'Winter_Fair.jpg'] }
+    ];
+    const albums = raw.map((a, i) => ({ ...a, c0: F(a.files[0], 600), c1: F(a.files[1], 300), c2: F(a.files[2], 300), border: a.memory ? '#F5C97A' : '#E7E5DF', open: () => this.setState({ album: i, photo: -1 }) }));
+    const ai = this.state.album, pi = this.state.photo;
+    const album = ai >= 0 ? albums[ai] : { title: '', meta: '', files: [] };
+    const photos = album.files.map((f, i) => ({ thumb: F(f, 400), full: F(f, 1600), cap: album.title + ' — ' + bn(i + 1), view: () => this.setState({ photo: i }) }));
+    const n = photos.length;
+    return {
+      rootRef: this.rootRef, mode, isMobile: mode === 'mobile',
+      albums, album, photos,
+      showAlbums: ai < 0, showPhotos: ai >= 0 && pi < 0, showViewer: ai >= 0 && pi >= 0,
+      back: () => this.setState({ album: -1 }),
+      current: pi >= 0 ? photos[pi] : { full: '', cap: '' },
+      counter: bn(pi + 1) + ' / ' + bn(n),
+      closeViewer: () => this.setState({ photo: -1 }),
+      prev: () => this.setState(s => ({ photo: (s.photo - 1 + n) % n })),
+      next: () => this.setState(s => ({ photo: (s.photo + 1) % n }))
+    };
+  }
+}
+</script>
+</body>
+</html>
